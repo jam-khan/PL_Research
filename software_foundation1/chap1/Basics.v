@@ -926,6 +926,8 @@ Proof. simpl. reflexivity.  Qed.
     prove, while [x =? y] is a boolean _expression_ whose value (either
     [true] or [false]) we can compute. *)
 
+(* Cool that makes sense as Maths uses = not == *)
+
 (** **** Exercise: 1 star, standard (ltb)
 
     The [ltb] function tests natural numbers for [l]ess-[t]han,
@@ -934,18 +936,16 @@ Proof. simpl. reflexivity.  Qed.
     function.  (It can be done with just one previously defined
     function, but you can use two if you want.) *)
 
-Definition ltb (n m : nat) : bool
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Definition ltb (n m : nat) : bool := negb' (m <=? n).
 
 Notation "x <? y" := (ltb x y) (at level 70) : nat_scope.
 
 Example test_ltb1:             (ltb 2 2) = false.
-(* FILL IN HERE *) Admitted.
+Proof. simpl. reflexivity. Qed.
 Example test_ltb2:             (ltb 2 4) = true.
-(* FILL IN HERE *) Admitted.
+Proof. simpl. reflexivity. Qed.
 Example test_ltb3:             (ltb 4 2) = false.
-(* FILL IN HERE *) Admitted.
-(** [] *)
+Proof. simpl. reflexivity. Qed.
 
 (* ################################################################# *)
 (** * Proof by Simplification *)
@@ -971,12 +971,16 @@ Theorem plus_O_n : forall n : nat, 0 + n = n.
 Proof.
   intros n. simpl. reflexivity.  Qed.
 
+(* This is so cool! *)
+
 (** (You may notice that the above statement looks different if
     you look at the [.v] file in your IDE than it does if you view the
     HTML rendition in your browser. In [.v] files, we write the
     universal quantifier [forall] using the reserved identifier
     "forall."  When the [.v] files are converted to HTML, this gets
     transformed into the standard upside-down-A symbol.)
+    
+    True!
 
     This is a good place to mention that [reflexivity] is a bit more
     powerful than we have acknowledged. In the examples we have seen,
@@ -985,6 +989,8 @@ Proof.
     checking that two sides are equal; [simpl] was just added so that
     we could see the intermediate state, after simplification but
     before finishing the proof.  Here is a shorter proof: *)
+
+(* So, reflexivity will do all the work from simpl *)
 
 Theorem plus_O_n' : forall n : nat, 0 + n = n.
 Proof.
@@ -1037,9 +1043,9 @@ Theorem plus_1_l : forall n:nat, 1 + n = S n.
 Proof.
   intros n. reflexivity.  Qed.
 
-Theorem mult_0_l : forall n:nat, 0 * n = 0.
+Theorem mult_0_l : forall n:nat, 0 * (0 * n) = 0.
 Proof.
-  intros n. reflexivity.  Qed.
+  intros n. simpl. reflexivity.  Qed.
 
 (** The [_l] suffix in the names of these theorems is
     pronounced "on the left." *)
@@ -1081,7 +1087,8 @@ Proof.
   (* move the hypothesis into the context: *)
   intros H.
   (* rewrite the goal using the hypothesis: *)
-  rewrite -> H.
+  rewrite -> H. (* This will replace n with m and then, simplify *)
+  simpl.
   reflexivity.  Qed.
 
 (** The first line of the proof moves the universally quantified
@@ -1105,8 +1112,13 @@ Proof.
 Theorem plus_id_exercise : forall n m o : nat,
   n = m -> m = o -> n + m = m + o.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros n m o.
+  intros H1.
+  rewrite -> H1.
+  intros H2.
+  rewrite -> H2.
+  simpl.
+  reflexivity. Qed.
 
 (** The [Admitted] command tells Coq that we want to skip trying
     to prove this theorem and just accept it as a given.  This is
@@ -1146,6 +1158,7 @@ Proof.
   intros p q.
   rewrite <- mult_n_O.
   rewrite <- mult_n_O.
+  simpl.
   reflexivity. Qed.
 
 (** **** Exercise: 1 star, standard (mult_n_1)
@@ -1156,10 +1169,13 @@ Proof.
 Theorem mult_n_1 : forall p : nat,
   p * 1 = p.
 Proof.
-  (* FILL IN HERE *) Admitted.
-
-(** [] *)
-
+  intros p.
+  rewrite <- mult_n_Sm.
+  rewrite <- mult_n_O.
+  simpl.
+  reflexivity.
+  Qed.
+  
 (* ################################################################# *)
 (** * Proof by Case Analysis *)
 
