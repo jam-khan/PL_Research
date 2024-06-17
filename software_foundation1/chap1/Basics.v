@@ -562,6 +562,8 @@ Module NatPlayground.
     the other hand, are an infinite set, so we'll need to use a
     slightly richer form of type declaration to represent them.
 
+    Is it gonna be recursive? 99.9999%
+
     There are many representations of numbers to choose from. You are
     almost certainly most familiar with decimal notation (base 10),
     using the digits 0 through 9, for example, to form the number 123.
@@ -577,6 +579,9 @@ Module NatPlayground.
     the digits can be represented with just two distinct voltage
     levels, resulting in simple circuitry. Analogously, we wish here
     to choose a representation that makes _proofs_ simpler.
+
+    So, ideally we should pick a representation that makes our job easier.
+    In this case, proofs could be made easier!
 
     In fact, there is a representation of numbers that is even simpler
     than binary, namely unary (base 1), in which only a single digit
@@ -594,6 +599,12 @@ Inductive nat : Type :=
 
 (** With this definition, 0 is represented by [O], 1 by [S O],
     2 by [S (S O)], and so on. *)
+
+    (* Yeah so it is recursive and unary (single digit) *)
+
+Check (S (S O)) : nat.
+Check (O) : nat.
+Check (S O) : nat. 
 
 (** Informally, the clauses of the definition can be read:
       - [O] is a natural number (remember this is the letter "[O],"
@@ -646,6 +657,10 @@ Definition pred (n : nat) : nat :=
   | S n' => n'
   end.
 
+Example check_pred:
+  (pred (S (S O))) = (S O).
+Proof. reflexivity. Qed.
+
 (** The second branch can be read: "if [n] has the form [S n']
     for some [n'], then return [n']."  *)
 
@@ -662,6 +677,9 @@ End NatPlayground.
 
 Check (S (S (S (S O)))).
 (* ===> 4 : nat *)
+(* Since above computation is being done outside NatPlagroud so
+it gets computed to the number instead of same format as Coq is using
+its own definition of Nat*)
 
 Definition minustwo (n : nat) : nat :=
   match n with
@@ -703,11 +721,12 @@ Check minustwo : nat -> nat.
     recursively check whether [n-2] is even.  Such functions are
     introduced with the keyword [Fixpoint] instead of [Definition]. *)
 
-Fixpoint even (n:nat) : bool :=
+(* So Functions with recursion are defined using Recursion *)
+Fixpoint even (n: nat) : bool :=
   match n with
-  | O        => true
-  | S O      => false
-  | S (S n') => even n'
+  | O     => true
+  | S O   => false
+  | S (S n')  => even n'
   end.
 
 (** We could define [odd] by a similar [Fixpoint] declaration, but
@@ -717,9 +736,9 @@ Definition odd (n:nat) : bool :=
   negb (even n).
 
 Example test_odd1:    odd 1 = true.
-Proof. simpl. reflexivity.  Qed.
+Proof. reflexivity.  Qed.
 Example test_odd2:    odd 4 = false.
-Proof. simpl. reflexivity.  Qed.
+Proof. reflexivity.  Qed.
 
 (** (You may notice if you step through these proofs that
     [simpl] actually has no effect on the goal -- all of the work is
@@ -761,11 +780,11 @@ Compute (plus 3 2).
     definition, [(n m : nat)] means just the same as if we had written
     [(n : nat) (m : nat)]. *)
 
-Fixpoint mult (n m : nat) : nat :=
+Fixpoint mult (n: nat) (m: nat) : nat :=
   match n with
-  | O => O
-  | S n' => plus m (mult n' m)
-  end.
+  | O     => O
+  | S n'  => plus m (mult n' m)
+  end. 
 
 Example test_mult1: (mult 3 3) = 9.
 Proof. simpl. reflexivity.  Qed.
@@ -802,14 +821,16 @@ Fixpoint exp (base power : nat) : nat :=
     factorial was not found in the current environment," it means
     you've forgotten the [:=]. *)
 
-Fixpoint factorial (n:nat) : nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Fixpoint factorial (n:nat) : nat :=
+  match n with
+  | O    => S O
+  | S n' => mult n (factorial n')
+  end.
 
 Example test_factorial1:          (factorial 3) = 6.
-(* FILL IN HERE *) Admitted.
+Proof. simpl. reflexivity. Qed.
 Example test_factorial2:          (factorial 5) = (mult 10 12).
-(* FILL IN HERE *) Admitted.
-(** [] *)
+Proof. simpl. reflexivity. Qed.
 
 (** Again, we can make numerical expressions easier to read and write
     by introducing notations for addition, subtraction, and
@@ -825,7 +846,12 @@ Notation "x * y" := (mult x y)
                        (at level 40, left associativity)
                        : nat_scope.
 
-Check ((0 + 1) + 1) : nat.
+Check ((0 + 5) + 1) : nat.
+Example test_notation:
+  0 + 5 = 5.
+Proof. reflexivity. Qed.
+
+(* Why is simpl not needed anymore? *)
 
 (** (The [level], [associativity], and [nat_scope] annotations
     control how these notations are treated by Coq's parser.  The
@@ -845,6 +871,8 @@ Check ((0 + 1) + 1) : nat.
     [match]es (we could also have used a simultaneous match, as
     in [minus].) *)
 
+(* Pretty cool techniques, but if goes with big numbers 
+it will be pretty inefficient! Curious: Do numbers work in Coq just like that?*)
 Fixpoint eqb (n m : nat) : bool :=
   match n with
   | O => match m with
@@ -862,12 +890,14 @@ Fixpoint eqb (n m : nat) : bool :=
 
 Fixpoint leb (n m : nat) : bool :=
   match n with
-  | O => true
-  | S n' =>
-      match m with
-      | O => false
-      | S m' => leb n' m'
-      end
+  | O => match m with
+         | O     => true
+         | S m'  => true
+         end
+  | S n' => match m with
+         | O => false
+         | S m' => leb n' m'
+         end
   end.
 
 Example test_leb1:                leb 2 2 = true.
@@ -879,6 +909,9 @@ Proof. simpl. reflexivity.  Qed.
 
 (** We'll be using these (especially [eqb]) a lot, so let's give
     them infix notations. *)
+
+(* So, we define these functions and then, give these infix notations
+to introduce like standard operations. Cool! *)
 
 Notation "x =? y" := (eqb x y) (at level 70) : nat_scope.
 Notation "x <=? y" := (leb x y) (at level 70) : nat_scope.
