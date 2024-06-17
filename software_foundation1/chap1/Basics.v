@@ -368,6 +368,8 @@ Proof. simpl. reflexivity. Qed.
 
 Check true.
 (* ===> true : bool *)
+Check tuesday.
+(* ===> tuesday: day *)
 
 (** If the thing after [Check] is followed by a colon and a type
     declaration, Coq will verify that the type of the expression
@@ -377,6 +379,8 @@ Check true
   : bool.
 Check (negb true)
   : bool.
+Check tuesday
+  : day.
 
 (** Functions like [negb] itself are also data values, just like
     [true] and [false].  Their types are called _function types_, and
@@ -395,10 +399,8 @@ Check negb
 (* ================================================================= *)
 (** ** New Types from Old *)
 
-(** The types we have defined so far are examples of "enumerated
-    types": their definitions explicitly enumerate a finite set of
-    elements, called _constructors_.  Here is a more interesting type
-    definition, where one of the constructors takes an argument: *)
+(* Types above are examples of 'enumerated types', their definitions
+explicity enumerate a finite set of elements, called constructors *)
 
 Inductive rgb : Type :=
   | red
@@ -451,12 +453,13 @@ Inductive color : Type :=
 (** We can define functions on colors using pattern matching just as
     we did for [day] and [bool]. *)
 
-Definition monochrome (c : color) : bool :=
+Definition monochrome (c: color) : bool :=
   match c with
   | black => true
   | white => true
   | primary p => false
   end.
+
 
 (** Since the [primary] constructor takes an argument, a pattern
     matching [primary] should include either a variable, as we just
@@ -465,14 +468,17 @@ Definition monochrome (c : color) : bool :=
 
 Definition isred (c : color) : bool :=
   match c with
-  | black => false
-  | white => false
   | primary red => true
-  | primary _ => false
+  | _           => false
   end.
-
 (** The pattern "[primary _]" here is shorthand for "the constructor
     [primary] applied to any [rgb] constructor except [red]." *)
+Example isred_test1:
+  (isred black) = false.
+Proof. simpl. reflexivity. Qed.
+Example isred_test2:
+  (isred white) = false.
+Proof. simpl. reflexivity. Qed.
 
 (** (The wildcard pattern [_] has the same effect as the dummy
     pattern variable [p] in the definition of [monochrome].) *)
@@ -519,7 +525,6 @@ Inductive nybble : Type :=
 
 Check (bits B1 B0 B1 B0)
   : nybble.
-
 (** The [bits] constructor acts as a wrapper for its contents.
     Unwrapping can be done by pattern-matching, as in the [all_zero]
     function below, which tests a nybble to see if all its bits are
@@ -531,7 +536,7 @@ Check (bits B1 B0 B1 B0)
 Definition all_zero (nb : nybble) : bool :=
   match nb with
   | (bits B0 B0 B0 B0) => true
-  | (bits _ _ _ _) => false
+  | (bits _ _ _ _)     => false
   end.
 
 Compute (all_zero (bits B1 B0 B1 B0)).
