@@ -1145,6 +1145,7 @@ Check mult_n_O.
 Check mult_n_Sm.
 (* ===> forall n m : nat, n * m + n = n * S m *)
 
+
 (** We can use the [rewrite] tactic with a previously proved theorem
     instead of a hypothesis from the context. If the statement of the
     previously proved theorem involves quantified variables, as in the
@@ -1175,7 +1176,7 @@ Proof.
   simpl.
   reflexivity.
   Qed.
-  
+
 (* ################################################################# *)
 (** * Proof by Case Analysis *)
 
@@ -1193,11 +1194,14 @@ Proof.
   simpl.  (* does nothing! *)
 Abort.
 
-(** The reason for this is that the definitions of both [eqb]
+(** The reason for this is that the definitions of both [eqb] => [=?]
     and [+] begin by performing a [match] on their first argument.
     Here, the first argument to [+] is the unknown number [n] and the
     argument to [eqb] is the compound expression [n + 1]; neither can
     be simplified.
+
+    Match wouldn't performed!
+    n + 1 is a compound expression! n + 1
 
     To make progress, we need to consider the possible forms of [n]
     separately.  If [n] is [O], then we can calculate the final result
@@ -1213,7 +1217,7 @@ Abort.
 Theorem plus_1_neq_0 : forall n : nat,
   (n + 1) =? 0 = false.
 Proof.
-  intros n. destruct n as [| n'] eqn:E.
+  intros n. destruct n as [|n']eqn:E.
   - reflexivity.
   - reflexivity.   Qed.
 
@@ -1302,13 +1306,15 @@ Proof.
 
 Theorem andb_commutative : forall b c, andb b c = andb c b.
 Proof.
-  intros b c. destruct b eqn:Eb.
+  intros b c. destruct b eqn:Eb. (* false and true*)
+  (* b = false *)
+  { destruct c eqn:Ec. (* false and true *)
+    { reflexivity. }
+    { reflexivity. }}
+  (* b = true *)
   - destruct c eqn:Ec.
-    + reflexivity.
-    + reflexivity.
-  - destruct c eqn:Ec.
-    + reflexivity.
-    + reflexivity.
+    -- reflexivity.
+    -- reflexivity.
 Qed.
 
 (** Each pair of calls to [reflexivity] corresponds to the
@@ -1369,12 +1375,27 @@ Qed.
     Hint 2: When you reach a contradiction in the hypotheses, focus on
     how to [rewrite] with that contradiction. *)
 
-Theorem andb_true_elim2 : forall b c : bool,
-  andb b c = true -> c = true.
-Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
-
+    Theorem andb_true_elim2 :
+    forall b c : bool,
+    andb b c = true -> c = true.
+  Proof.
+    intros b c.
+    intros H.
+    destruct b.
+    (* CASE: b = true *)
+      destruct c.
+        reflexivity.
+      (* CASE: c = false *)
+        rewrite <- H.
+        reflexivity.
+    (* CASE: b = false *)
+      destruct c.
+      (* CASE: c = true *)
+        reflexivity.
+      (* CASE: c = false *)
+        rewrite <- H.
+        reflexivity.
+  Qed.
 (** Before closing the chapter, let's mention one final
     convenience.  As you may have noticed, many proofs perform case
     analysis on a variable right after introducing it:
