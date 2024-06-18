@@ -1375,7 +1375,10 @@ Qed.
     Hint 2: When you reach a contradiction in the hypotheses, focus on
     how to [rewrite] with that contradiction. *)
 
-    Theorem andb_true_elim2 :
+(* Below solution was found from following repo:
+  https://github.com/mkolosick/Software-Foundations-Exercises/blob/master/Induction.v
+*)
+Theorem andb_true_elim2 :
     forall b c : bool,
     andb b c = true -> c = true.
   Proof.
