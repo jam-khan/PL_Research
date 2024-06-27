@@ -1,0 +1,498 @@
+DIGEST b45dc15d9bf4ff1baf8e05ea09d9deba
+FLF.Maps
+R1529:1539 Coq.Arith.Arith <> <> lib
+R1566:1574 Coq.Bool.Bool <> <> lib
+R1592:1609 Coq.Strings.String <> <> lib
+R1636:1665 Coq.Logic.FunctionalExtensionality <> <> lib
+R1692:1701 Coq.Lists.List <> <> lib
+R1711:1723 Coq.Lists.List ListNotations <> mod
+R2306:2317 Coq.Init.Nat <> add def
+R2899:2904 Coq.Strings.String <> string ind
+binder 2895:2895 <> x:1
+R2922:2924 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2909:2912 Coq.Strings.String <> ::string_scope:x_'=?'_x not
+R2908:2908 LF.Maps <> x:1 var
+R2913:2913 LF.Maps <> x:1 var
+R2925:2928 Coq.Init.Datatypes <> true constr
+R2868:2882 Coq.Strings.String <> eqb_refl thm
+R3039:3044 Coq.Strings.String <> string ind
+binder 3033:3033 <> n:2
+binder 3035:3035 <> m:3
+R3069:3073 Coq.Init.Logic <> ::type_scope:x_'<->'_x not
+R3062:3064 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3049:3052 Coq.Strings.String <> ::string_scope:x_'=?'_x not
+R3048:3048 LF.Maps <> n:2 var
+R3053:3053 LF.Maps <> m:3 var
+R3065:3068 Coq.Init.Datatypes <> true constr
+R3075:3077 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3074:3074 LF.Maps <> n:2 var
+R3078:3078 LF.Maps <> m:3 var
+R3008:3020 Coq.Strings.String <> eqb_eq thm
+R3119:3124 Coq.Strings.String <> string ind
+binder 3113:3113 <> n:4
+binder 3115:3115 <> m:5
+R3150:3154 Coq.Init.Logic <> ::type_scope:x_'<->'_x not
+R3142:3144 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3129:3132 Coq.Strings.String <> ::string_scope:x_'=?'_x not
+R3128:3128 LF.Maps <> n:4 var
+R3133:3133 LF.Maps <> m:5 var
+R3145:3149 Coq.Init.Datatypes <> false constr
+R3156:3159 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R3155:3155 LF.Maps <> n:4 var
+R3160:3160 LF.Maps <> m:5 var
+R3087:3100 Coq.Strings.String <> eqb_neq thm
+R3202:3207 Coq.Strings.String <> string ind
+binder 3196:3196 <> x:6
+binder 3198:3198 <> y:7
+R3210:3216 Coq.Bool.Bool <> reflect ind
+R3220:3222 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3219:3219 LF.Maps <> x:6 var
+R3223:3223 LF.Maps <> y:7 var
+R3227:3236 Coq.Strings.String <> eqb def
+R3238:3238 LF.Maps <> x:6 var
+R3240:3240 LF.Maps <> y:7 var
+R3169:3183 Coq.Strings.String <> eqb_spec thm
+def 4165:4173 <> total_map
+binder 4176:4176 <> A:8
+R4195:4198 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4189:4194 Coq.Strings.String <> string ind
+R4199:4199 LF.Maps <> A:8 var
+def 4512:4518 <> t_empty
+binder 4521:4521 <> A:9
+R4536:4536 LF.Maps <> A:9 var
+binder 4532:4532 <> v:10
+R4541:4549 LF.Maps <> total_map def
+R4551:4551 LF.Maps <> A:9 var
+R4568:4568 LF.Maps <> v:10 var
+def 4905:4912 <> t_update
+binder 4915:4915 <> A:11
+R4930:4938 LF.Maps <> total_map def
+R4940:4940 LF.Maps <> A:11 var
+binder 4926:4926 <> m:12
+R4968:4973 Coq.Strings.String <> string ind
+binder 4964:4964 <> x:13
+R4981:4981 LF.Maps <> A:11 var
+binder 4977:4977 <> v:14
+binder 4993:4994 <> x':15
+R5002:5011 Coq.Strings.String <> eqb def
+R5013:5013 LF.Maps <> x:13 var
+R5015:5016 LF.Maps <> x':15 var
+R5030:5030 LF.Maps <> m:12 var
+R5032:5033 LF.Maps <> x':15 var
+R5023:5023 LF.Maps <> v:14 var
+def 5415:5424 <> examplemap
+R5431:5438 LF.Maps <> t_update def
+R5495:5498 Coq.Init.Datatypes <> true constr
+R5441:5448 LF.Maps <> t_update def
+R5472:5475 Coq.Init.Datatypes <> true constr
+R5451:5457 LF.Maps <> t_empty def
+R5459:5463 Coq.Init.Datatypes <> false constr
+R5713:5719 LF.Maps <> t_empty def
+not 5695:5695 <> :::'''_'''_'!->'_x
+def 5772:5784 <> example_empty
+R5790:5795 LF.Maps <> :::'''_'''_'!->'_x not
+R5796:5800 Coq.Init.Datatypes <> false constr
+R5937:5944 LF.Maps <> t_update def
+not 5915:5915 <> :::x_'!->'_x_';'_x
+def 6111:6121 <> examplemap'
+R6135:6139 LF.Maps <> :::x_'!->'_x_';'_x not
+R6144:6149 LF.Maps <> :::x_'!->'_x_';'_x not
+R6155:6159 LF.Maps <> :::x_'!->'_x_';'_x not
+R6164:6169 LF.Maps <> :::x_'!->'_x_';'_x not
+R6170:6179 LF.Maps <> :::'''_'''_'!->'_x not
+R6180:6184 Coq.Init.Datatypes <> false constr
+R6160:6163 Coq.Init.Datatypes <> true constr
+R6140:6143 Coq.Init.Datatypes <> true constr
+def 6387:6401 <> update_example1
+R6422:6424 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R6405:6415 LF.Maps <> examplemap' def
+R6425:6429 Coq.Init.Datatypes <> false constr
+def 6466:6480 <> update_example2
+R6501:6503 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R6484:6494 LF.Maps <> examplemap' def
+R6504:6507 Coq.Init.Datatypes <> true constr
+def 6544:6558 <> update_example3
+R6580:6582 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R6562:6572 LF.Maps <> examplemap' def
+R6583:6587 Coq.Init.Datatypes <> false constr
+def 6624:6638 <> update_example4
+R6659:6661 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R6642:6652 LF.Maps <> examplemap' def
+R6662:6665 Coq.Init.Datatypes <> true constr
+prf 7204:7216 <> t_apply_empty
+binder 7228:7228 <> A:16
+R7243:7248 Coq.Strings.String <> string ind
+binder 7239:7239 <> x:17
+R7256:7256 LF.Maps <> A:16 var
+binder 7252:7252 <> v:18
+R7273:7275 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R7262:7268 LF.Maps <> :::'''_'''_'!->'_x not
+R7270:7272 LF.Maps <> :::'''_'''_'!->'_x not
+R7269:7269 LF.Maps <> v:18 var
+R7272:7272 LF.Maps <> x:17 var
+R7276:7276 LF.Maps <> v:18 var
+prf 7553:7563 <> t_update_eq
+binder 7575:7575 <> A:19
+R7590:7598 LF.Maps <> total_map def
+R7600:7600 LF.Maps <> A:19 var
+binder 7586:7586 <> m:20
+binder 7603:7603 <> x:21
+binder 7605:7605 <> v:22
+R7625:7627 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R7610:7610 LF.Maps <> :::x_'!->'_x_';'_x not
+R7612:7616 LF.Maps <> :::x_'!->'_x_';'_x not
+R7618:7620 LF.Maps <> :::x_'!->'_x_';'_x not
+R7622:7624 LF.Maps <> :::x_'!->'_x_';'_x not
+R7621:7621 LF.Maps <> m:20 var
+R7611:7611 LF.Maps <> x:21 var
+R7617:7617 LF.Maps <> v:22 var
+R7624:7624 LF.Maps <> x:21 var
+R7628:7628 LF.Maps <> v:22 var
+prf 7935:7946 <> t_update_neq
+binder 7958:7958 <> A:23
+R7973:7981 LF.Maps <> total_map def
+R7983:7983 LF.Maps <> A:23 var
+binder 7969:7969 <> m:24
+binder 7986:7987 <> x1:25
+binder 7989:7990 <> x2:26
+binder 7992:7992 <> v:27
+R8005:8010 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7999:8002 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R7997:7998 LF.Maps <> x1:25 var
+R8003:8004 LF.Maps <> x2:26 var
+R8028:8030 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8011:8011 LF.Maps <> :::x_'!->'_x_';'_x not
+R8014:8018 LF.Maps <> :::x_'!->'_x_';'_x not
+R8020:8022 LF.Maps <> :::x_'!->'_x_';'_x not
+R8024:8027 LF.Maps <> :::x_'!->'_x_';'_x not
+R8023:8023 LF.Maps <> m:24 var
+R8012:8013 LF.Maps <> x1:25 var
+R8019:8019 LF.Maps <> v:27 var
+R8026:8027 LF.Maps <> x2:26 var
+R8031:8031 LF.Maps <> m:24 var
+R8033:8034 LF.Maps <> x2:26 var
+prf 8462:8476 <> t_update_shadow
+binder 8488:8488 <> A:28
+R8503:8511 LF.Maps <> total_map def
+R8513:8513 LF.Maps <> A:28 var
+binder 8499:8499 <> m:29
+binder 8516:8516 <> x:30
+binder 8518:8519 <> v1:31
+binder 8521:8522 <> v2:32
+R8527:8527 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8551:8555 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8568:8568 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8529:8533 LF.Maps <> :::x_'!->'_x_';'_x not
+R8536:8538 LF.Maps <> :::x_'!->'_x_';'_x not
+R8540:8544 LF.Maps <> :::x_'!->'_x_';'_x not
+R8547:8549 LF.Maps <> :::x_'!->'_x_';'_x not
+R8550:8550 LF.Maps <> m:29 var
+R8539:8539 LF.Maps <> x:30 var
+R8545:8546 LF.Maps <> v1:31 var
+R8528:8528 LF.Maps <> x:30 var
+R8534:8535 LF.Maps <> v2:32 var
+R8557:8561 LF.Maps <> :::x_'!->'_x_';'_x not
+R8564:8566 LF.Maps <> :::x_'!->'_x_';'_x not
+R8567:8567 LF.Maps <> m:29 var
+R8556:8556 LF.Maps <> x:30 var
+R8562:8563 LF.Maps <> v2:32 var
+prf 9195:9207 <> t_update_same
+binder 9219:9219 <> A:33
+R9234:9242 LF.Maps <> total_map def
+R9244:9244 LF.Maps <> A:33 var
+binder 9230:9230 <> m:34
+binder 9247:9247 <> x:35
+R9252:9252 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9266:9269 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9254:9258 LF.Maps <> :::x_'!->'_x_';'_x not
+R9262:9264 LF.Maps <> :::x_'!->'_x_';'_x not
+R9265:9265 LF.Maps <> m:34 var
+R9253:9253 LF.Maps <> x:35 var
+R9259:9259 LF.Maps <> m:34 var
+R9261:9261 LF.Maps <> x:35 var
+R9270:9270 LF.Maps <> m:34 var
+prf 9606:9621 <> t_update_permute
+binder 9633:9633 <> A:36
+R9648:9656 LF.Maps <> total_map def
+R9658:9658 LF.Maps <> A:36 var
+binder 9644:9644 <> m:37
+binder 9695:9696 <> v1:38
+binder 9698:9699 <> v2:39
+binder 9701:9702 <> x1:40
+binder 9704:9705 <> x2:41
+R9718:9723 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9712:9715 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R9710:9711 LF.Maps <> x2:41 var
+R9716:9717 LF.Maps <> x1:40 var
+R9724:9724 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9750:9758 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9784:9784 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9727:9731 LF.Maps <> :::x_'!->'_x_';'_x not
+R9734:9736 LF.Maps <> :::x_'!->'_x_';'_x not
+R9739:9743 LF.Maps <> :::x_'!->'_x_';'_x not
+R9746:9748 LF.Maps <> :::x_'!->'_x_';'_x not
+R9749:9749 LF.Maps <> m:37 var
+R9737:9738 LF.Maps <> x2:41 var
+R9744:9745 LF.Maps <> v2:39 var
+R9725:9726 LF.Maps <> x1:40 var
+R9732:9733 LF.Maps <> v1:38 var
+R9761:9765 LF.Maps <> :::x_'!->'_x_';'_x not
+R9768:9770 LF.Maps <> :::x_'!->'_x_';'_x not
+R9773:9777 LF.Maps <> :::x_'!->'_x_';'_x not
+R9780:9782 LF.Maps <> :::x_'!->'_x_';'_x not
+R9783:9783 LF.Maps <> m:37 var
+R9771:9772 LF.Maps <> x1:40 var
+R9778:9779 LF.Maps <> v1:38 var
+R9759:9760 LF.Maps <> x2:41 var
+R9766:9767 LF.Maps <> v2:39 var
+def 10137:10147 <> partial_map
+binder 10150:10150 <> A:42
+R10163:10171 LF.Maps <> total_map def
+R10174:10179 Coq.Init.Datatypes <> option ind
+R10181:10181 LF.Maps <> A:42 var
+def 10197:10201 <> empty
+binder 10204:10204 <> A:43
+R10216:10226 LF.Maps <> partial_map def
+R10228:10228 LF.Maps <> A:43 var
+R10235:10241 LF.Maps <> t_empty def
+R10243:10246 Coq.Init.Datatypes <> None constr
+def 10261:10266 <> update
+binder 10269:10269 <> A:44
+R10284:10294 LF.Maps <> partial_map def
+R10296:10296 LF.Maps <> A:44 var
+binder 10280:10280 <> m:45
+R10315:10320 Coq.Strings.String <> string ind
+binder 10311:10311 <> x:46
+R10328:10328 LF.Maps <> A:44 var
+binder 10324:10324 <> v:47
+R10338:10342 LF.Maps <> :::x_'!->'_x_';'_x not
+R10349:10351 LF.Maps <> :::x_'!->'_x_';'_x not
+R10352:10352 LF.Maps <> m:45 var
+R10337:10337 LF.Maps <> x:46 var
+R10343:10346 Coq.Init.Datatypes <> Some constr
+R10348:10348 LF.Maps <> v:47 var
+R10445:10450 LF.Maps <> update def
+not 10423:10423 <> :::x_'|->'_x_';'_x
+R10597:10602 LF.Maps <> update def
+R10604:10608 LF.Maps <> empty def
+not 10581:10581 <> :::x_'|->'_x
+def 10645:10655 <> examplepmap
+R10671:10675 LF.Maps <> :::x_'|->'_x_';'_x not
+R10680:10682 LF.Maps <> :::x_'|->'_x_';'_x not
+R10691:10695 LF.Maps <> :::x_'|->'_x not
+R10696:10700 Coq.Init.Datatypes <> false constr
+R10676:10679 Coq.Init.Datatypes <> true constr
+prf 10812:10822 <> apply_empty
+binder 10834:10834 <> A:48
+R10849:10854 Coq.Strings.String <> string ind
+binder 10845:10845 <> x:49
+R10870:10872 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10861:10865 LF.Maps <> empty def
+R10867:10867 LF.Maps <> A:48 var
+R10869:10869 LF.Maps <> x:49 var
+R10873:10876 Coq.Init.Datatypes <> None constr
+R10903:10907 LF.Maps <> empty def
+R10918:10930 LF.Maps <> t_apply_empty prfax
+R10918:10930 LF.Maps <> t_apply_empty prfax
+R10918:10930 LF.Maps <> t_apply_empty prfax
+prf 10960:10968 <> update_eq
+binder 10980:10980 <> A:50
+R10995:11005 LF.Maps <> partial_map def
+R11007:11007 LF.Maps <> A:50 var
+binder 10991:10991 <> m:51
+binder 11010:11010 <> x:52
+binder 11012:11012 <> v:53
+R11032:11034 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11017:11017 LF.Maps <> :::x_'|->'_x_';'_x not
+R11019:11023 LF.Maps <> :::x_'|->'_x_';'_x not
+R11025:11027 LF.Maps <> :::x_'|->'_x_';'_x not
+R11029:11031 LF.Maps <> :::x_'|->'_x_';'_x not
+R11028:11028 LF.Maps <> m:51 var
+R11018:11018 LF.Maps <> x:52 var
+R11024:11024 LF.Maps <> v:53 var
+R11031:11031 LF.Maps <> x:52 var
+R11035:11038 Coq.Init.Datatypes <> Some constr
+R11040:11040 LF.Maps <> v:53 var
+R11067:11072 LF.Maps <> update def
+R11083:11093 LF.Maps <> t_update_eq prfax
+R11083:11093 LF.Maps <> t_update_eq prfax
+R11083:11093 LF.Maps <> t_update_eq prfax
+prf 11336:11345 <> update_neq
+binder 11357:11357 <> A:54
+R11372:11382 LF.Maps <> partial_map def
+R11384:11384 LF.Maps <> A:54 var
+binder 11368:11368 <> m:55
+binder 11387:11388 <> x1:56
+binder 11390:11391 <> x2:57
+binder 11393:11393 <> v:58
+R11406:11411 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11400:11403 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R11398:11399 LF.Maps <> x2:57 var
+R11404:11405 LF.Maps <> x1:56 var
+R11429:11431 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11412:11412 LF.Maps <> :::x_'|->'_x_';'_x not
+R11415:11419 LF.Maps <> :::x_'|->'_x_';'_x not
+R11421:11423 LF.Maps <> :::x_'|->'_x_';'_x not
+R11425:11428 LF.Maps <> :::x_'|->'_x_';'_x not
+R11424:11424 LF.Maps <> m:55 var
+R11413:11414 LF.Maps <> x2:57 var
+R11420:11420 LF.Maps <> v:58 var
+R11427:11428 LF.Maps <> x1:56 var
+R11432:11432 LF.Maps <> m:55 var
+R11434:11435 LF.Maps <> x1:56 var
+R11478:11483 LF.Maps <> update def
+R11494:11505 LF.Maps <> t_update_neq prfax
+R11494:11505 LF.Maps <> t_update_neq prfax
+R11494:11505 LF.Maps <> t_update_neq prfax
+R11494:11505 LF.Maps <> t_update_neq prfax
+prf 11550:11562 <> update_shadow
+binder 11574:11574 <> A:59
+R11589:11599 LF.Maps <> partial_map def
+R11601:11601 LF.Maps <> A:59 var
+binder 11585:11585 <> m:60
+binder 11604:11604 <> x:61
+binder 11606:11607 <> v1:62
+binder 11609:11610 <> v2:63
+R11615:11615 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11639:11643 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11656:11656 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11617:11621 LF.Maps <> :::x_'|->'_x_';'_x not
+R11624:11626 LF.Maps <> :::x_'|->'_x_';'_x not
+R11628:11632 LF.Maps <> :::x_'|->'_x_';'_x not
+R11635:11637 LF.Maps <> :::x_'|->'_x_';'_x not
+R11638:11638 LF.Maps <> m:60 var
+R11627:11627 LF.Maps <> x:61 var
+R11633:11634 LF.Maps <> v1:62 var
+R11616:11616 LF.Maps <> x:61 var
+R11622:11623 LF.Maps <> v2:63 var
+R11645:11649 LF.Maps <> :::x_'|->'_x_';'_x not
+R11652:11654 LF.Maps <> :::x_'|->'_x_';'_x not
+R11655:11655 LF.Maps <> m:60 var
+R11644:11644 LF.Maps <> x:61 var
+R11650:11651 LF.Maps <> v2:63 var
+R11695:11700 LF.Maps <> update def
+R11711:11725 LF.Maps <> t_update_shadow prfax
+R11711:11725 LF.Maps <> t_update_shadow prfax
+R11711:11725 LF.Maps <> t_update_shadow prfax
+prf 11757:11767 <> update_same
+binder 11779:11779 <> A:64
+R11794:11804 LF.Maps <> partial_map def
+R11806:11806 LF.Maps <> A:64 var
+binder 11790:11790 <> m:65
+binder 11809:11809 <> x:66
+binder 11811:11811 <> v:67
+R11828:11833 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11819:11821 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11816:11816 LF.Maps <> m:65 var
+R11818:11818 LF.Maps <> x:66 var
+R11822:11825 Coq.Init.Datatypes <> Some constr
+R11827:11827 LF.Maps <> v:67 var
+R11834:11834 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11846:11849 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11836:11840 LF.Maps <> :::x_'|->'_x_';'_x not
+R11842:11844 LF.Maps <> :::x_'|->'_x_';'_x not
+R11845:11845 LF.Maps <> m:65 var
+R11835:11835 LF.Maps <> x:66 var
+R11841:11841 LF.Maps <> v:67 var
+R11850:11850 LF.Maps <> m:65 var
+R11887:11892 LF.Maps <> update def
+R11917:11929 LF.Maps <> t_update_same prfax
+R11917:11929 LF.Maps <> t_update_same prfax
+prf 11946:11959 <> update_permute
+binder 11971:11971 <> A:68
+R11986:11996 LF.Maps <> partial_map def
+R11998:11998 LF.Maps <> A:68 var
+binder 11982:11982 <> m:69
+binder 12033:12034 <> x1:70
+binder 12036:12037 <> x2:71
+binder 12039:12040 <> v1:72
+binder 12042:12043 <> v2:73
+R12056:12061 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12050:12053 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R12048:12049 LF.Maps <> x2:71 var
+R12054:12055 LF.Maps <> x1:70 var
+R12062:12062 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12088:12092 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12118:12118 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12065:12069 LF.Maps <> :::x_'|->'_x_';'_x not
+R12072:12074 LF.Maps <> :::x_'|->'_x_';'_x not
+R12077:12081 LF.Maps <> :::x_'|->'_x_';'_x not
+R12084:12086 LF.Maps <> :::x_'|->'_x_';'_x not
+R12087:12087 LF.Maps <> m:69 var
+R12075:12076 LF.Maps <> x2:71 var
+R12082:12083 LF.Maps <> v2:73 var
+R12063:12064 LF.Maps <> x1:70 var
+R12070:12071 LF.Maps <> v1:72 var
+R12095:12099 LF.Maps <> :::x_'|->'_x_';'_x not
+R12102:12104 LF.Maps <> :::x_'|->'_x_';'_x not
+R12107:12111 LF.Maps <> :::x_'|->'_x_';'_x not
+R12114:12116 LF.Maps <> :::x_'|->'_x_';'_x not
+R12117:12117 LF.Maps <> m:69 var
+R12105:12106 LF.Maps <> x1:70 var
+R12112:12113 LF.Maps <> v1:72 var
+R12093:12094 LF.Maps <> x2:71 var
+R12100:12101 LF.Maps <> v2:73 var
+R12161:12166 LF.Maps <> update def
+R12177:12192 LF.Maps <> t_update_permute prfax
+R12177:12192 LF.Maps <> t_update_permute prfax
+def 12387:12396 <> includedin
+binder 12399:12399 <> A:74
+R12417:12427 LF.Maps <> partial_map def
+R12429:12429 LF.Maps <> A:74 var
+binder 12410:12410 <> m:75
+binder 12412:12413 <> m':76
+binder 12444:12444 <> x:77
+binder 12446:12446 <> v:78
+R12461:12464 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12452:12454 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12449:12449 LF.Maps <> m:75 var
+R12451:12451 LF.Maps <> x:77 var
+R12455:12458 Coq.Init.Datatypes <> Some constr
+R12460:12460 LF.Maps <> v:78 var
+R12469:12471 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12465:12466 LF.Maps <> m':76 var
+R12468:12468 LF.Maps <> x:77 var
+R12472:12475 Coq.Init.Datatypes <> Some constr
+R12477:12477 LF.Maps <> v:78 var
+prf 12564:12580 <> includedin_update
+binder 12592:12592 <> A:79
+R12610:12620 LF.Maps <> partial_map def
+R12622:12622 LF.Maps <> A:79 var
+binder 12603:12603 <> m:80
+binder 12605:12606 <> m':81
+R12663:12668 Coq.Strings.String <> string ind
+binder 12659:12659 <> x:82
+R12677:12677 LF.Maps <> A:79 var
+binder 12672:12673 <> vx:83
+R12698:12703 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12683:12692 LF.Maps <> includedin def
+R12696:12697 LF.Maps <> m':81 var
+R12694:12694 LF.Maps <> m:80 var
+R12704:12713 LF.Maps <> includedin def
+R12732:12736 LF.Maps <> :::x_'|->'_x_';'_x not
+R12739:12741 LF.Maps <> :::x_'|->'_x_';'_x not
+R12742:12743 LF.Maps <> m':81 var
+R12731:12731 LF.Maps <> x:82 var
+R12737:12738 LF.Maps <> vx:83 var
+R12717:12721 LF.Maps <> :::x_'|->'_x_';'_x not
+R12724:12726 LF.Maps <> :::x_'|->'_x_';'_x not
+R12727:12727 LF.Maps <> m:80 var
+R12716:12716 LF.Maps <> x:82 var
+R12722:12723 LF.Maps <> vx:83 var
+R12763:12772 LF.Maps <> includedin def
+R12826:12833 Coq.Strings.String <> eqb_spec thm
+R12826:12833 Coq.Strings.String <> eqb_spec thm
+R12885:12893 LF.Maps <> update_eq thm
+R12885:12893 LF.Maps <> update_eq thm
+R12885:12893 LF.Maps <> update_eq thm
+R12904:12912 LF.Maps <> update_eq thm
+R12904:12912 LF.Maps <> update_eq thm
+R12904:12912 LF.Maps <> update_eq thm
+R12947:12956 LF.Maps <> update_neq thm
+R12947:12956 LF.Maps <> update_neq thm
+R12947:12956 LF.Maps <> update_neq thm
+R12947:12956 LF.Maps <> update_neq thm
+R12973:12982 LF.Maps <> update_neq thm
+R12973:12982 LF.Maps <> update_neq thm
+R12973:12982 LF.Maps <> update_neq thm
+R12973:12982 LF.Maps <> update_neq thm

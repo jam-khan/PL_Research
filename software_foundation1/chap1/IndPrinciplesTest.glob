@@ -1,0 +1,128 @@
+DIGEST 01fadf8889c16d68b430b3a83ec299cb
+FLF.IndPrinciplesTest
+R70:75 Coq.Strings.String <> <> lib
+R101:113 LF.IndPrinciples <> <> lib
+ax 127:133 <> MISSING
+mod 150:154 <> Check
+R220:226 LF.IndPrinciplesTest <> MISSING defax
+R220:226 LF.IndPrinciplesTest <> MISSING defax
+R419:422 Coq.Init.Datatypes <> Some constr
+R419:422 Coq.Init.Datatypes <> Some constr
+R602:605 Coq.Init.Datatypes <> None constr
+R602:605 Coq.Init.Datatypes <> None constr
+R687:691 LF.IndPrinciplesTest Check <> mod
+R718:730 LF.IndPrinciples <> <> lib
+R740:744 LF.IndPrinciplesTest Check <> mod
+def 748:756 <> Unnamed_thm
+R753:756 Coq.Init.Logic <> True ind
+R900:910 LF.IndPrinciples <> plus_one_r' prfax
+R925:927 Coq.Init.Datatypes <> nat ind
+binder 921:921 <> n:2
+R935:937 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R931:933 LF.Basics <> ::nat_scope:x_'+'_x not
+R930:930 LF.IndPrinciplesTest <> n:2 var
+R938:938 Coq.Init.Datatypes <> S constr
+R940:940 LF.IndPrinciplesTest <> n:2 var
+R900:910 LF.IndPrinciples <> plus_one_r' prfax
+R925:927 Coq.Init.Datatypes <> nat ind
+binder 921:921 <> n:3
+R935:937 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R931:933 LF.Basics <> ::nat_scope:x_'+'_x not
+R930:930 LF.IndPrinciplesTest <> n:3 var
+R938:938 Coq.Init.Datatypes <> S constr
+R940:940 LF.IndPrinciplesTest <> n:3 var
+R992:1002 LF.IndPrinciples <> plus_one_r' prfax
+def 1005:1013 <> Unnamed_thm
+R1010:1013 Coq.Init.Logic <> True ind
+R1183:1207 LF.IndPrinciples <> booltree_ind_type_correct prfax
+R1183:1207 LF.IndPrinciples <> booltree_ind_type_correct prfax
+R1210:1226 LF.IndPrinciples <> booltree_ind_type def
+R1277:1301 LF.IndPrinciples <> booltree_ind_type_correct prfax
+def 1304:1312 <> Unnamed_thm
+R1309:1312 Coq.Init.Logic <> True ind
+R1463:1473 LF.IndPrinciples <> Toy_correct prfax
+R1478:1485 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1525:1530 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1494:1497 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1490:1493 LF.Basics <> bool ind
+R1498:1500 LF.IndPrinciples <> Toy ind
+binder 1486:1486 <> f:4
+R1511:1514 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1508:1510 Coq.Init.Datatypes <> nat ind
+R1518:1521 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1515:1517 LF.IndPrinciples <> Toy ind
+R1522:1524 LF.IndPrinciples <> Toy ind
+binder 1504:1504 <> g:5
+R1545:1548 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1542:1544 LF.IndPrinciples <> Toy ind
+binder 1538:1538 <> P:6
+R1558:1558 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1583:1590 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1570:1573 LF.Basics <> bool ind
+binder 1566:1566 <> b:7
+R1576:1576 LF.IndPrinciplesTest <> P:6 var
+R1579:1579 LF.IndPrinciplesTest <> f:4 var
+R1581:1581 LF.IndPrinciplesTest <> b:7 var
+R1591:1591 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1636:1640 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1604:1606 Coq.Init.Datatypes <> nat ind
+binder 1600:1600 <> n:8
+R1614:1616 LF.IndPrinciples <> Toy ind
+binder 1610:1610 <> t:9
+R1623:1626 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1620:1620 LF.IndPrinciplesTest <> P:6 var
+R1622:1622 LF.IndPrinciplesTest <> t:9 var
+R1627:1627 LF.IndPrinciplesTest <> P:6 var
+R1630:1630 LF.IndPrinciplesTest <> g:5 var
+R1634:1634 LF.IndPrinciplesTest <> t:9 var
+R1632:1632 LF.IndPrinciplesTest <> n:8 var
+R1652:1654 LF.IndPrinciples <> Toy ind
+binder 1648:1648 <> t:10
+R1657:1657 LF.IndPrinciplesTest <> P:6 var
+R1659:1659 LF.IndPrinciplesTest <> t:10 var
+R1463:1473 LF.IndPrinciples <> Toy_correct prfax
+R1478:1485 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1525:1530 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1494:1497 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1490:1493 LF.Basics <> bool ind
+R1498:1500 LF.IndPrinciples <> Toy ind
+binder 1486:1486 <> f:11
+R1511:1514 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1508:1510 Coq.Init.Datatypes <> nat ind
+R1518:1521 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1515:1517 LF.IndPrinciples <> Toy ind
+R1522:1524 LF.IndPrinciples <> Toy ind
+binder 1504:1504 <> g:12
+R1545:1548 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1542:1544 LF.IndPrinciples <> Toy ind
+binder 1538:1538 <> P:13
+R1558:1558 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1583:1590 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1570:1573 LF.Basics <> bool ind
+binder 1566:1566 <> b:14
+R1576:1576 LF.IndPrinciplesTest <> P:13 var
+R1579:1579 LF.IndPrinciplesTest <> f:11 var
+R1581:1581 LF.IndPrinciplesTest <> b:14 var
+R1591:1591 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1636:1640 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1604:1606 Coq.Init.Datatypes <> nat ind
+binder 1600:1600 <> n:15
+R1614:1616 LF.IndPrinciples <> Toy ind
+binder 1610:1610 <> t:16
+R1623:1626 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1620:1620 LF.IndPrinciplesTest <> P:13 var
+R1622:1622 LF.IndPrinciplesTest <> t:16 var
+R1627:1627 LF.IndPrinciplesTest <> P:13 var
+R1630:1630 LF.IndPrinciplesTest <> g:12 var
+R1634:1634 LF.IndPrinciplesTest <> t:16 var
+R1632:1632 LF.IndPrinciplesTest <> n:15 var
+R1652:1654 LF.IndPrinciples <> Toy ind
+binder 1648:1648 <> t:17
+R1657:1657 LF.IndPrinciplesTest <> P:13 var
+R1659:1659 LF.IndPrinciplesTest <> t:17 var
+R1711:1721 LF.IndPrinciples <> Toy_correct prfax
+def 1724:1732 <> Unnamed_thm
+R1729:1732 Coq.Init.Logic <> True ind
+R2702:2712 LF.IndPrinciples <> plus_one_r' prfax
+R2789:2813 LF.IndPrinciples <> booltree_ind_type_correct prfax
+R2876:2886 LF.IndPrinciples <> Toy_correct prfax

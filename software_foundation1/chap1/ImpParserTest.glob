@@ -1,0 +1,17 @@
+DIGEST 304447de23da254dfaa2c0c99f9269a5
+FLF.ImpParserTest
+R70:75 Coq.Strings.String <> <> lib
+R101:109 LF.ImpParser <> <> lib
+ax 123:129 <> MISSING
+mod 146:150 <> Check
+R216:222 LF.ImpParserTest <> MISSING defax
+R216:222 LF.ImpParserTest <> MISSING defax
+R415:418 Coq.Init.Datatypes <> Some constr
+R415:418 Coq.Init.Datatypes <> Some constr
+R598:601 Coq.Init.Datatypes <> None constr
+R598:601 Coq.Init.Datatypes <> None constr
+R683:687 LF.ImpParserTest Check <> mod
+R714:722 LF.ImpParser <> <> lib
+R732:736 LF.ImpParserTest Check <> mod
+def 740:748 <> Unnamed_thm
+R745:748 Coq.Init.Logic <> True ind

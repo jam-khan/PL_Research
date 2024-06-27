@@ -1,0 +1,68 @@
+DIGEST ba0540ae22e97eb982debad96bf385ea
+FLF.ImpCEvalFunTest
+R70:75 Coq.Strings.String <> <> lib
+R101:111 LF.ImpCEvalFun <> <> lib
+ax 125:131 <> MISSING
+mod 148:152 <> Check
+R218:224 LF.ImpCEvalFunTest <> MISSING defax
+R218:224 LF.ImpCEvalFunTest <> MISSING defax
+R417:420 Coq.Init.Datatypes <> Some constr
+R417:420 Coq.Init.Datatypes <> Some constr
+R600:603 Coq.Init.Datatypes <> None constr
+R600:603 Coq.Init.Datatypes <> None constr
+R685:689 LF.ImpCEvalFunTest Check <> mod
+R716:726 LF.ImpCEvalFun <> <> lib
+R736:740 LF.ImpCEvalFunTest Check <> mod
+def 744:752 <> Unnamed_thm
+R749:752 Coq.Init.Logic <> True ind
+R958:995 LF.ImpCEvalFun <> manual_grade_for_ceval_step__ceval_inf def
+R1162:1178 LF.ImpCEvalFun <> ceval__ceval_step prfax
+R1195:1201 LF.Imp <> com ind
+binder 1191:1191 <> c:2
+R1214:1222 LF.Imp <> state def
+binder 1205:1206 <> st:3
+binder 1208:1210 <> st':4
+R1245:1249 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1227:1235 LF.Imp <> ceval ind
+R1237:1237 LF.ImpCEvalFunTest <> c:2 var
+R1239:1240 LF.ImpCEvalFunTest <> st:3 var
+R1242:1244 LF.ImpCEvalFunTest <> st':4 var
+R1250:1256 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1264:1265 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1261:1263 Coq.Init.Datatypes <> nat ind
+binder 1257:1257 <> i:5
+R1283:1285 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1266:1275 LF.ImpCEvalFun <> ceval_step def
+R1277:1278 LF.ImpCEvalFunTest <> st:3 var
+R1280:1280 LF.ImpCEvalFunTest <> c:2 var
+R1282:1282 LF.ImpCEvalFunTest <> i:5 var
+R1287:1290 Coq.Init.Datatypes <> Some constr
+R1292:1300 LF.Imp <> state def
+R1302:1304 LF.ImpCEvalFunTest <> st':4 var
+R1162:1178 LF.ImpCEvalFun <> ceval__ceval_step prfax
+R1195:1201 LF.Imp <> com ind
+binder 1191:1191 <> c:6
+R1214:1222 LF.Imp <> state def
+binder 1205:1206 <> st:7
+binder 1208:1210 <> st':8
+R1245:1249 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1227:1235 LF.Imp <> ceval ind
+R1237:1237 LF.ImpCEvalFunTest <> c:6 var
+R1239:1240 LF.ImpCEvalFunTest <> st:7 var
+R1242:1244 LF.ImpCEvalFunTest <> st':8 var
+R1250:1256 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1264:1265 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1261:1263 Coq.Init.Datatypes <> nat ind
+binder 1257:1257 <> i:9
+R1283:1285 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1266:1275 LF.ImpCEvalFun <> ceval_step def
+R1277:1278 LF.ImpCEvalFunTest <> st:7 var
+R1280:1280 LF.ImpCEvalFunTest <> c:6 var
+R1282:1282 LF.ImpCEvalFunTest <> i:9 var
+R1287:1290 Coq.Init.Datatypes <> Some constr
+R1292:1300 LF.Imp <> state def
+R1302:1304 LF.ImpCEvalFunTest <> st':8 var
+R1356:1372 LF.ImpCEvalFun <> ceval__ceval_step prfax
+def 1375:1383 <> Unnamed_thm
+R1380:1383 Coq.Init.Logic <> True ind
+R2359:2375 LF.ImpCEvalFun <> ceval__ceval_step prfax

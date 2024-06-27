@@ -1,0 +1,1164 @@
+DIGEST 6962930a3c7b1e1924de2f7bfc559920
+FLF.ImpParser
+R1133:1146 Coq.Strings.String <> <> lib
+R1173:1185 Coq.Strings.Ascii <> <> lib
+R1212:1222 Coq.Arith.Arith <> <> lib
+R1249:1256 Coq.Init.Nat <> <> lib
+R1283:1293 Coq.Arith.EqNat <> <> lib
+R1320:1329 Coq.Lists.List <> <> lib
+R1339:1351 Coq.Lists.List ListNotations <> mod
+R1377:1380 LF.Maps <> <> lib
+R1382:1384 LF.Imp <> <> lib
+def 1591:1597 <> isWhite
+R1604:1608 Coq.Strings.Ascii <> ascii ind
+binder 1600:1600 <> c:1
+R1613:1616 Coq.Init.Datatypes <> bool ind
+R1632:1643 Coq.Strings.Ascii <> nat_of_ascii def
+R1645:1645 LF.ImpParser <> c:1 var
+binder 1627:1627 <> n:2
+R1652:1654 Coq.Init.Datatypes <> orb def
+R1725:1727 Coq.Init.Datatypes <> orb def
+R1769:1772 Coq.Init.Nat <> ::nat_scope:x_'=?'_x not
+R1768:1768 LF.ImpParser <> n:2 var
+R1731:1734 Coq.Init.Nat <> ::nat_scope:x_'=?'_x not
+R1730:1730 LF.ImpParser <> n:2 var
+R1657:1659 Coq.Init.Datatypes <> orb def
+R1698:1701 Coq.Init.Nat <> ::nat_scope:x_'=?'_x not
+R1697:1697 LF.ImpParser <> n:2 var
+R1663:1666 Coq.Init.Nat <> ::nat_scope:x_'=?'_x not
+R1662:1662 LF.ImpParser <> n:2 var
+R1829:1833 Coq.Init.Nat <> ::nat_scope:x_'<=?'_x not
+not 1812:1812 <> ::nat_scope:x_'<=?'_x
+def 1896:1907 <> isLowerAlpha
+R1914:1918 Coq.Strings.Ascii <> ascii ind
+binder 1910:1910 <> c:3
+R1923:1926 Coq.Init.Datatypes <> bool ind
+R1942:1953 Coq.Strings.Ascii <> nat_of_ascii def
+R1955:1955 LF.ImpParser <> c:3 var
+binder 1937:1937 <> n:4
+R1964:1967 Coq.Init.Datatypes <> andb def
+R1982:1986 LF.ImpParser <> ::nat_scope:x_'<=?'_x not
+R1981:1981 LF.ImpParser <> n:4 var
+R1972:1976 LF.ImpParser <> ::nat_scope:x_'<=?'_x not
+R1977:1977 LF.ImpParser <> n:4 var
+def 2005:2011 <> isAlpha
+R2018:2022 Coq.Strings.Ascii <> ascii ind
+binder 2014:2014 <> c:5
+R2027:2030 Coq.Init.Datatypes <> bool ind
+R2046:2057 Coq.Strings.Ascii <> nat_of_ascii def
+R2059:2059 LF.ImpParser <> c:5 var
+binder 2041:2041 <> n:6
+R2068:2070 Coq.Init.Datatypes <> orb def
+R2110:2113 Coq.Init.Datatypes <> andb def
+R2128:2132 LF.ImpParser <> ::nat_scope:x_'<=?'_x not
+R2127:2127 LF.ImpParser <> n:6 var
+R2118:2122 LF.ImpParser <> ::nat_scope:x_'<=?'_x not
+R2123:2123 LF.ImpParser <> n:6 var
+R2073:2076 Coq.Init.Datatypes <> andb def
+R2091:2095 LF.ImpParser <> ::nat_scope:x_'<=?'_x not
+R2090:2090 LF.ImpParser <> n:6 var
+R2081:2085 LF.ImpParser <> ::nat_scope:x_'<=?'_x not
+R2086:2086 LF.ImpParser <> n:6 var
+def 2152:2158 <> isDigit
+R2165:2169 Coq.Strings.Ascii <> ascii ind
+binder 2161:2161 <> c:7
+R2174:2177 Coq.Init.Datatypes <> bool ind
+R2193:2204 Coq.Strings.Ascii <> nat_of_ascii def
+R2206:2206 LF.ImpParser <> c:7 var
+binder 2188:2188 <> n:8
+R2216:2219 Coq.Init.Datatypes <> andb def
+R2234:2238 LF.ImpParser <> ::nat_scope:x_'<=?'_x not
+R2233:2233 LF.ImpParser <> n:8 var
+R2224:2228 LF.ImpParser <> ::nat_scope:x_'<=?'_x not
+R2229:2229 LF.ImpParser <> n:8 var
+ind 2255:2262 <> chartype
+constr 2267:2271 <> white
+constr 2275:2279 <> alpha
+constr 2283:2287 <> digit
+constr 2291:2295 <> other
+def 2310:2321 <> classifyChar
+R2328:2332 Coq.Strings.Ascii <> ascii ind
+binder 2324:2324 <> c:11
+R2337:2344 LF.ImpParser <> chartype ind
+R2354:2360 LF.ImpParser <> isWhite def
+R2362:2362 LF.ImpParser <> c:11 var
+R2389:2395 LF.ImpParser <> isAlpha def
+R2397:2397 LF.ImpParser <> c:11 var
+R2424:2430 LF.ImpParser <> isDigit def
+R2432:2432 LF.ImpParser <> c:11 var
+R2460:2464 LF.ImpParser <> other constr
+R2443:2447 LF.ImpParser <> digit constr
+R2408:2412 LF.ImpParser <> alpha constr
+R2373:2377 LF.ImpParser <> white constr
+def 2477:2490 <> list_of_string
+R2497:2502 Coq.Strings.String <> string ind
+binder 2493:2493 <> s:12
+R2507:2510 Coq.Init.Datatypes <> list ind
+R2512:2516 Coq.Strings.Ascii <> ascii ind
+R2529:2529 LF.ImpParser <> s:12 var
+R2540:2550 Coq.Strings.String <> EmptyString constr
+R2555:2556 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R2562:2567 Coq.Strings.String <> String constr
+R2577:2581 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2598:2598 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2582:2595 LF.ImpParser <> list_of_string:13 def
+R2597:2597 LF.ImpParser <> s:12 var
+def 2619:2632 <> string_of_list
+R2640:2643 Coq.Init.Datatypes <> list ind
+R2645:2649 Coq.Strings.Ascii <> ascii ind
+binder 2635:2636 <> xs:15
+R2654:2659 Coq.Strings.String <> string ind
+R2666:2675 Coq.Lists.List <> fold_right def
+R2696:2697 LF.ImpParser <> xs:15 var
+R2684:2694 Coq.Strings.String <> EmptyString constr
+R2677:2682 Coq.Strings.String <> String constr
+def 2712:2716 <> token
+R2721:2726 Coq.Strings.String <> string ind
+def 2739:2753 <> tokenize_helper
+R2762:2769 LF.ImpParser <> chartype ind
+binder 2756:2758 <> cls:16
+R2782:2785 Coq.Init.Datatypes <> list ind
+R2787:2791 Coq.Strings.Ascii <> ascii ind
+binder 2773:2775 <> acc:17
+binder 2777:2778 <> xs:18
+R2819:2822 Coq.Init.Datatypes <> list ind
+R2825:2828 Coq.Init.Datatypes <> list ind
+R2830:2834 Coq.Strings.Ascii <> ascii ind
+R2858:2860 LF.ImpParser <> acc:17 var
+R2867:2868 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R2873:2874 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R2879:2880 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2886:2886 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R2894:2894 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R2887:2889 Coq.Lists.List <> rev def
+R2891:2893 LF.ImpParser <> acc:17 var
+binder 2846:2847 <> tk:21
+R2911:2912 LF.ImpParser <> xs:18 var
+R2923:2924 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R2929:2930 LF.ImpParser <> tk:21 var
+R2938:2939 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2963:2974 LF.ImpParser <> classifyChar def
+R2958:2960 LF.ImpParser <> cls:16 var
+R3018:3021 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3016:3017 LF.ImpParser <> tk:21 var
+R3027:3029 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3058:3058 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3022:3022 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3026:3026 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3030:3044 LF.ImpParser <> tokenize_helper:19 def
+R3052:3053 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3046:3050 LF.ImpParser <> other constr
+R3092:3095 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3090:3091 LF.ImpParser <> tk:21 var
+R3101:3103 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3132:3132 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3096:3096 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3100:3100 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3104:3118 LF.ImpParser <> tokenize_helper:19 def
+R3126:3127 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3120:3124 LF.ImpParser <> other constr
+R3143:3147 LF.ImpParser <> white constr
+R3166:3170 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3199:3199 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3164:3165 LF.ImpParser <> tk:21 var
+R3171:3185 LF.ImpParser <> tokenize_helper:19 def
+R3193:3194 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3187:3191 LF.ImpParser <> white constr
+R3207:3211 LF.ImpParser <> alpha constr
+R3213:3217 LF.ImpParser <> alpha constr
+R3231:3245 LF.ImpParser <> tokenize_helper:19 def
+R3255:3256 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3257:3259 LF.ImpParser <> acc:17 var
+R3247:3251 LF.ImpParser <> alpha constr
+R3272:3276 LF.ImpParser <> digit constr
+R3278:3282 LF.ImpParser <> digit constr
+R3296:3310 LF.ImpParser <> tokenize_helper:19 def
+R3320:3321 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3322:3324 LF.ImpParser <> acc:17 var
+R3312:3316 LF.ImpParser <> digit constr
+R3337:3341 LF.ImpParser <> other constr
+R3343:3347 LF.ImpParser <> other constr
+R3361:3375 LF.ImpParser <> tokenize_helper:19 def
+R3385:3386 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3387:3389 LF.ImpParser <> acc:17 var
+R3377:3381 LF.ImpParser <> other constr
+R3428:3432 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3459:3459 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3426:3427 LF.ImpParser <> tk:21 var
+R3433:3447 LF.ImpParser <> tokenize_helper:19 def
+R3452:3452 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3454:3454 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+def 3494:3501 <> tokenize
+R3508:3513 Coq.Strings.String <> string ind
+binder 3504:3504 <> s:25
+R3518:3521 Coq.Init.Datatypes <> list ind
+R3523:3528 Coq.Strings.String <> string ind
+R3535:3537 Coq.Lists.List <> map def
+R3555:3569 LF.ImpParser <> tokenize_helper def
+R3571:3575 LF.ImpParser <> white constr
+R3577:3578 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3581:3594 LF.ImpParser <> list_of_string def
+R3596:3596 LF.ImpParser <> s:25 var
+R3539:3552 LF.ImpParser <> string_of_list def
+def 3610:3621 <> tokenize_ex1
+R3670:3674 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3629:3636 LF.ImpParser <> tokenize def
+R3675:3675 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3681:3682 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3687:3688 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3692:3693 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3697:3698 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3704:3712 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3716:3717 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3721:3722 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3726:3727 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3731:3732 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3736:3744 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3748:3749 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3753:3754 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3758:3759 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3763:3764 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3768:3768 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+ind 4055:4061 <> optionE
+constr 4086:4090 <> SomeE
+constr 4104:4108 <> NoneE
+binder 4064:4064 <> X:26
+R4097:4097 LF.ImpParser <> X:26 var
+binder 4093:4093 <> x:29
+R4115:4120 Coq.Strings.String <> string ind
+binder 4111:4111 <> s:30
+R4135:4139 LF.ImpParser <> SomeE constr
+R4135:4139 LF.ImpParser <> SomeE constr
+R4156:4160 LF.ImpParser <> NoneE constr
+R4156:4160 LF.ImpParser <> NoneE constr
+R4327:4331 LF.ImpParser <> SomeE constr
+R4350:4354 LF.ImpParser <> NoneE constr
+R4363:4367 LF.ImpParser <> NoneE constr
+not 4279:4279 <> :::''''_x_'<-'_x_';;'_x
+binder 4498:4503 <> result:31
+R4524:4529 LF.ImpParser <> result:31 var
+R4545:4549 LF.ImpParser <> SomeE constr
+R4557:4562 LF.ImpParser <> result:31 var
+R4573:4577 LF.ImpParser <> NoneE constr
+not 4463:4463 <> :::'TRY'_x_'OR'_x
+def 4841:4846 <> parser
+binder 4849:4849 <> T:33
+R4874:4877 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4864:4867 Coq.Init.Datatypes <> list ind
+R4869:4873 LF.ImpParser <> token def
+R4878:4884 LF.ImpParser <> optionE ind
+R4888:4890 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4887:4887 LF.ImpParser <> T:33 var
+R4891:4894 Coq.Init.Datatypes <> list ind
+R4896:4900 LF.ImpParser <> token def
+def 4914:4924 <> many_helper
+binder 4927:4927 <> T:34
+R4935:4940 LF.ImpParser <> parser def
+R4942:4942 LF.ImpParser <> T:34 var
+binder 4931:4931 <> p:35
+binder 4945:4947 <> acc:36
+binder 4949:4953 <> steps:37
+binder 4955:4956 <> xs:38
+R4976:4976 LF.ImpParser <> p:35 var
+R4978:4979 LF.ImpParser <> xs:38 var
+R4969:4973 LF.ImpParser <> steps:37 var
+R5004:5008 LF.ImpParser <> NoneE constr
+R5044:5048 LF.ImpParser <> NoneE constr
+R5061:5065 LF.ImpParser <> SomeE constr
+R5067:5068 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5076:5078 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5081:5081 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5069:5071 Coq.Lists.List <> rev def
+R5073:5075 LF.ImpParser <> acc:36 var
+R5079:5080 LF.ImpParser <> xs:38 var
+R5087:5087 Coq.Init.Datatypes <> S constr
+R5097:5101 LF.ImpParser <> SomeE constr
+R5103:5103 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5105:5106 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5110:5110 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5104:5104 Coq.Init.Nat <> t def
+R5121:5131 LF.ImpParser <> many_helper:39 def
+R5137:5140 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5141:5143 LF.ImpParser <> acc:36 var
+R5133:5133 LF.ImpParser <> p:35 var
+def 5240:5243 <> many
+binder 5246:5246 <> T:41
+R5254:5259 LF.ImpParser <> parser def
+R5261:5261 LF.ImpParser <> T:41 var
+binder 5250:5250 <> p:42
+R5273:5275 Coq.Init.Datatypes <> nat ind
+binder 5265:5269 <> steps:43
+R5280:5285 LF.ImpParser <> parser def
+R5288:5291 Coq.Init.Datatypes <> list ind
+R5293:5293 LF.ImpParser <> T:41 var
+R5301:5311 LF.ImpParser <> many_helper def
+R5318:5322 LF.ImpParser <> steps:43 var
+R5315:5316 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R5313:5313 LF.ImpParser <> p:42 var
+def 5399:5409 <> firstExpect
+binder 5412:5412 <> T:44
+R5420:5424 LF.ImpParser <> token def
+binder 5416:5416 <> t:45
+R5432:5437 LF.ImpParser <> parser def
+R5439:5439 LF.ImpParser <> T:44 var
+binder 5428:5428 <> p:46
+R5465:5470 LF.ImpParser <> parser def
+R5472:5472 LF.ImpParser <> T:44 var
+binder 5483:5484 <> xs:47
+R5495:5496 LF.ImpParser <> xs:47 var
+R5518:5519 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5544:5553 Coq.Strings.String <> string_dec def
+R5557:5557 LF.ImpParser <> t:45 var
+R5603:5607 LF.ImpParser <> NoneE constr
+R5622:5625 Coq.Strings.String <> ::string_scope:x_'++'_x not
+R5627:5630 Coq.Strings.String <> ::string_scope:x_'++'_x not
+R5626:5626 LF.ImpParser <> t:45 var
+R5578:5578 LF.ImpParser <> p:46 var
+R5651:5652 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R5671:5675 LF.ImpParser <> NoneE constr
+R5690:5693 Coq.Strings.String <> ::string_scope:x_'++'_x not
+R5695:5698 Coq.Strings.String <> ::string_scope:x_'++'_x not
+R5694:5694 LF.ImpParser <> t:45 var
+def 5784:5789 <> expect
+R5796:5800 LF.ImpParser <> token def
+binder 5792:5792 <> t:49
+R5805:5810 LF.ImpParser <> parser def
+R5812:5815 Coq.Init.Datatypes <> unit ind
+R5822:5832 LF.ImpParser <> firstExpect def
+binder 5841:5842 <> xs:50
+R5847:5851 LF.ImpParser <> SomeE constr
+R5853:5853 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5856:5857 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5860:5860 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5854:5855 Coq.Init.Datatypes <> tt constr
+R5858:5859 LF.ImpParser <> xs:50 var
+R5834:5834 LF.ImpParser <> t:49 var
+def 6016:6030 <> parseIdentifier
+R6038:6041 Coq.Init.Datatypes <> list ind
+R6043:6047 LF.ImpParser <> token def
+binder 6033:6034 <> xs:51
+R6077:6083 LF.ImpParser <> optionE ind
+R6092:6094 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R6086:6091 Coq.Strings.String <> string ind
+R6095:6098 Coq.Init.Datatypes <> list ind
+R6100:6104 LF.ImpParser <> token def
+R6116:6117 LF.ImpParser <> xs:51 var
+R6126:6127 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R6132:6136 LF.ImpParser <> NoneE constr
+R6163:6164 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6179:6185 Coq.Lists.List <> forallb def
+R6201:6214 LF.ImpParser <> list_of_string def
+R6187:6198 LF.ImpParser <> isLowerAlpha def
+R6260:6264 LF.ImpParser <> NoneE constr
+R6289:6292 Coq.Strings.String <> ::string_scope:x_'++'_x not
+R6294:6297 Coq.Strings.String <> ::string_scope:x_'++'_x not
+R6230:6234 LF.ImpParser <> SomeE constr
+R6236:6236 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6238:6239 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6243:6243 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+def 6337:6347 <> parseNumber
+R6355:6358 Coq.Init.Datatypes <> list ind
+R6360:6364 LF.ImpParser <> token def
+binder 6350:6351 <> xs:53
+R6390:6396 LF.ImpParser <> optionE ind
+R6402:6404 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R6399:6401 Coq.Init.Datatypes <> nat ind
+R6405:6408 Coq.Init.Datatypes <> list ind
+R6410:6414 LF.ImpParser <> token def
+R6426:6427 LF.ImpParser <> xs:53 var
+R6436:6437 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R6442:6446 LF.ImpParser <> NoneE constr
+R6469:6470 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6485:6491 Coq.Lists.List <> forallb def
+R6502:6515 LF.ImpParser <> list_of_string def
+R6493:6499 LF.ImpParser <> isDigit def
+R6757:6761 LF.ImpParser <> NoneE constr
+R6531:6535 LF.ImpParser <> SomeE constr
+R6537:6537 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6722:6736 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6740:6740 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6538:6546 Coq.Lists.List <> fold_left def
+R6688:6701 LF.ImpParser <> list_of_string def
+binder 6568:6568 <> n:55
+binder 6570:6570 <> d:56
+R6599:6602 Coq.Init.Nat <> ::nat_scope:x_'+'_x not
+R6669:6669 Coq.Init.Nat <> ::nat_scope:x_'+'_x not
+R6595:6597 Coq.Init.Nat <> ::nat_scope:x_'*'_x not
+R6598:6598 LF.ImpParser <> n:55 var
+R6617:6647 Coq.Init.Nat <> ::nat_scope:x_'-'_x not
+R6603:6614 Coq.Strings.Ascii <> nat_of_ascii def
+R6616:6616 LF.ImpParser <> d:56 var
+R6648:6659 Coq.Strings.Ascii <> nat_of_ascii def
+def 6833:6847 <> parsePrimaryExp
+def 7345:7359 <> parseProductExp
+def 7702:7712 <> parseSumExp
+R6856:6858 Coq.Init.Datatypes <> nat ind
+binder 6850:6854 <> steps:57
+R6892:6895 Coq.Init.Datatypes <> list ind
+R6897:6901 LF.ImpParser <> token def
+binder 6887:6888 <> xs:58
+R7368:7370 Coq.Init.Datatypes <> nat ind
+binder 7362:7366 <> steps:59
+R7400:7403 Coq.Init.Datatypes <> list ind
+R7405:7409 LF.ImpParser <> token def
+binder 7395:7396 <> xs:60
+R7721:7723 Coq.Init.Datatypes <> nat ind
+binder 7715:7719 <> steps:61
+R7732:7735 Coq.Init.Datatypes <> list ind
+R7737:7741 LF.ImpParser <> token def
+binder 7727:7728 <> xs:62
+R6929:6935 LF.ImpParser <> optionE ind
+R6942:6944 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R6938:6941 LF.Imp <> aexp ind
+R6945:6948 Coq.Init.Datatypes <> list ind
+R6950:6954 LF.ImpParser <> token def
+R6968:6972 LF.ImpParser <> steps:57 var
+R6988:6992 LF.ImpParser <> NoneE constr
+R7025:7025 Coq.Init.Datatypes <> S constr
+R7043:7046 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R7113:7128 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R7129:7132 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R7196:7211 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R7212:7213 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7223:7226 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7266:7275 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7227:7237 LF.ImpParser <> firstExpect def
+R7264:7265 LF.ImpParser <> xs:58 var
+R7244:7254 LF.ImpParser <> parseSumExp:65 def
+R7214:7214 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7216:7217 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7222:7222 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7218:7221 <> rest:67
+binder 7215:7215 <> e:68
+binder 7214:7222 <> pat:69
+R7276:7277 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7288:7291 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7307:7316 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7292:7297 LF.ImpParser <> expect def
+R7303:7306 LF.ImpParser <> rest:67 var
+R7278:7278 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7280:7281 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7287:7287 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7282:7286 <> rest':70
+binder 7279:7279 <> u:71
+binder 7278:7287 <> pat:72
+R7317:7321 LF.ImpParser <> SomeE constr
+R7323:7323 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7325:7325 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7331:7331 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7324:7324 LF.ImpParser <> e:68 var
+R7326:7330 LF.ImpParser <> rest':70 var
+R7133:7134 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7144:7147 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7162:7175 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7148:7158 LF.ImpParser <> parseNumber def
+R7160:7161 LF.ImpParser <> xs:58 var
+R7135:7135 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7137:7138 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7143:7143 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7139:7142 <> rest:73
+binder 7136:7136 <> n:74
+binder 7135:7143 <> pat:75
+R7176:7180 LF.ImpParser <> SomeE constr
+R7182:7182 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7189:7190 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7195:7195 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7183:7186 LF.Imp <> ANum constr
+R7188:7188 LF.ImpParser <> n:74 var
+R7191:7194 LF.ImpParser <> rest:73 var
+R7047:7048 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7058:7061 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7080:7093 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7062:7076 LF.ImpParser <> parseIdentifier def
+R7078:7079 LF.ImpParser <> xs:58 var
+R7049:7049 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7051:7052 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7057:7057 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7053:7056 <> rest:76
+binder 7050:7050 <> i:77
+binder 7049:7057 <> pat:78
+R7094:7098 LF.ImpParser <> SomeE constr
+R7100:7100 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7106:7107 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7112:7112 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7101:7103 LF.Imp <> AId constr
+R7105:7105 LF.ImpParser <> i:77 var
+R7108:7111 LF.ImpParser <> rest:76 var
+R7423:7427 LF.ImpParser <> steps:59 var
+R7443:7447 LF.ImpParser <> NoneE constr
+R7480:7480 Coq.Init.Datatypes <> S constr
+R7496:7497 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7507:7510 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7536:7543 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7511:7525 LF.ImpParser <> parsePrimaryExp:63 def
+R7534:7535 LF.ImpParser <> xs:60 var
+R7498:7498 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7500:7501 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7506:7506 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7502:7505 <> rest:80
+binder 7499:7499 <> e:81
+binder 7498:7506 <> pat:82
+R7544:7545 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7557:7560 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7646:7653 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7561:7564 LF.ImpParser <> many def
+R7642:7645 LF.ImpParser <> rest:80 var
+R7567:7577 LF.ImpParser <> firstExpect def
+R7584:7598 LF.ImpParser <> parsePrimaryExp:63 def
+R7546:7546 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7549:7550 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7556:7556 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7551:7555 <> rest':83
+binder 7547:7548 <> es:84
+binder 7546:7556 <> pat:85
+R7654:7658 LF.ImpParser <> SomeE constr
+R7660:7660 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7681:7682 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7688:7688 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7661:7669 Coq.Lists.List <> fold_left def
+R7680:7680 LF.ImpParser <> e:81 var
+R7677:7678 LF.ImpParser <> es:84 var
+R7671:7675 LF.Imp <> AMult constr
+R7683:7687 LF.ImpParser <> rest':83 var
+R7756:7760 LF.ImpParser <> steps:61 var
+R7776:7780 LF.ImpParser <> NoneE constr
+R7813:7813 Coq.Init.Datatypes <> S constr
+R7829:7830 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7840:7843 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7869:7876 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7844:7858 LF.ImpParser <> parseProductExp:64 def
+R7867:7868 LF.ImpParser <> xs:62 var
+R7831:7831 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7833:7834 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7839:7839 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7835:7838 <> rest:87
+binder 7832:7832 <> e:88
+binder 7831:7839 <> pat:89
+R7877:7878 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7890:7901 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8311:8320 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7902:7905 LF.ImpParser <> many def
+R8307:8310 LF.ImpParser <> rest:87 var
+binder 7912:7913 <> xs:90
+R7934:7937 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R8097:8132 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R8133:8134 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8145:8168 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8244:8263 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8169:8179 LF.ImpParser <> firstExpect def
+R8242:8243 LF.ImpParser <> xs:90 var
+R8218:8232 LF.ImpParser <> parseProductExp:64 def
+R8135:8135 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8137:8138 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8144:8144 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 8139:8143 <> rest':91
+binder 8136:8136 <> e:92
+binder 8135:8144 <> pat:93
+R8264:8268 LF.ImpParser <> SomeE constr
+R8270:8271 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8282:8283 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8289:8289 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8272:8272 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8278:8279 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8281:8281 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8273:8277 LF.Imp <> :::'false' not
+R8280:8280 LF.ImpParser <> e:92 var
+R8284:8288 LF.ImpParser <> rest':91 var
+R7938:7939 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7949:7972 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8048:8071 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R7973:7983 LF.ImpParser <> firstExpect def
+R8046:8047 LF.ImpParser <> xs:90 var
+R8022:8036 LF.ImpParser <> parseProductExp:64 def
+R7940:7940 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7942:7942 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7948:7948 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7943:7947 <> rest':94
+binder 7941:7941 <> e:95
+binder 7940:7948 <> pat:96
+R8072:8076 LF.ImpParser <> SomeE constr
+R8078:8079 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8089:8090 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8096:8096 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8080:8080 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8085:8086 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8088:8088 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8081:8084 LF.Imp <> :::'true' not
+R8087:8087 LF.ImpParser <> e:95 var
+R8091:8095 LF.ImpParser <> rest':94 var
+R7879:7879 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7882:7883 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7889:7889 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 7884:7888 <> rest':97
+binder 7880:7881 <> es:98
+binder 7879:7889 <> pat:99
+R8321:8325 LF.ImpParser <> SomeE constr
+R8327:8327 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8561:8575 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8581:8581 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8328:8336 Coq.Lists.List <> fold_left def
+R8560:8560 LF.ImpParser <> e:88 var
+R8557:8558 LF.ImpParser <> es:98 var
+binder 8343:8344 <> e0:100
+binder 8346:8349 <> term:101
+R8386:8389 LF.ImpParser <> term:101 var
+R8424:8424 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8429:8431 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8433:8433 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8425:8428 LF.Imp <> :::'true' not
+R8438:8442 LF.Imp <> APlus constr
+R8444:8445 LF.ImpParser <> e0:100 var
+R8447:8447 LF.ImpParser <> e:88 var
+R8477:8477 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8483:8484 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8486:8486 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8478:8482 LF.Imp <> :::'false' not
+R8491:8496 LF.Imp <> AMinus constr
+R8498:8499 LF.ImpParser <> e0:100 var
+R8501:8501 LF.ImpParser <> e:88 var
+R8576:8580 LF.ImpParser <> rest':97 var
+def 8602:8610 <> parseAExp
+R8615:8625 LF.ImpParser <> parseSumExp def
+def 8675:8688 <> parseAtomicExp
+def 9795:9813 <> parseConjunctionExp
+R8697:8699 Coq.Init.Datatypes <> nat ind
+binder 8691:8695 <> steps:103
+R8732:8735 Coq.Init.Datatypes <> list ind
+R8737:8741 LF.ImpParser <> token def
+binder 8727:8728 <> xs:104
+R9822:9824 Coq.Init.Datatypes <> nat ind
+binder 9816:9820 <> steps:105
+R9858:9861 Coq.Init.Datatypes <> list ind
+R9863:9867 LF.ImpParser <> token def
+binder 9853:9854 <> xs:106
+R8754:8758 LF.ImpParser <> steps:103 var
+R8774:8778 LF.ImpParser <> NoneE constr
+R8811:8811 Coq.Init.Datatypes <> S constr
+R8828:8831 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R8893:8906 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R8907:8910 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R8974:8987 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R8988:8991 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R9151:9164 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R9165:9168 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R9372:9385 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R9386:9387 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9397:9400 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9426:9434 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9401:9415 LF.ImpParser <> parseProductExp def
+R9424:9425 LF.ImpParser <> xs:104 var
+R9388:9388 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9390:9391 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9396:9396 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 9392:9395 <> rest:110
+binder 9389:9389 <> e:111
+binder 9388:9396 <> pat:112
+R9435:9438 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R9565:9578 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R9579:9582 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R9714:9727 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R9728:9732 LF.ImpParser <> NoneE constr
+R9583:9584 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9596:9599 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9678:9690 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9600:9610 LF.ImpParser <> firstExpect def
+R9674:9677 LF.ImpParser <> rest:110 var
+R9656:9664 LF.ImpParser <> parseAExp def
+R9585:9585 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9588:9589 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9595:9595 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 9590:9594 <> rest':113
+binder 9586:9587 <> e':114
+binder 9585:9595 <> pat:115
+R9691:9695 LF.ImpParser <> SomeE constr
+R9697:9697 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9706:9707 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9713:9713 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9698:9700 LF.Imp <> BLe constr
+R9702:9702 LF.ImpParser <> e:111 var
+R9704:9705 LF.ImpParser <> e':114 var
+R9708:9712 LF.ImpParser <> rest':113 var
+R9439:9440 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9452:9455 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9529:9541 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9456:9466 LF.ImpParser <> firstExpect def
+R9525:9528 LF.ImpParser <> rest:110 var
+R9507:9515 LF.ImpParser <> parseAExp def
+R9441:9441 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9444:9445 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9451:9451 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 9446:9450 <> rest':116
+binder 9442:9443 <> e':117
+binder 9441:9451 <> pat:118
+R9542:9546 LF.ImpParser <> SomeE constr
+R9548:9548 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9557:9558 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9564:9564 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9549:9551 LF.Imp <> BEq constr
+R9553:9553 LF.ImpParser <> e:111 var
+R9555:9556 LF.ImpParser <> e':117 var
+R9559:9563 LF.ImpParser <> rest':116 var
+R9169:9170 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9179:9182 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9300:9312 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9183:9193 LF.ImpParser <> firstExpect def
+R9298:9299 LF.ImpParser <> xs:104 var
+R9235:9253 LF.ImpParser <> parseConjunctionExp:108 def
+R9171:9171 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9173:9173 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9178:9178 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 9174:9177 <> rest:119
+binder 9172:9172 <> e:120
+binder 9171:9178 <> pat:121
+R9313:9314 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9324:9327 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9343:9355 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9328:9333 LF.ImpParser <> expect def
+R9339:9342 LF.ImpParser <> rest:119 var
+R9315:9315 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9317:9317 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9323:9323 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 9318:9322 <> rest':122
+binder 9316:9316 <> u:123
+binder 9315:9323 <> pat:124
+R9356:9360 LF.ImpParser <> SomeE constr
+R9362:9362 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9364:9365 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9371:9371 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9363:9363 LF.ImpParser <> e:120 var
+R9366:9370 LF.ImpParser <> rest':122 var
+R8992:8993 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9002:9005 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9118:9130 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9006:9016 LF.ImpParser <> firstExpect def
+R9116:9117 LF.ImpParser <> xs:104 var
+R9058:9071 LF.ImpParser <> parseAtomicExp:107 def
+R8994:8994 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8996:8996 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9001:9001 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 8997:9000 <> rest:125
+binder 8995:8995 <> e:126
+binder 8994:9001 <> pat:127
+R9131:9135 LF.ImpParser <> SomeE constr
+R9137:9137 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9144:9145 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9150:9150 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9138:9141 LF.Imp <> BNot constr
+R9143:9143 LF.ImpParser <> e:126 var
+R9146:9149 LF.ImpParser <> rest:125 var
+R8911:8912 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8921:8924 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8942:8954 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8925:8930 LF.ImpParser <> expect def
+R8940:8941 LF.ImpParser <> xs:104 var
+R8913:8913 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8915:8915 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8920:8920 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 8916:8919 <> rest:128
+binder 8914:8914 <> u:129
+binder 8913:8920 <> pat:130
+R8955:8959 LF.ImpParser <> SomeE constr
+R8961:8961 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8968:8968 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8973:8973 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8962:8967 LF.Imp <> BFalse constr
+R8969:8972 LF.ImpParser <> rest:128 var
+R8832:8833 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8842:8845 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8862:8874 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R8846:8851 LF.ImpParser <> expect def
+R8860:8861 LF.ImpParser <> xs:104 var
+R8834:8834 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8836:8836 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8841:8841 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 8837:8840 <> rest:131
+binder 8835:8835 <> u:132
+binder 8834:8841 <> pat:133
+R8875:8879 LF.ImpParser <> SomeE constr
+R8881:8881 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8887:8887 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8892:8892 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8882:8886 LF.Imp <> BTrue constr
+R8888:8891 LF.ImpParser <> rest:131 var
+R9881:9885 LF.ImpParser <> steps:105 var
+R9901:9905 LF.ImpParser <> NoneE constr
+R9938:9938 Coq.Init.Datatypes <> S constr
+R9954:9955 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9965:9968 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9993:10000 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R9969:9982 LF.ImpParser <> parseAtomicExp:107 def
+R9991:9992 LF.ImpParser <> xs:106 var
+R9956:9956 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9958:9959 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9964:9964 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 9960:9963 <> rest:135
+binder 9957:9957 <> e:136
+binder 9956:9964 <> pat:137
+R10001:10002 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10014:10017 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10104:10111 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10018:10021 LF.ImpParser <> many def
+R10100:10103 LF.ImpParser <> rest:135 var
+R10024:10034 LF.ImpParser <> firstExpect def
+R10057:10070 LF.ImpParser <> parseAtomicExp:107 def
+R10003:10003 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10006:10007 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10013:10013 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 10008:10012 <> rest':138
+binder 10004:10005 <> es:139
+binder 10003:10013 <> pat:140
+R10112:10116 LF.ImpParser <> SomeE constr
+R10118:10118 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10138:10139 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10145:10145 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10119:10127 Coq.Lists.List <> fold_left def
+R10137:10137 LF.ImpParser <> e:136 var
+R10134:10135 LF.ImpParser <> es:139 var
+R10129:10132 LF.Imp <> BAnd constr
+R10140:10144 LF.ImpParser <> rest':138 var
+def 10166:10174 <> parseBExp
+R10179:10197 LF.ImpParser <> parseConjunctionExp def
+R10207:10225 LF.ImpParser <> parseConjunctionExp def
+def 10240:10250 <> testParsing
+binder 10253:10253 <> X:141
+R10282:10301 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10279:10281 Coq.Init.Datatypes <> nat ind
+R10312:10331 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10302:10305 Coq.Init.Datatypes <> list ind
+R10307:10311 LF.ImpParser <> token def
+R10332:10338 LF.ImpParser <> optionE ind
+R10342:10344 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R10341:10341 LF.ImpParser <> X:141 var
+R10345:10348 Coq.Init.Datatypes <> list ind
+R10350:10354 LF.ImpParser <> token def
+binder 10275:10275 <> p:142
+R10374:10379 Coq.Strings.String <> string ind
+binder 10370:10370 <> s:143
+R10396:10403 LF.ImpParser <> tokenize def
+R10405:10405 LF.ImpParser <> s:143 var
+binder 10391:10391 <> t:144
+R10412:10412 LF.ImpParser <> p:142 var
+R10418:10418 LF.ImpParser <> t:144 var
+def 10605:10622 <> parseSimpleCommand
+def 11826:11846 <> parseSequencedCommand
+R10631:10633 Coq.Init.Datatypes <> nat ind
+binder 10625:10629 <> steps:145
+R10670:10673 Coq.Init.Datatypes <> list ind
+R10675:10679 LF.ImpParser <> token def
+binder 10665:10666 <> xs:146
+R11855:11857 Coq.Init.Datatypes <> nat ind
+binder 11849:11853 <> steps:147
+R11893:11896 Coq.Init.Datatypes <> list ind
+R11898:11902 LF.ImpParser <> token def
+binder 11888:11889 <> xs:148
+R10693:10697 LF.ImpParser <> steps:145 var
+R10713:10717 LF.ImpParser <> NoneE constr
+R10750:10750 Coq.Init.Datatypes <> S constr
+R10766:10769 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R10835:10846 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R10847:10850 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R11291:11302 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R11303:11306 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R11618:11629 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R11630:11633 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R11772:11787 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R11788:11792 LF.ImpParser <> NoneE constr
+R11634:11635 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11645:11648 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11667:11678 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11649:11663 LF.ImpParser <> parseIdentifier def
+R11665:11666 LF.ImpParser <> xs:146 var
+R11636:11636 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11638:11639 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11644:11644 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 11640:11643 <> rest:152
+binder 11637:11637 <> i:153
+binder 11636:11644 <> pat:154
+R11679:11680 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11691:11694 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11735:11746 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11695:11705 LF.ImpParser <> firstExpect def
+R11731:11734 LF.ImpParser <> rest:152 var
+R11713:11721 LF.ImpParser <> parseAExp def
+R11681:11681 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11683:11684 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11690:11690 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 11685:11689 <> rest':155
+binder 11682:11682 <> e:156
+binder 11681:11690 <> pat:157
+R11747:11751 LF.ImpParser <> SomeE constr
+R11753:11753 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11764:11765 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11771:11771 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11754:11755 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R11762:11763 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R11757:11760 LF.Imp <> :com:com_scope:x_':='_x not
+R11756:11756 LF.ImpParser <> i:153 var
+R11761:11761 LF.ImpParser <> e:156 var
+R11766:11770 LF.ImpParser <> rest':155 var
+R11307:11308 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11317:11332 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11398:11409 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11333:11343 LF.ImpParser <> firstExpect def
+R11396:11397 LF.ImpParser <> xs:146 var
+R11378:11386 LF.ImpParser <> parseBExp def
+R11309:11309 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11311:11311 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11316:11316 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 11312:11315 <> rest:158
+binder 11310:11310 <> e:159
+binder 11309:11316 <> pat:160
+R11410:11411 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11421:11436 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11513:11524 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11437:11447 LF.ImpParser <> firstExpect def
+R11509:11512 LF.ImpParser <> rest:158 var
+R11479:11499 LF.ImpParser <> parseSequencedCommand:150 def
+R11412:11412 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11414:11414 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11420:11420 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 11415:11419 <> rest':161
+binder 11413:11413 <> c:162
+binder 11412:11420 <> pat:163
+R11525:11526 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11537:11552 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11571:11582 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11553:11558 LF.ImpParser <> expect def
+R11566:11570 LF.ImpParser <> rest':161 var
+R11527:11527 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11529:11529 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11536:11536 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 11530:11535 <> rest'':164
+binder 11528:11528 <> u:165
+binder 11527:11536 <> pat:166
+R11583:11587 LF.ImpParser <> SomeE constr
+R11588:11588 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11609:11610 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11617:11617 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11589:11590 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R11607:11608 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R11591:11596 LF.Imp <> :com:com_scope:'while'_x_'do'_x_'end' not
+R11598:11601 LF.Imp <> :com:com_scope:'while'_x_'do'_x_'end' not
+R11603:11606 LF.Imp <> :com:com_scope:'while'_x_'do'_x_'end' not
+R11597:11597 LF.ImpParser <> e:159 var
+R11602:11602 LF.ImpParser <> c:162 var
+R11611:11616 LF.ImpParser <> rest'':164 var
+R10851:10852 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10861:10876 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10939:10950 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10877:10887 LF.ImpParser <> firstExpect def
+R10937:10938 LF.ImpParser <> xs:146 var
+R10919:10927 LF.ImpParser <> parseBExp def
+R10853:10853 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10855:10855 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10860:10860 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 10856:10859 <> rest:167
+binder 10854:10854 <> e:168
+binder 10853:10860 <> pat:169
+R10951:10952 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10962:10977 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11056:11067 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10978:10988 LF.ImpParser <> firstExpect def
+R11052:11055 LF.ImpParser <> rest:167 var
+R11022:11042 LF.ImpParser <> parseSequencedCommand:150 def
+R10953:10953 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10955:10955 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10961:10961 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 10956:10960 <> rest':170
+binder 10954:10954 <> c:171
+binder 10953:10961 <> pat:172
+R11068:11069 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11081:11096 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11176:11187 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11097:11107 LF.ImpParser <> firstExpect def
+R11171:11175 LF.ImpParser <> rest':170 var
+R11141:11161 LF.ImpParser <> parseSequencedCommand:150 def
+R11070:11070 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11073:11073 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11080:11080 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 11074:11079 <> rest'':173
+binder 11071:11072 <> c':174
+binder 11070:11080 <> pat:175
+R11188:11189 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11202:11217 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11237:11247 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R11218:11223 LF.ImpParser <> expect def
+R11231:11236 LF.ImpParser <> rest'':173 var
+R11190:11190 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11193:11193 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11201:11201 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11191:11192 Coq.Init.Datatypes <> tt constr
+binder 11194:11200 <> rest''':176
+binder 11190:11201 <> pat:177
+R11248:11252 LF.ImpParser <> SomeE constr
+R11253:11253 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11281:11282 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11290:11290 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11254:11255 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R11279:11280 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R11256:11258 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R11260:11265 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R11267:11272 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R11275:11278 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R11259:11259 LF.ImpParser <> e:168 var
+R11266:11266 LF.ImpParser <> c:171 var
+R11273:11274 LF.ImpParser <> c':174 var
+R11283:11289 LF.ImpParser <> rest''':176 var
+R10770:10771 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10781:10784 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10801:10812 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R10785:10790 LF.ImpParser <> expect def
+R10799:10800 LF.ImpParser <> xs:146 var
+R10772:10772 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10774:10775 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10780:10780 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 10776:10779 <> rest:178
+binder 10773:10773 <> u:179
+binder 10772:10780 <> pat:180
+R10813:10817 LF.ImpParser <> SomeE constr
+R10819:10819 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10828:10829 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10834:10834 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10820:10821 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R10826:10827 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R10822:10825 LF.Imp <> :com:com_scope:'skip' not
+R10830:10833 LF.ImpParser <> rest:178 var
+R11916:11920 LF.ImpParser <> steps:147 var
+R11936:11940 LF.ImpParser <> NoneE constr
+R11973:11973 Coq.Init.Datatypes <> S constr
+R11989:11990 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R12000:12003 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R12032:12039 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R12004:12021 LF.ImpParser <> parseSimpleCommand:149 def
+R12030:12031 LF.ImpParser <> xs:148 var
+R11991:11991 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11993:11994 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11999:11999 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 11995:11998 <> rest:182
+binder 11992:11992 <> c:183
+binder 11991:11999 <> pat:184
+R12040:12043 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R12185:12196 LF.ImpParser <> :::'TRY'_x_'OR'_x not
+R12197:12201 LF.ImpParser <> SomeE constr
+R12203:12203 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12205:12206 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12211:12211 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12204:12204 LF.ImpParser <> c:183 var
+R12207:12210 LF.ImpParser <> rest:182 var
+R12044:12045 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R12057:12072 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R12148:12159 LF.ImpParser <> :::''''_x_'<-'_x_';;'_x not
+R12073:12083 LF.ImpParser <> firstExpect def
+R12144:12147 LF.ImpParser <> rest:182 var
+R12114:12134 LF.ImpParser <> parseSequencedCommand:150 def
+R12046:12046 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12049:12050 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12056:12056 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+binder 12051:12055 <> rest':185
+binder 12047:12048 <> c':186
+binder 12046:12056 <> pat:187
+R12160:12164 LF.ImpParser <> SomeE constr
+R12166:12166 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12177:12178 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12184:12184 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12167:12168 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R12175:12176 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R12170:12172 LF.Imp <> :com:com_scope:x_';'_x not
+R12169:12169 LF.ImpParser <> c:183 var
+R12173:12174 LF.ImpParser <> c':186 var
+R12179:12183 LF.ImpParser <> rest':185 var
+def 12232:12240 <> bignumber
+def 12263:12267 <> parse
+R12276:12281 Coq.Strings.String <> string ind
+binder 12270:12272 <> str:188
+R12286:12292 LF.ImpParser <> optionE ind
+R12294:12296 LF.Imp <> com ind
+R12317:12324 LF.ImpParser <> tokenize def
+R12326:12328 LF.ImpParser <> str:188 var
+binder 12307:12312 <> tokens:189
+R12341:12361 LF.ImpParser <> parseSequencedCommand def
+R12363:12371 LF.ImpParser <> bignumber def
+R12373:12378 LF.ImpParser <> tokens:189 var
+R12389:12393 LF.ImpParser <> SomeE constr
+R12395:12395 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12397:12398 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12401:12401 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12399:12400 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12406:12410 LF.ImpParser <> SomeE constr
+R12418:12422 LF.ImpParser <> SomeE constr
+R12424:12424 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12426:12427 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12432:12432 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12429:12430 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R12428:12428 Coq.Init.Nat <> t def
+R12437:12441 LF.ImpParser <> NoneE constr
+R12473:12476 Coq.Strings.String <> ::string_scope:x_'++'_x not
+R12484:12488 LF.ImpParser <> NoneE constr
+R12497:12501 LF.ImpParser <> NoneE constr
+def 12614:12616 <> eg1
+R12715:12719 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12620:12624 LF.ImpParser <> parse def
+R12720:12724 LF.ImpParser <> SomeE constr
+R12726:12734 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R12853:12855 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R12735:12737 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R12773:12786 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R12819:12838 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R12843:12852 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R12738:12738 LF.Imp <> :com:com_scope:'('_x_')' not
+R12772:12772 LF.Imp <> :com:com_scope:'('_x_')' not
+R12742:12744 LF.Imp <> :com::x_'='_x not
+R12745:12745 LF.Imp <> :com:com_scope:'('_x_')' not
+R12771:12771 LF.Imp <> :com:com_scope:'('_x_')' not
+R12767:12769 LF.Imp <> :com::x_'+'_x not
+R12757:12759 LF.Imp <> :com::x_'-'_x not
+R12753:12755 LF.Imp <> :com::x_'+'_x not
+R12749:12751 LF.Imp <> :com::x_'+'_x not
+R12763:12765 LF.Imp <> :com::x_'*'_x not
+R12801:12810 LF.Imp <> :com:com_scope:x_';'_x not
+R12790:12793 LF.Imp <> :com:com_scope:x_':='_x not
+R12797:12799 LF.Imp <> :com::x_'*'_x not
+R12814:12817 LF.Imp <> :com:com_scope:x_':='_x not
+R12839:12842 LF.Imp <> :com:com_scope:'skip' not
+def 12897:12899 <> eg2
+R13066:13070 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12903:12907 LF.ImpParser <> parse def
+R13071:13075 LF.ImpParser <> SomeE constr
+R13077:13085 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R13330:13332 LF.Imp <> ::com_scope:'<{'_x_'}>' not
+R13090:13097 LF.Imp <> :com:com_scope:x_';'_x not
+R13086:13089 LF.Imp <> :com:com_scope:'skip' not
+R13128:13135 LF.Imp <> :com:com_scope:x_';'_x not
+R13101:13104 LF.Imp <> :com:com_scope:x_':='_x not
+R13114:13116 LF.Imp <> :com::x_'*'_x not
+R13108:13110 LF.Imp <> :com::x_'*'_x not
+R13117:13117 LF.Imp <> :com:com_scope:'('_x_')' not
+R13127:13127 LF.Imp <> :com:com_scope:'('_x_')' not
+R13121:13123 LF.Imp <> :com::x_'*'_x not
+R13312:13319 LF.Imp <> :com:com_scope:x_';'_x not
+R13136:13141 LF.Imp <> :com:com_scope:'while'_x_'do'_x_'end' not
+R13153:13164 LF.Imp <> :com:com_scope:'while'_x_'do'_x_'end' not
+R13302:13311 LF.Imp <> :com:com_scope:'while'_x_'do'_x_'end' not
+R13142:13142 LF.Imp <> :com:com_scope:'('_x_')' not
+R13152:13152 LF.Imp <> :com:com_scope:'('_x_')' not
+R13146:13148 LF.Imp <> :com::x_'='_x not
+R13288:13297 LF.Imp <> :com:com_scope:x_';'_x not
+R13165:13167 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R13200:13215 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R13248:13271 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R13276:13287 LF.Imp <> :com:com_scope:'if'_x_'then'_x_'else'_x_'end' not
+R13186:13189 LF.Imp <> :com::x_'&&'_x not
+R13168:13168 LF.Imp <> :com:com_scope:'('_x_')' not
+R13185:13185 LF.Imp <> :com:com_scope:'('_x_')' not
+R13172:13175 LF.Imp <> :com::x_'<='_x not
+R13179:13181 LF.Imp <> :com::x_'*'_x not
+R13190:13190 LF.Imp <> :com::'~'_x not
+R13191:13191 LF.Imp <> :com:com_scope:'('_x_')' not
+R13199:13199 LF.Imp <> :com:com_scope:'('_x_')' not
+R13195:13197 LF.Imp <> :com::x_'='_x not
+R13226:13237 LF.Imp <> :com:com_scope:x_';'_x not
+R13219:13222 LF.Imp <> :com:com_scope:x_':='_x not
+R13241:13244 LF.Imp <> :com:com_scope:x_':='_x not
+R13272:13275 LF.Imp <> :com:com_scope:'skip' not
+R13298:13301 LF.Imp <> :com:com_scope:'skip' not
+R13323:13326 LF.Imp <> :com:com_scope:x_':='_x not

@@ -1,0 +1,17 @@
+DIGEST af7db561e528c26ed0f892f97661bdd4
+FLF.PostscriptTest
+R70:75 Coq.Strings.String <> <> lib
+R101:110 LF.Postscript <> <> lib
+ax 124:130 <> MISSING
+mod 147:151 <> Check
+R217:223 LF.PostscriptTest <> MISSING defax
+R217:223 LF.PostscriptTest <> MISSING defax
+R416:419 Coq.Init.Datatypes <> Some constr
+R416:419 Coq.Init.Datatypes <> Some constr
+R599:602 Coq.Init.Datatypes <> None constr
+R599:602 Coq.Init.Datatypes <> None constr
+R684:688 LF.PostscriptTest Check <> mod
+R715:724 LF.Postscript <> <> lib
+R734:738 LF.PostscriptTest Check <> mod
+def 742:750 <> Unnamed_thm
+R747:750 Coq.Init.Logic <> True ind

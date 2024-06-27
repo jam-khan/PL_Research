@@ -1,0 +1,17 @@
+DIGEST 018cd78e8e60f47ea18757addde5113a
+FLF.BibTest
+R70:75 Coq.Strings.String <> <> lib
+R101:103 LF.Bib <> <> lib
+ax 117:123 <> MISSING
+mod 140:144 <> Check
+R210:216 LF.BibTest <> MISSING defax
+R210:216 LF.BibTest <> MISSING defax
+R409:412 Coq.Init.Datatypes <> Some constr
+R409:412 Coq.Init.Datatypes <> Some constr
+R592:595 Coq.Init.Datatypes <> None constr
+R592:595 Coq.Init.Datatypes <> None constr
+R677:681 LF.BibTest Check <> mod
+R708:710 LF.Bib <> <> lib
+R720:724 LF.BibTest Check <> mod
+def 728:736 <> Unnamed_thm
+R733:736 Coq.Init.Logic <> True ind

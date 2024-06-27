@@ -30,48 +30,48 @@ R912:916 LF.Basics <> false constr
 R968:978 LF.Basics <> test_nandb4 ex
 def 981:989 <> Unnamed_thm
 R986:989 Coq.Init.Logic <> True ind
-R1138:1148 LF.Basics <> test_andb34 prfax
+R1138:1148 LF.Basics <> test_andb34 ex
 R1173:1175 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R1152:1156 LF.Basics <> andb3 prfax
+R1152:1156 LF.Basics <> andb3 def
 R1158:1161 LF.Basics <> true constr
 R1163:1166 LF.Basics <> true constr
 R1168:1172 LF.Basics <> false constr
 R1176:1180 LF.Basics <> false constr
-R1138:1148 LF.Basics <> test_andb34 prfax
+R1138:1148 LF.Basics <> test_andb34 ex
 R1173:1175 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R1152:1156 LF.Basics <> andb3 prfax
+R1152:1156 LF.Basics <> andb3 def
 R1158:1161 LF.Basics <> true constr
 R1163:1166 LF.Basics <> true constr
 R1168:1172 LF.Basics <> false constr
 R1176:1180 LF.Basics <> false constr
-R1232:1242 LF.Basics <> test_andb34 prfax
+R1232:1242 LF.Basics <> test_andb34 ex
 def 1245:1253 <> Unnamed_thm
 R1250:1253 Coq.Init.Logic <> True ind
-R1410:1424 LF.Basics <> test_factorial2 prfax
+R1410:1424 LF.Basics <> test_factorial2 ex
 R1439:1441 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R1428:1436 LF.Basics <> factorial prfax
+R1428:1436 LF.Basics <> factorial def
 R1444:1446 LF.Basics <> ::nat_scope:x_'*'_x not
-R1410:1424 LF.Basics <> test_factorial2 prfax
+R1410:1424 LF.Basics <> test_factorial2 ex
 R1439:1441 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R1428:1436 LF.Basics <> factorial prfax
+R1428:1436 LF.Basics <> factorial def
 R1444:1446 LF.Basics <> ::nat_scope:x_'*'_x not
-R1500:1514 LF.Basics <> test_factorial2 prfax
+R1500:1514 LF.Basics <> test_factorial2 ex
 def 1517:1525 <> Unnamed_thm
 R1522:1525 Coq.Init.Logic <> True ind
-R1670:1678 LF.Basics <> test_ltb3 prfax
+R1670:1678 LF.Basics <> test_ltb3 ex
 R1682:1682 Coq.Init.Logic <> ::type_scope:x_'='_x not
 R1689:1692 Coq.Init.Logic <> ::type_scope:x_'='_x not
 R1684:1687 LF.Basics <> ::nat_scope:x_'<?'_x not
 R1693:1697 LF.Basics <> false constr
-R1670:1678 LF.Basics <> test_ltb3 prfax
+R1670:1678 LF.Basics <> test_ltb3 ex
 R1682:1682 Coq.Init.Logic <> ::type_scope:x_'='_x not
 R1689:1692 Coq.Init.Logic <> ::type_scope:x_'='_x not
 R1684:1687 LF.Basics <> ::nat_scope:x_'<?'_x not
 R1693:1697 LF.Basics <> false constr
-R1749:1757 LF.Basics <> test_ltb3 prfax
+R1749:1757 LF.Basics <> test_ltb3 ex
 def 1760:1768 <> Unnamed_thm
 R1765:1768 Coq.Init.Logic <> True ind
-R1933:1948 LF.Basics <> plus_id_exercise prfax
+R1933:1948 LF.Basics <> plus_id_exercise thm
 R1967:1969 Coq.Init.Datatypes <> nat ind
 binder 1959:1959 <> n:2
 binder 1961:1961 <> m:3
@@ -91,7 +91,7 @@ R1994:1994 LF.BasicsTest <> m:3 var
 R1999:2001 LF.Basics <> ::nat_scope:x_'+'_x not
 R1998:1998 LF.BasicsTest <> m:3 var
 R2002:2002 LF.BasicsTest <> o:4 var
-R1933:1948 LF.Basics <> plus_id_exercise prfax
+R1933:1948 LF.Basics <> plus_id_exercise thm
 R1967:1969 Coq.Init.Datatypes <> nat ind
 binder 1959:1959 <> n:5
 binder 1961:1961 <> m:6
@@ -111,27 +111,27 @@ R1994:1994 LF.BasicsTest <> m:6 var
 R1999:2001 LF.Basics <> ::nat_scope:x_'+'_x not
 R1998:1998 LF.BasicsTest <> m:6 var
 R2002:2002 LF.BasicsTest <> o:7 var
-R2054:2069 LF.Basics <> plus_id_exercise prfax
+R2054:2069 LF.Basics <> plus_id_exercise thm
 def 2072:2080 <> Unnamed_thm
 R2077:2080 Coq.Init.Logic <> True ind
-R2229:2236 LF.Basics <> mult_n_1 prfax
+R2229:2236 LF.Basics <> mult_n_1 thm
 R2251:2253 Coq.Init.Datatypes <> nat ind
 binder 2247:2247 <> p:8
 R2261:2263 Coq.Init.Logic <> ::type_scope:x_'='_x not
 R2257:2259 LF.Basics <> ::nat_scope:x_'*'_x not
 R2256:2256 LF.BasicsTest <> p:8 var
 R2264:2264 LF.BasicsTest <> p:8 var
-R2229:2236 LF.Basics <> mult_n_1 prfax
+R2229:2236 LF.Basics <> mult_n_1 thm
 R2251:2253 Coq.Init.Datatypes <> nat ind
 binder 2247:2247 <> p:9
 R2261:2263 Coq.Init.Logic <> ::type_scope:x_'='_x not
 R2257:2259 LF.Basics <> ::nat_scope:x_'*'_x not
 R2256:2256 LF.BasicsTest <> p:9 var
 R2264:2264 LF.BasicsTest <> p:9 var
-R2316:2323 LF.Basics <> mult_n_1 prfax
+R2316:2323 LF.Basics <> mult_n_1 thm
 def 2326:2334 <> Unnamed_thm
 R2331:2334 Coq.Init.Logic <> True ind
-R2497:2511 LF.Basics <> andb_true_elim2 prfax
+R2497:2511 LF.Basics <> andb_true_elim2 thm
 R2528:2531 LF.Basics <> bool ind
 binder 2522:2522 <> b:10
 binder 2524:2524 <> c:11
@@ -144,7 +144,7 @@ R2543:2546 LF.Basics <> true constr
 R2552:2554 Coq.Init.Logic <> ::type_scope:x_'='_x not
 R2551:2551 LF.BasicsTest <> c:11 var
 R2555:2558 LF.Basics <> true constr
-R2497:2511 LF.Basics <> andb_true_elim2 prfax
+R2497:2511 LF.Basics <> andb_true_elim2 thm
 R2528:2531 LF.Basics <> bool ind
 binder 2522:2522 <> b:12
 binder 2524:2524 <> c:13
@@ -157,10 +157,10 @@ R2543:2546 LF.Basics <> true constr
 R2552:2554 Coq.Init.Logic <> ::type_scope:x_'='_x not
 R2551:2551 LF.BasicsTest <> c:13 var
 R2555:2558 LF.Basics <> true constr
-R2610:2624 LF.Basics <> andb_true_elim2 prfax
+R2610:2624 LF.Basics <> andb_true_elim2 thm
 def 2627:2635 <> Unnamed_thm
 R2632:2635 Coq.Init.Logic <> True ind
-R2800:2815 LF.Basics <> zero_nbeq_plus_1 prfax
+R2800:2815 LF.Basics <> zero_nbeq_plus_1 thm
 R2830:2832 Coq.Init.Datatypes <> nat ind
 binder 2826:2826 <> n:14
 R2835:2835 Coq.Init.Logic <> ::type_scope:x_'='_x not
@@ -169,7 +169,7 @@ R2837:2840 LF.Basics <> ::nat_scope:x_'=?'_x not
 R2842:2844 LF.Basics <> ::nat_scope:x_'+'_x not
 R2841:2841 LF.BasicsTest <> n:14 var
 R2850:2854 LF.Basics <> false constr
-R2800:2815 LF.Basics <> zero_nbeq_plus_1 prfax
+R2800:2815 LF.Basics <> zero_nbeq_plus_1 thm
 R2830:2832 Coq.Init.Datatypes <> nat ind
 binder 2826:2826 <> n:15
 R2835:2835 Coq.Init.Logic <> ::type_scope:x_'='_x not
@@ -178,10 +178,10 @@ R2837:2840 LF.Basics <> ::nat_scope:x_'=?'_x not
 R2842:2844 LF.Basics <> ::nat_scope:x_'+'_x not
 R2841:2841 LF.BasicsTest <> n:15 var
 R2850:2854 LF.Basics <> false constr
-R2906:2921 LF.Basics <> zero_nbeq_plus_1 prfax
+R2906:2921 LF.Basics <> zero_nbeq_plus_1 thm
 def 2924:2932 <> Unnamed_thm
 R2929:2932 Coq.Init.Logic <> True ind
-R3115:3139 LF.Basics <> identity_fn_applied_twice prfax
+R3115:3139 LF.Basics <> identity_fn_applied_twice thm
 R3159:3162 Coq.Init.Logic <> ::type_scope:x_'->'_x not
 R3155:3158 LF.Basics <> bool ind
 R3163:3166 LF.Basics <> bool ind
@@ -201,7 +201,7 @@ R3217:3217 LF.BasicsTest <> f:16 var
 R3220:3220 LF.BasicsTest <> f:16 var
 R3222:3222 LF.BasicsTest <> b:18 var
 R3227:3227 LF.BasicsTest <> b:18 var
-R3115:3139 LF.Basics <> identity_fn_applied_twice prfax
+R3115:3139 LF.Basics <> identity_fn_applied_twice thm
 R3159:3162 Coq.Init.Logic <> ::type_scope:x_'->'_x not
 R3155:3158 LF.Basics <> bool ind
 R3163:3166 LF.Basics <> bool ind
@@ -221,7 +221,7 @@ R3217:3217 LF.BasicsTest <> f:19 var
 R3220:3220 LF.BasicsTest <> f:19 var
 R3222:3222 LF.BasicsTest <> b:21 var
 R3227:3227 LF.BasicsTest <> b:21 var
-R3279:3303 LF.Basics <> identity_fn_applied_twice prfax
+R3279:3303 LF.Basics <> identity_fn_applied_twice thm
 def 3306:3314 <> Unnamed_thm
 R3311:3314 Coq.Init.Logic <> True ind
 R3521:3562 LF.Basics <> manual_grade_for_negation_fn_applied_twice def
@@ -807,14 +807,14 @@ R11481:11494 LF.Basics <> test_bin_incr6 prfax
 def 11497:11505 <> Unnamed_thm
 R11502:11505 Coq.Init.Logic <> True ind
 R12477:12487 LF.Basics <> test_nandb4 ex
-R12550:12560 LF.Basics <> test_andb34 prfax
-R12627:12641 LF.Basics <> test_factorial2 prfax
-R12702:12710 LF.Basics <> test_ltb3 prfax
-R12778:12793 LF.Basics <> plus_id_exercise prfax
-R12853:12860 LF.Basics <> mult_n_1 prfax
-R12927:12941 LF.Basics <> andb_true_elim2 prfax
-R13009:13024 LF.Basics <> zero_nbeq_plus_1 prfax
-R13101:13125 LF.Basics <> identity_fn_applied_twice prfax
+R12550:12560 LF.Basics <> test_andb34 ex
+R12627:12641 LF.Basics <> test_factorial2 ex
+R12702:12710 LF.Basics <> test_ltb3 ex
+R12778:12793 LF.Basics <> plus_id_exercise thm
+R12853:12860 LF.Basics <> mult_n_1 thm
+R12927:12941 LF.Basics <> andb_true_elim2 thm
+R13009:13024 LF.Basics <> zero_nbeq_plus_1 thm
+R13101:13125 LF.Basics <> identity_fn_applied_twice thm
 R13278:13306 LF.Basics LateDays letter_comparison_Eq prfax
 R13389:13419 LF.Basics LateDays test_grade_comparison1 prfax
 R13502:13532 LF.Basics LateDays test_grade_comparison2 prfax
