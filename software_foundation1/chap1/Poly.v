@@ -107,6 +107,9 @@ Check cons : forall X : Type, X -> list X -> list X.
 Check (cons nat 2 (cons nat 1 (nil nat)))
       : list nat.
 
+Check (cons nat 2 (nil nat))
+      : list nat.
+
 (** We can now go back and make polymorphic versions of all the
     list-processing functions that we wrote before.  Here is [repeat],
     for example: *)
@@ -146,15 +149,20 @@ Inductive grumble (X:Type) : Type :=
   | d (m : mumble)
   | e (x : X).
 
+Check (d bool (b a 5)).
+Check (d mumble (b a 5)).
+Check (d bool (b a 5)).
+Check (e bool true).
+
 (** Which of the following are well-typed elements of [grumble X] for
     some type [X]?  (Add YES or NO to each line.)
-      - [d (b a 5)]
-      - [d mumble (b a 5)]
-      - [d bool (b a 5)]
-      - [e bool true]
-      - [e mumble (b c 0)]
-      - [e bool (b c 0)]
-      - [c]  *)
+      - [d (b a 5)] NO
+      - [d mumble (b a 5)] Yes
+      - [d bool (b a 5)] Yes
+      - [e bool true] Yes
+      - [e mumble (b c 0)] Yes
+      - [e bool (b c 0)] No
+      - [c]  No*)
 (* FILL IN HERE *)
 End MumbleGrumble.
 (** [] *)
@@ -387,19 +395,27 @@ Definition list123''' := [1; 2; 3].
 Theorem app_nil_r : forall (X:Type), forall l:list X,
   l ++ [] = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
-
+  intros X.
+  induction l as [| n l' IHl].
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 Theorem app_assoc : forall A (l m n:list A),
   l ++ m ++ n = (l ++ m) ++ n.
 Proof.
-  (* FILL IN HERE *) Admitted.
-
+  intros X l m n.
+  induction l as [| n' l' IHl].
+  - simpl. reflexivity.
+  - simpl. rewrite <- IHl. reflexivity.
+Qed.
 Lemma app_length : forall (X:Type) (l1 l2 : list X),
   length (l1 ++ l2) = length l1 + length l2.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
-
+  intros X l1 l2.
+  induction l1 as [| n l1' IHl].
+  - simpl. reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 (** **** Exercise: 2 stars, standard (more_poly_exercises)
 
     Here are some slightly more interesting ones... *)
@@ -407,7 +423,11 @@ Proof.
 Theorem rev_app_distr: forall X (l1 l2 : list X),
   rev (l1 ++ l2) = rev l2 ++ rev l1.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros X l1 l2.
+  induction l1 as [| n l1' IHl].
+  - simpl. rewrite -> app_nil_r. reflexivity.
+  - simpl. rewrite -> IHl. rewrite <- app_assoc. reflexivity.
+Qed.
 
 Theorem rev_involutive : forall X : Type, forall l : list X,
   rev (rev l) = l.
