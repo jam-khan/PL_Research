@@ -432,8 +432,11 @@ Qed.
 Theorem rev_involutive : forall X : Type, forall l : list X,
   rev (rev l) = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros X l.
+  induction l as [| n l' IHl].
+  + simpl. reflexivity.
+  + simpl. rewrite -> rev_app_distr. simpl. rewrite -> IHl. reflexivity.
+Qed.
 
 (* ================================================================= *)
 (** ** Polymorphic Pairs *)
@@ -454,6 +457,8 @@ Notation "( x , y )" := (pair x y).
 
 (** We can also use the [Notation] mechanism to define the standard
     notation for _product types_ (i.e., the types of pairs): *)
+
+(* Below is a type not an actual product. It is the type of a product. *)
 
 Notation "X * Y" := (prod X Y) : type_scope.
 
@@ -506,6 +511,8 @@ Fixpoint combine {X Y : Type} (lx : list X) (ly : list Y)
       print?
 
     [] *)
+Check @combine.
+Compute (combine [1;2] [false;false;true;true]).
 
 (** **** Exercise: 2 stars, standard, especially useful (split)
 
@@ -516,14 +523,19 @@ Fixpoint combine {X Y : Type} (lx : list X) (ly : list Y)
     Fill in the definition of [split] below.  Make sure it passes the
     given unit test. *)
 
-Fixpoint split {X Y : Type} (l : list (X*Y)) : (list X) * (list Y)
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
-
+Fixpoint split {X Y : Type} (l : list (X*Y)) 
+    : (list X) * (list Y) :=
+  match l with
+  | []        => ([], [])
+  | (x, y)::rest => match (split rest) with
+                    | (x1, y1) => (x::x1, y::y1)
+                    end
+end.
 Example test_split:
   split [(1,false);(2,false)] = ([1;2],[false;false]).
 Proof.
-(* FILL IN HERE *) Admitted.
-(** [] *)
+  simpl. reflexivity.
+Qed.
 
 (* ================================================================= *)
 (** ** Polymorphic Options *)
@@ -571,8 +583,8 @@ Proof. reflexivity. Qed.
     [hd_error] function from the last chapter. Be sure that it
     passes the unit tests below. *)
 
-Definition hd_error {X : Type} (l : list X) : option X
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Definition hd_error {X : Type} (l : list X) : option X :=
+  nth_error l 0.
 
 (** Once again, to force the implicit arguments to be explicit,
     we can use [@] before the name of the function. *)
@@ -580,11 +592,11 @@ Definition hd_error {X : Type} (l : list X) : option X
 Check @hd_error : forall X : Type, list X -> option X.
 
 Example test_hd_error1 : hd_error [1;2] = Some 1.
- (* FILL IN HERE *) Admitted.
+  simpl. reflexivity.
+Qed.
 Example test_hd_error2 : hd_error  [[1];[2]]  = Some [1].
- (* FILL IN HERE *) Admitted.
-(** [] *)
-
+ simpl. reflexivity.
+Qed.
 (* ################################################################# *)
 (** * Functions as Data *)
 
@@ -699,18 +711,19 @@ Proof. reflexivity. Qed.
     and returns a list of just those that are even and greater than
     7. *)
 
-Definition filter_even_gt7 (l : list nat) : list nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Definition filter_even_gt7 (l : list nat) : list nat := 
+  filter (fun n => (7 <? n) && (even n)) l.
 
 Example test_filter_even_gt7_1 :
   filter_even_gt7 [1;2;6;9;10;3;12;8] = [10;12;8].
- (* FILL IN HERE *) Admitted.
-
+Proof.
+  reflexivity.
+Qed.
 Example test_filter_even_gt7_2 :
   filter_even_gt7 [5;2;6;19;129] = [].
- (* FILL IN HERE *) Admitted.
-(** [] *)
-
+Proof.
+  reflexivity.
+Qed.
 (** **** Exercise: 3 stars, standard (partition)
 
     Use [filter] to write a Coq function [partition]:
@@ -724,19 +737,25 @@ Example test_filter_even_gt7_2 :
    that satisfy the test, and the second is the sublist containing
    those that fail the test.  The order of elements in the two
    sublists should be the same as their order in the original list. *)
+Check (7 <? 8).
+Check (_ <> _).
+Search not.
+
 
 Definition partition {X : Type}
                      (test : X -> bool)
                      (l : list X)
-                   : list X * list X
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+                   : list X * list X :=
+  ((filter test l), (filter (fun n => (if (test n) then false else true)) l)).
 
 Example test_partition1: partition odd [1;2;3;4;5] = ([1;3;5], [2;4]).
-(* FILL IN HERE *) Admitted.
+Proof.
+  simpl. reflexivity.
+Qed.
 Example test_partition2: partition (fun x => false) [5;9;0] = ([], [5;9;0]).
-(* FILL IN HERE *) Admitted.
-(** [] *)
-
+Proof.
+  simpl. reflexivity.
+Qed.
 (* ================================================================= *)
 (** ** Map *)
 
@@ -780,34 +799,39 @@ Proof. reflexivity. Qed.
 
     Show that [map] and [rev] commute.  You may need to define an
     auxiliary lemma. *)
+Search map.
+
+Theorem map_dist : forall (X Y : Type) (f : X -> Y) (l : list X) (n : X),
+  map f (l ++ [n]) = (map f l) ++ [f n].
+Proof.
+  intros X Y f l n.
+  induction l as [| n1 l' IHl].
+  + simpl. reflexivity.
+  + simpl. rewrite -> IHl. reflexivity.
+Qed.
 
 Theorem map_rev : forall (X Y : Type) (f : X -> Y) (l : list X),
   map f (rev l) = rev (map f l).
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros X Y.
+  induction l as [| n l' IHl].
+  + simpl. reflexivity.
+  + simpl. rewrite -> map_dist. rewrite <- IHl. reflexivity.
+Qed.
 
-(** **** Exercise: 2 stars, standard, especially useful (flat_map)
-
-    The function [map] maps a [list X] to a [list Y] using a function
-    of type [X -> Y].  We can define a similar function, [flat_map],
-    which maps a [list X] to a [list Y] using a function [f] of type
-    [X -> list Y].  Your definition should work by 'flattening' the
-    results of [f], like so:
-
-        flat_map (fun n => [n;n+1;n+2]) [1;5;10]
-      = [1; 2; 3; 5; 6; 7; 10; 11; 12].
-*)
 
 Fixpoint flat_map {X Y: Type} (f: X -> list Y) (l: list X)
-                   : list Y
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
-
+                   : list Y := 
+  match l with
+  | []      => []
+  | n::rest => (f n) ++ (flat_map f rest)
+end.
 Example test_flat_map1:
   flat_map (fun n => [n;n;n]) [1;5;4]
   = [1; 1; 1; 5; 5; 5; 4; 4; 4].
- (* FILL IN HERE *) Admitted.
-(** [] *)
+Proof.
+  reflexivity.
+Qed.
 
 (** Lists are not the only inductive type for which [map] makes sense.
     Here is a [map] for the [option] type: *)
