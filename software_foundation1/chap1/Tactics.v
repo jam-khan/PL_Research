@@ -48,8 +48,8 @@ Theorem silly2 : forall (n m o p : nat),
   [n;o] = [m;p].
 Proof.
   intros n m o p eq1 eq2.
-  apply eq2. apply eq1.  Qed.
-
+  apply eq2. apply eq1.
+Qed.
 (** Typically, when we use [apply H], the statement [H] will
     begin with a [forall] that introduces some _universally quantified
     variables_.
@@ -71,14 +71,16 @@ Proof.
 (** **** Exercise: 2 stars, standard, optional (silly_ex)
 
     Complete the following proof using only [intros] and [apply]. *)
+
 Theorem silly_ex : forall p,
   (forall n, even n = true -> even (S n) = false) ->
   (forall n, even n = false -> odd n = true) ->
   even p = true ->
   odd (S p) = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros p eq1 eq2 eq3.
+  apply eq2. apply eq1. apply eq3.
+Qed.
 
 (** To use the [apply] tactic, the (conclusion of the) fact
     being applied must match the goal exactly (perhaps after
@@ -90,15 +92,8 @@ Theorem silly3 : forall (n m : nat),
   m = n.
 Proof.
   intros n m H.
-
-  (** Here we cannot use [apply] directly... *)
-
-  Fail apply H.
-
-  (** but we can use the [symmetry] tactic, which switches the left
-      and right sides of an equality in the goal. *)
-
-  symmetry. apply H.  Qed.
+  symmetry. apply H.
+Qed.
 
 (** **** Exercise: 2 stars, standard (apply_exercise1)
 
@@ -107,23 +102,24 @@ Proof.
     previously-defined theorem about [rev] from [Lists].  Use
     that theorem as part of your (relatively short) solution to this
     exercise. You do not need [induction]. *)
+Search rev.
 
 Theorem rev_exercise1 : forall (l l' : list nat),
   l = rev l' ->
   l' = rev l.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros l1 l2 eq1.
+  rewrite -> eq1. symmetry.
+  apply rev_involutive.
+Qed.
 
 (** **** Exercise: 1 star, standard, optional (apply_rewrite)
 
     Briefly explain the difference between the tactics [apply] and
     [rewrite].  What are the situations where both can usefully be
-    applied? *)
+    applied? Look at rev_exercise1. Usually when we need to substitute
+    part of equation instead of the applying an Hypothesis or Theorem.*)
 
-(* FILL IN HERE
-
-    [] *)
 
 (* ################################################################# *)
 (** * The [apply with] Tactic *)
@@ -166,9 +162,8 @@ Proof.
     [o] with [[e,f]].  However, the matching process doesn't determine
     an instantiation for [m]: we have to supply one explicitly by
     adding "[with (m:=[c,d])]" to the invocation of [apply]. *)
-
   apply trans_eq with (m:=[c;d]).
-  apply eq1. apply eq2.   Qed.
+  apply eq1. apply eq2. Qed.
 
 (** Actually, the name [m] in the [with] clause is not required,
     since Coq is often smart enough to figure out which variable we
@@ -195,8 +190,9 @@ Example trans_eq_exercise : forall (n m o p : nat),
      (n + p) = m ->
      (n + p) = (minustwo o).
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros n m o p eq1 eq2.
+  rewrite -> eq2. apply eq1.
+Qed.
 
 (* ################################################################# *)
 (** * The [injection] and [discriminate] Tactics *)
@@ -217,7 +213,7 @@ Proof.
       if [S n = S m], it must also be that [n = m].
 
     - The constructors [O] and [S] are _disjoint_.  That is, [O] is not
-      equal to [S n] for any [n]. *)
+      equal to [S n] for any [n]. O <> S n forall (n : nat)*)
 
 (** Similar principles apply to every inductively defined type:
     all constructors are injective, and the values built from distinct
@@ -259,7 +255,6 @@ Proof.
     injectivity of constructors (in the present example, the equation
     [n = m]). Each such equation is added as a hypothesis (called
     [Hmn] in this case) into the context. *)
-
   injection H as Hnm. apply Hnm.
 Qed.
 
@@ -271,7 +266,6 @@ Theorem injection_ex1 : forall (n m o : nat),
   n = m.
 Proof.
   intros n m o H.
-  (* WORKED IN CLASS *)
   injection H as H1 H2.
   rewrite H1. rewrite H2. reflexivity.
 Qed.
@@ -282,8 +276,12 @@ Example injection_ex3 : forall (X : Type) (x y z : X) (l j : list X),
   j = z :: l ->
   x = y.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros X x y z l j eq1 eq2.
+  injection eq1 as H1 H2. rewrite H1. symmetry.
+  assert (H3: y :: l = z :: l -> y = z). { intros H3. injection H3 as Hnm. apply Hnm. }
+  apply H3. rewrite <- eq2.
+  apply H2.
+Qed.
 
 (** So much for injectivity of constructors.  What about disjointness? *)
 
@@ -332,8 +330,9 @@ Example discriminate_ex3 :
     x :: y :: l = [] ->
     x = z.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros X x y z l j contra.
+  discriminate contra.
+Qed.
 
 (** For a more useful example, we can use [discriminate] to make a
     connection between the two different notions of equality ([=] and
@@ -342,27 +341,25 @@ Theorem eqb_0_l : forall n,
    0 =? n = true -> n = 0.
 Proof.
   intros n.
+  destruct n as [| n'] eqn:E.
+  - (* n = 0 *)
+    intros H. reflexivity.
+  - (* n = S n' *)
+    intros contra. discriminate contra.
+Qed.
 
 (** We can proceed by case analysis on [n]. The first case is
     trivial. *)
 
-  destruct n as [| n'] eqn:E.
-  - (* n = 0 *)
-    intros H. reflexivity.
 
 (** However, the second one doesn't look so simple: assuming [0
     =? (S n') = true], we must show [S n' = 0]!  The way forward is to
     observe that the assumption itself is nonsensical: *)
 
-  - (* n = S n' *)
-    simpl.
-
 (** If we use [discriminate] on this hypothesis, Coq confirms
     that the subgoal we are working on is impossible and removes it
     from further consideration. *)
 
-    intros H. discriminate H.
-Qed.
 
 (** The injectivity of constructors allows us to reason that
     [forall (n m : nat), S n = S m -> n = m].  The converse of this
@@ -384,7 +381,8 @@ Proof. intros n m H. apply f_equal. apply H. Qed.
     of the form [f = g], [a1 = b1], ..., [an = bn]. At the same time,
     any of these subgoals that are simple enough (e.g., immediately
     provable by [reflexivity]) will be automatically discharged by
-    [f_equal]. *)
+    [f_equal]. So, any of the sub-goals that can be proved by simple reflexivity
+    will automatically get proved. *)
 
 Theorem eq_implies_succ_equal' : forall (n m : nat),
   n = m -> S n = S m.
@@ -467,7 +465,10 @@ Proof.
   simpl in H.
   rewrite add_comm in H.
   simpl in H.
-  apply H. Qed.
+  apply H.
+Qed.
+
+Search trans_eq.
 
 (** Using [specialize] before [apply] gives us yet another way to
     control where [apply] does its work. *)
@@ -480,7 +481,9 @@ Proof.
   specialize trans_eq with (m:=[c;d]) as H.
   apply H.
   apply eq1.
-  apply eq2. Qed.
+  apply eq2.
+Qed.
+
 (** Note:
     - We can [specialize] facts in the global context, not just
       local hypotheses.
@@ -646,8 +649,17 @@ Proof.
 Theorem eqb_true : forall n m,
   n =? m = true -> n = m.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros n.
+  induction n as [| n' IHn].
+  + intros m eq1.
+    destruct m as [| m'].
+    - reflexivity.
+    - discriminate eq1.
+  + intros m eq1.
+    destruct m as [| m'] eqn:E.
+    - discriminate eq1.
+    - f_equal. apply IHn. simpl in eq1. apply eq1.
+Qed.
 
 (** **** Exercise: 2 stars, advanced (eqb_true_informal)
 
