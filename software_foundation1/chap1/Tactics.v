@@ -667,12 +667,38 @@ Qed.
     hypothesis explicitly and being as explicit as possible about
     quantifiers, everywhere. *)
 
-(* FILL IN HERE *)
+(* 
+  Induction on n.
+  Base case: n = 0
+    n =? m
+    0 =? m
+    Case 1: m = 0
+          0 =? 0 = true
+          So, 0 = 0 => n = m
+    Case 2: m is m' + 1
+        0 = m' + 1 is false
+        false = true is contradiction
+        Hence, Hypothesis is true as premise is false.
+ I.H: n =? m' = true -> n = m'
+*)
 
 (* Do not modify the following line: *)
 Definition manual_grade_for_informal_proof : option (nat*string) := None.
 (** [] *)
 
+Search plus_n_Sm.
+
+Theorem plus_n_Sm': forall n m:nat,
+  S (n + m) = (S n) + m.
+Proof.
+  intros.
+  induction n as [| n' IHn'].
+  - simpl. reflexivity.
+  - simpl. rewrite -> IHn'. reflexivity.
+Qed.
+
+
+Search double.
 (** **** Exercise: 3 stars, standard, especially useful (plus_n_n_injective)
 
     In addition to being careful about how you use [intros], practice
@@ -681,8 +707,19 @@ Theorem plus_n_n_injective : forall n m,
   n + n = m + m ->
   n = m.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros n.
+  induction n as [| n' IHn].
+  + intros m eq1.
+    destruct m as [| m'].
+    - reflexivity.
+    - discriminate eq1.
+  + intros m eq1.
+    destruct m as [| m'].
+    - discriminate eq1.
+    - rewrite <- double_plus in eq1. symmetry in eq1.
+      rewrite <- double_plus in eq1. symmetry in eq1.
+      apply double_injective in eq1. apply eq1.
+Qed. 
 
 (** The strategy of doing fewer [intros] before an [induction] to
     obtain a more general IH doesn't always work; sometimes some
@@ -783,13 +820,24 @@ Proof.
 (** **** Exercise: 3 stars, standard, especially useful (gen_dep_practice)
 
     Prove this by induction on [l]. *)
+Search length.
 
 Theorem nth_error_after_last: forall (n : nat) (X : Type) (l : list X),
   length l = n ->
   nth_error l n = None.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros n X l eq1.
+  generalize dependent n.
+  induction l as [| l' Ihl].
+  + intros n eq2. simpl. reflexivity.
+  + intros n eq2. 
+    destruct n as [| n'] eqn: E.
+    - simpl. discriminate eq2.
+    - simpl. apply IHIhl. 
+      simpl in eq2. 
+      injection eq2 as goal.
+      apply goal.
+Qed.
 
 (* ################################################################# *)
 (** * Unfolding Definitions *)
@@ -867,6 +915,7 @@ Definition bar x :=
 Fact silly_fact_2_FAILED : forall m, bar m + 1 = bar (m + 1) + 1.
 Proof.
   intros m.
+  destruct m as [| m']. 
   simpl. (* Does nothing! *)
 Abort.
 
@@ -976,8 +1025,21 @@ Theorem combine_split : forall X Y (l : list (X * Y)) l1 l2,
   split l = (l1, l2) ->
   combine l1 l2 = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros X Y l l1 l2.
+  unfold combine.
+  destruct l as [| n l'] eqn:E1.
+  + destruct l1 as [| n1 l1'] eqn:E2.
+    - destruct l2 as [| n2 l2'] eqn:E3.
+      ++ reflexivity.
+      ++ reflexivity.
+    - destruct l2 as [| n2 l2'] eqn: E3.
+      ++ reflexivity.
+      ++ intros eq1. discriminate eq1.
+  + destruct l1 as [| n1 l1'] eqn:E2.
+    - destruct l2 as [| n2 l2'] eqn:E3.
+      ++ intros eq1. unfold split in eq1.
+Abort.
+
 
 (** The [eqn:] part of the [destruct] tactic is optional; although
     we've chosen to include it most of the time, for the sake of
