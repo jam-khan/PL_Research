@@ -38,7 +38,6 @@ Capabilities as alternative to reduce overhead for effect annotations.
 ```
     import log : String -> Unit with effect File.write
     e
-    ```
     
-    Example:
-    import log:
+Example:
+import log:
