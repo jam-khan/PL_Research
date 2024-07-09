@@ -34,7 +34,8 @@ Possible solution: Effect inference, but errors get tricky requiring detailed un
 internal structure. 
 
 Capabilities as alternative to reduce overhead for effect annotations.
-    ```
+    
+```
     import log : String -> Unit with effect File.write
     e
     ```
