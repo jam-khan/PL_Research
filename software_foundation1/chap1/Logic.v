@@ -868,15 +868,35 @@ Qed.
 (** **** Exercise: 3 stars, standard, optional (leb_plus_exists) *)
 Theorem leb_plus_exists : forall n m, n <=? m = true -> exists x, m = n+x.
 Proof.
-(* FILL IN HERE *) Admitted.
+  induction n as [| n' IHl].
+  - intros m eq1. exists m. reflexivity.
+  - intros m eq1. simpl in eq1. destruct m.
+    + discriminate eq1.
+    + apply IHl in eq1. simpl. destruct eq1 as [x1 H].
+      exists x1. rewrite H. reflexivity.
+Qed.
+
+Search "<=?".
 
 Theorem plus_exists_leb : forall n m, (exists x, m = n+x) -> n <=? m = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros.
+  destruct H.
+  generalize dependent m.
+  induction n as [| n' IHl].
+  + intros m P. rewrite P. rewrite plus_O_n in P. rewrite plus_O_n.
+    destruct x.
+    - reflexivity.
+    - reflexivity.
+  + intros m E1. destruct x.
+    - rewrite add_comm in E1. rewrite plus_O_n in E1. rewrite E1.
+      simpl. apply IHl. rewrite add_comm. simpl. reflexivity.
+    - rewrite E1. simpl. destruct x.
+      -- apply IHl. reflexivity.
+      -- apply IHl. reflexivity.
+Qed.
 
-(** [] *)
 
-(* ################################################################# *)
 (** * Programming with Propositions *)
 
 (** The logical connectives that we have seen provide a rich
@@ -906,7 +926,6 @@ Fixpoint In {A : Type} (x : A) (l : list A) : Prop :=
 
 Example In_example_1 : In 4 [1; 2; 3; 4; 5].
 Proof.
-  (* WORKED IN CLASS *)
   simpl. right. right. right. left. reflexivity.
 Qed.
 
@@ -914,12 +933,17 @@ Example In_example_2 :
   forall n, In n [2; 4] ->
   exists n', n = 2 * n'.
 Proof.
-  (* WORKED IN CLASS *)
   simpl.
   intros n [H | [H | []]].
-  - exists 1. rewrite <- H. reflexivity.
-  - exists 2. rewrite <- H. reflexivity.
+  - exists 1. simpl. rewrite <- H. reflexivity.
+  - exists 2. simpl. rewrite <- H. reflexivity.
+(** If we want to deal with the last case, then:
+    - exists 3. simpl. destruct H. **)
 Qed.
+
+(** empty pattern discharges the last case so we don't really need to deal with it
+but this is the case with False **)
+
 (** (Notice the use of the empty pattern to discharge the last case
     _en passant_.) *)
 
@@ -932,11 +956,10 @@ Theorem In_map :
 Proof.
   intros A B f l x.
   induction l as [|x' l' IHl'].
-  - (* l = nil, contradiction *)
+  - (* l = nil *)
     simpl. intros [].
-  - (* l = x' :: l' *)
-    simpl. intros [H | H].
-    + rewrite H. left. reflexivity.
+  - simpl. intros [H | H].
+    + left. rewrite H. reflexivity.
     + right. apply IHl'. apply H.
 Qed.
 
@@ -951,6 +974,7 @@ Qed.
     In the next chapter, we will see how to define propositions
     _inductively_ -- a different technique with its own strengths and
     limitations. *)
+Search "f".
 
 (** **** Exercise: 3 stars, standard (In_map_iff) *)
 Theorem In_map_iff :
@@ -959,7 +983,15 @@ Theorem In_map_iff :
          exists x, f x = y /\ In x l.
 Proof.
   intros A B f l y. split.
-  { induction l as [|x l' IHl'].
+  + induction l as [|x' l' IHl'].
+    - simpl. intros H. destruct H.
+    - simpl. intros [H | H].
+      ++ exists x'. split.
+        -- apply H.
+        -- left. reflexivity.
+      ++ exists x'. split.
+        -- apply IHl' in H. destruct H as [x H]. 
+
   (* FILL IN HERE *) Admitted.
 (** [] *)
 
