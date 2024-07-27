@@ -13,6 +13,10 @@
          Y := Y * Z;
          Z := Z - 1
        end
+
+      Z := X;
+      Y := 1;
+      O := Z + Y;
 *)
 
 (** We concentrate here on defining the _syntax_ and _semantics_ of
@@ -79,6 +83,7 @@ Inductive bexp : Type :=
 
 (** For comparison, here's a conventional BNF (Backus-Naur Form)
     grammar defining the same abstract syntax:
+    
 
     a := nat
         | a + a
@@ -300,10 +305,10 @@ Proof.
   intros a.
   induction a;
     (* Most cases follow directly by the IH... *)
-    try (simpl; rewrite IHa1; rewrite IHa2; reflexivity).
+    try (simpl; rewrite IHa1; rewrite IHa2; reflexivity);
     (* ... but the remaining cases -- ANum and APlus --
        are different: *)
-  - (* ANum *) reflexivity.
+    try reflexivity.
   - (* APlus *)
     destruct a1 eqn:Ea1;
       (* Again, most cases follow directly by the IH: *)
@@ -398,7 +403,7 @@ Proof.
     So [T;T'] is just special notation for the case when all of the
     [Ti]'s are the same tactic; i.e., [T;T'] is shorthand for:
 
-      T; [T' | T' | ... | T']
+      [T | T | ... | T]; [T' | T' | ... | T'] == [T;T']
 *)
 
 (* ----------------------------------------------------------------- *)
@@ -440,6 +445,7 @@ Proof.
      then need to interrupt Coq to make it listen to you again.  (In
      Proof General, [C-c C-c] does this.) *)
   (* repeat rewrite Nat.add_comm. *)
+
 Admitted.
 
 (** Wait -- did we just write an infinite loop in Coq?!?!
@@ -463,14 +469,29 @@ Admitted.
     it is sound.  Use the tacticals we've just seen to make the proof
     as short and elegant as possible. *)
 
-Fixpoint optimize_0plus_b (b : bexp) : bexp
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Fixpoint optimize_0plus_b (b : bexp) : bexp :=
+  match b with
+  | BTrue       => b
+  | BFalse      => b
+  | BEq a1 a2   => BEq (optimize_0plus a1) (optimize_0plus a2)
+  | BNeq a1 a2  => BNeq (optimize_0plus a1) (optimize_0plus a2)
+  | BLe a1 a2   => BLe (optimize_0plus a1) (optimize_0plus a2)
+  | BGt a1 a2   => BGt (optimize_0plus a1) (optimize_0plus a2)
+  | BNot b1     => BNot (optimize_0plus_b b1)
+  | BAnd b1 b2  => BAnd (optimize_0plus_b b1) (optimize_0plus_b b2)
+  end.
+
+
 
 Theorem optimize_0plus_b_sound : forall b,
   beval (optimize_0plus_b b) = beval b.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros b. induction b;
+  try reflexivity;
+  try (simpl; rewrite optimize_0plus_sound; rewrite optimize_0plus_sound; reflexivity).
+  + simpl. rewrite IHb. reflexivity.
+  + simpl. rewrite IHb1. rewrite IHb2. reflexivity.
+Qed.
 
 (** **** Exercise: 4 stars, standard, optional (optimize)
 
@@ -717,6 +738,11 @@ Inductive aevalR : aexp -> nat -> Prop :=
                                e2 ==> n2
                          --------------------                (E_APlus)
                          APlus e1 e2 ==> n1+n2
+
+                                e1 ==> n1 ->
+                                e2 ==> n2 ->
+                            APlus e1 e2 ==> n1+n2
+
 *)
 
 (** Formally, there is nothing deep about inference rules: they
@@ -794,6 +820,17 @@ Theorem aeval_iff_aevalR : forall a n,
   (a ==> n) <-> aeval a = n.
 Proof.
   split.
+  + intros H. 
+    induction H; simpl;
+    try reflexivity;
+    try (rewrite IHaevalR1; rewrite IHaevalR2; reflexivity).
+  + generalize dependent n.
+    induction a; simpl; intros; subst; 
+    [apply E_ANum | apply E_APlus | apply E_AMinus | apply E_AMult];
+    try (apply IHa1; reflexivity);
+    try (apply IHa2; reflexivity).
+Qed.
+(*
   - (* -> *)
     intros H.
     induction H; simpl.
@@ -824,7 +861,7 @@ Proof.
       * apply IHa1. reflexivity.
       * apply IHa2. reflexivity.
 Qed.
-
+*)
 (** Again, we can make the proof quite a bit shorter using some
     tacticals. *)
 
@@ -844,19 +881,91 @@ Qed.
 (** **** Exercise: 3 stars, standard (bevalR)
 
     Write a relation [bevalR] in the same style as
-    [aevalR], and prove that it is equivalent to [beval]. *)
+    [aevalR], and prove that it is equivalent to [beval]. 
+
+Inductive aevalR : aexp -> nat -> Prop :=
+  | E_ANum (n : nat) :
+      (ANum n) ==> n
+  | E_APlus (e1 e2 : aexp) (n1 n2 : nat) :
+      (e1 ==> n1) ->
+      (e2 ==> n2) ->
+      (APlus e1 e2)  ==> (n1 + n2)
+  | E_AMinus (e1 e2 : aexp) (n1 n2 : nat) :
+      (e1 ==> n1) ->
+      (e2 ==> n2) ->
+      (AMinus e1 e2) ==> (n1 - n2)
+  | E_AMult (e1 e2 : aexp) (n1 n2 : nat) :
+      (e1 ==> n1) ->
+      (e2 ==> n2) ->
+      (AMult e1 e2)  ==> (n1 * n2)
+
+Fixpoint beval (e : bexp) : bool :=
+    match e with
+    | BTrue       => true
+    | BFalse      => false
+    | BEq a1 a2   => (aeval a1) =? (aeval a2)
+    | BNeq a1 a2  => negb ((aeval a1) =? (aeval a2))
+    | BLe a1 a2   => (aeval a1) <=? (aeval a2)
+    | BGt a1 a2   => ~((aeval a1) <=? (aeval a2))
+    | BNot b      => negb (beval b)
+    | BAnd b1 b2  => andb (beval b1) (beval b2)
+    end.
+*)
 
 Reserved Notation "e '==>b' b" (at level 90, left associativity).
 Inductive bevalR: bexp -> bool -> Prop :=
-(* FILL IN HERE *)
+  | E_BTrue : BTrue ==>b true
+  | E_BFalse : BFalse ==>b false
+  | E_BEq (e1 e2 : aexp) (n1 n2 : nat) 
+      (H1 : aevalR e1 n1) 
+      (H2 : aevalR e2 n2) : 
+      BEq e1 e2 ==>b n1 =? n2
+  | E_BNeq (e1 e2 : aexp) (n1 n2 : nat)
+      (H1 : aevalR e1 n1) 
+      (H2 : aevalR e2 n2) : 
+      BNeq e1 e2 ==>b negb (n1 =? n2)
+  | E_BLe (e1 e2 : aexp) (n1 n2 : nat)
+      (H1 : aevalR e1 n1)
+      (H2 : aevalR e2 n2) : 
+      BLe e1 e2 ==>b n1 <=? n2
+  | E_BGt (e1 e2 : aexp) (n1 n2 : nat)
+      (H1 : aevalR e1 n1)
+      (H2 : aevalR e2 n2) : 
+      BGt e1 e2 ==>b negb (n1 <=? n2)
+  | E_BNot (e : bexp) (b : bool) 
+      (H : bevalR e b) : 
+      BNot e ==>b negb b
+  | E_BAnd (e1 e2 : bexp) (b1 b2 : bool) 
+      (H1 : bevalR e1 b1) 
+      (H2 : bevalR e2 b2) : 
+      BAnd e1 e2 ==>b andb b1 b2
 where "e '==>b' b" := (bevalR e b) : type_scope
 .
 
 Lemma beval_iff_bevalR : forall b bv,
   b ==>b bv <-> beval b = bv.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros.
+  split.
+  + intros H. 
+    induction H; 
+    simpl;
+    try (apply aeval_iff_aevalR' in H1;
+          apply aeval_iff_aevalR' in H2);
+    subst;
+    reflexivity.
+  + intros H.
+    destruct b;
+      subst; constructor;
+      try (apply aeval_iff_aevalR; reflexivity);
+      [| rename b1 into b | rename b2 into b];
+      induction b;
+      constructor;
+      try (apply aeval_iff_aevalR; reflexivity);
+      try apply IHb;
+      try apply IHb1;
+      try apply IHb2. 
+Qed.
 
 End AExp.
 
@@ -866,6 +975,7 @@ End AExp.
 (** For the definitions of evaluation for arithmetic and boolean
     expressions, the choice of whether to use functional or relational
     definitions is mainly a matter of taste: either way works fine.
+
 
     However, there are many situations where relational definitions of
     evaluation work much better than functional ones.  *)
@@ -900,14 +1010,19 @@ Inductive aevalR : aexp -> nat -> Prop :=
   | E_AMult (a1 a2 : aexp) (n1 n2 : nat) :
       (a1 ==> n1) -> (a2 ==> n2) -> (AMult a1 a2) ==> (n1 * n2)
   | E_ADiv (a1 a2 : aexp) (n1 n2 n3 : nat) :          (* <----- NEW *)
-      (a1 ==> n1) -> (a2 ==> n2) -> (n2 > 0) ->
+      (a1 ==> n1)       ->
+      (a2 ==> n2)       ->
+      (n2 > 0)          ->
       (mult n2 n3 = n1) -> (ADiv a1 a2) ==> n3
 
 where "a '==>' n" := (aevalR a n) : type_scope.
 
 (** Notice that this evaluation relation corresponds to a _partial_
     function: There are some inputs for which it does not specify an
-    output. *)
+    output. 
+
+    In cases when n2 <= 0, there are no outputs i guess?
+*)
 
 End aevalR_division.
 
@@ -982,7 +1097,11 @@ End aevalR_extended.
     large Coq developments it is common to see a definition given in
     _both_ functional and relational styles, plus a lemma stating that
     the two coincide, allowing further proofs to switch from one point
-    of view to the other at will. *)
+    of view to the other at will. 
+
+    This. I should do this!
+  
+*)
 
 (* ################################################################# *)
 (** * Expressions With Variables *)
@@ -1168,6 +1287,10 @@ Example bexp1 :
   = true.
 Proof. reflexivity. Qed.
 
+Example bexp2 :
+    beval (X !-> 10 ; Y !-> 11; Z !-> 4) <{ X <> 10 && ((Y <> 11) && (Z <> 5)) }> = false.
+Proof. reflexivity. Qed.
+
 (* ################################################################# *)
 (** * Commands *)
 
@@ -1253,16 +1376,16 @@ Print fact_in_coq.
     elaborate the current goal and context. *)
 
 Unset Printing Notations.
-Print fact_in_coq.
-(* ===>
-   fact_in_coq =
+(* fact_in_coq =
    CSeq (CAsgn Z X)
         (CSeq (CAsgn Y (S O))
               (CWhile (BNot (BEq Z O))
                       (CSeq (CAsgn Y (AMult Y Z))
                             (CAsgn Z (AMinus Z (S O))))))
-        : com *)
-Set Printing Notations.
+        : com. *)
+Print fact_in_coq.
+
+Set Printing Notations
 
 Print example_bexp.
 (* ===> example_bexp = <{(true && ~ (X <= 4))}> *)
@@ -1409,6 +1532,8 @@ Fixpoint ceval_fun_no_while (st : state) (c : com) : state :=
                   else st
           end.
 
+      
+
     Coq doesn't accept such a definition ("Error: Cannot guess
     decreasing argument of fix") because the function we want to
     define is not guaranteed to terminate. Indeed, it _doesn't_ always
@@ -1437,7 +1562,11 @@ Fixpoint ceval_fun_no_while (st : state) (c : com) : state :=
 
 (** Here's a better way: define [ceval] as a _relation_ rather than a
     _function_ -- i.e., make its result a [Prop] rather than a
-    [state], similar to what we did for [aevalR] above. *)
+    [state], similar to what we did for [aevalR] above. 
+    
+Yeah, but how is that going to help?
+
+*)
 
 (** This is an important change.  Besides freeing us from awkward
     workarounds, it gives us a ton more flexibility in the definition.
@@ -1498,6 +1627,7 @@ Reserved Notation
          (at level 40, c custom com at level 99,
           st constr, st' constr at next level).
 
+
 Inductive ceval : com -> state -> state -> Prop :=
   | E_Skip : forall st,
       st =[ skip ]=> st
@@ -1541,13 +1671,12 @@ Example ceval_example1:
      end
   ]=> (Z !-> 4 ; X !-> 2).
 Proof.
-  (* We must supply the intermediate state *)
   apply E_Seq with (X !-> 2).
-  - (* assignment command *)
+  - (* assignment command *)  
     apply E_Asgn. reflexivity.
   - (* if command *)
-    apply E_IfFalse.
-    + reflexivity.
+    apply E_IfFalse. 
+    + simpl. reflexivity.
     + apply E_Asgn. reflexivity.
 Qed.
 
@@ -1559,8 +1688,12 @@ Example ceval_example2:
     Z := 2
   ]=> (Z !-> 2 ; Y !-> 1 ; X !-> 0).
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  apply E_Seq with (X !-> 0).
+  + apply E_Asgn. reflexivity.
+  + apply E_Seq with (Y !-> 1 ; X !-> 0).
+    - apply E_Asgn. reflexivity.
+    - apply E_Asgn. reflexivity.
+Qed.
 
 Set Printing Implicit.
 Check @ceval_example2.
@@ -1581,9 +1714,7 @@ Theorem pup_to_2_ceval :
     pup_to_n
   ]=> (X !-> 0 ; Y !-> 3 ; X !-> 1 ; Y !-> 2 ; Y !-> 0 ; X !-> 2).
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
-
+Admitted.
 (* ================================================================= *)
 (** ** Determinism of Evaluation *)
 
