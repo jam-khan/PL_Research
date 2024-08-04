@@ -1,0 +1,98 @@
+DIGEST 6eb39ef074883dad9043ad79fc28ef75
+FPLF.TypecheckingTest
+R70:75 Coq.Strings.String <> <> lib
+R102:113 PLF.Typechecking <> <> lib
+ax 127:133 <> MISSING
+mod 150:154 <> Check
+R220:226 PLF.TypecheckingTest <> MISSING defax
+R220:226 PLF.TypecheckingTest <> MISSING defax
+R419:422 Coq.Init.Datatypes <> Some constr
+R419:422 Coq.Init.Datatypes <> Some constr
+R602:605 Coq.Init.Datatypes <> None constr
+R602:605 Coq.Init.Datatypes <> None constr
+R687:691 PLF.TypecheckingTest Check <> mod
+R719:730 PLF.Typechecking <> <> lib
+R740:744 PLF.TypecheckingTest Check <> mod
+def 748:756 <> Unnamed_thm
+R753:756 Coq.Init.Logic <> True ind
+R954:1007 PLF.Typechecking TypecheckerExtensions manual_grade_for_type_check_defn def
+R1204:1244 PLF.Typechecking TypecheckerExtensions type_checking_sound prfax
+R1265:1293 PLF.MoreStlc STLCExtended context def
+binder 1257:1261 <> Gamma:2
+R1304:1327 PLF.MoreStlc STLCExtended tm ind
+binder 1300:1300 <> t:3
+R1335:1358 PLF.MoreStlc STLCExtended ty ind
+binder 1331:1331 <> T:4
+R1414:1418 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1403:1405 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1363:1394 PLF.Typechecking TypecheckerExtensions type_check def
+R1396:1400 PLF.TypecheckingTest <> Gamma:2 var
+R1402:1402 PLF.TypecheckingTest <> t:3 var
+R1406:1412 PLF.Typechecking <> :::'return'_x not
+R1413:1413 PLF.TypecheckingTest <> T:4 var
+R1419:1448 PLF.MoreStlc STLCExtended has_type ind
+R1450:1454 PLF.TypecheckingTest <> Gamma:2 var
+R1456:1456 PLF.TypecheckingTest <> t:3 var
+R1458:1458 PLF.TypecheckingTest <> T:4 var
+R1204:1244 PLF.Typechecking TypecheckerExtensions type_checking_sound prfax
+R1265:1293 PLF.MoreStlc STLCExtended context def
+binder 1257:1261 <> Gamma:5
+R1304:1327 PLF.MoreStlc STLCExtended tm ind
+binder 1300:1300 <> t:6
+R1335:1358 PLF.MoreStlc STLCExtended ty ind
+binder 1331:1331 <> T:7
+R1414:1418 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1403:1405 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1363:1394 PLF.Typechecking TypecheckerExtensions type_check def
+R1396:1400 PLF.TypecheckingTest <> Gamma:5 var
+R1402:1402 PLF.TypecheckingTest <> t:6 var
+R1406:1412 PLF.Typechecking <> :::'return'_x not
+R1413:1413 PLF.TypecheckingTest <> T:7 var
+R1419:1448 PLF.MoreStlc STLCExtended has_type ind
+R1450:1454 PLF.TypecheckingTest <> Gamma:5 var
+R1456:1456 PLF.TypecheckingTest <> t:6 var
+R1458:1458 PLF.TypecheckingTest <> T:7 var
+R1510:1550 PLF.Typechecking TypecheckerExtensions type_checking_sound prfax
+def 1553:1561 <> Unnamed_thm
+R1558:1561 Coq.Init.Logic <> True ind
+R1764:1807 PLF.Typechecking TypecheckerExtensions type_checking_complete prfax
+R1828:1856 PLF.MoreStlc STLCExtended context def
+binder 1820:1824 <> Gamma:8
+R1867:1890 PLF.MoreStlc STLCExtended tm ind
+binder 1863:1863 <> t:9
+R1898:1921 PLF.MoreStlc STLCExtended ty ind
+binder 1894:1894 <> T:10
+R1966:1970 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1926:1955 PLF.MoreStlc STLCExtended has_type ind
+R1957:1961 PLF.TypecheckingTest <> Gamma:8 var
+R1963:1963 PLF.TypecheckingTest <> t:9 var
+R1965:1965 PLF.TypecheckingTest <> T:10 var
+R2011:2013 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1971:2002 PLF.Typechecking TypecheckerExtensions type_check def
+R2004:2008 PLF.TypecheckingTest <> Gamma:8 var
+R2010:2010 PLF.TypecheckingTest <> t:9 var
+R2014:2020 PLF.Typechecking <> :::'return'_x not
+R2021:2021 PLF.TypecheckingTest <> T:10 var
+R1764:1807 PLF.Typechecking TypecheckerExtensions type_checking_complete prfax
+R1828:1856 PLF.MoreStlc STLCExtended context def
+binder 1820:1824 <> Gamma:11
+R1867:1890 PLF.MoreStlc STLCExtended tm ind
+binder 1863:1863 <> t:12
+R1898:1921 PLF.MoreStlc STLCExtended ty ind
+binder 1894:1894 <> T:13
+R1966:1970 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1926:1955 PLF.MoreStlc STLCExtended has_type ind
+R1957:1961 PLF.TypecheckingTest <> Gamma:11 var
+R1963:1963 PLF.TypecheckingTest <> t:12 var
+R1965:1965 PLF.TypecheckingTest <> T:13 var
+R2011:2013 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1971:2002 PLF.Typechecking TypecheckerExtensions type_check def
+R2004:2008 PLF.TypecheckingTest <> Gamma:11 var
+R2010:2010 PLF.TypecheckingTest <> t:12 var
+R2014:2020 PLF.Typechecking <> :::'return'_x not
+R2021:2021 PLF.TypecheckingTest <> T:13 var
+R2073:2116 PLF.Typechecking TypecheckerExtensions type_checking_complete prfax
+def 2119:2127 <> Unnamed_thm
+R2124:2127 Coq.Init.Logic <> True ind
+R3172:3212 PLF.Typechecking TypecheckerExtensions type_checking_sound prfax
+R3308:3351 PLF.Typechecking TypecheckerExtensions type_checking_complete prfax

@@ -1,0 +1,97 @@
+DIGEST 1529adf2b00f69c20c893ae8246c2e14
+FPLF.SubTest
+R70:75 Coq.Strings.String <> <> lib
+R102:104 PLF.Sub <> <> lib
+ax 118:124 <> MISSING
+mod 141:145 <> Check
+R211:217 PLF.SubTest <> MISSING defax
+R211:217 PLF.SubTest <> MISSING defax
+R410:413 Coq.Init.Datatypes <> Some constr
+R410:413 Coq.Init.Datatypes <> Some constr
+R593:596 Coq.Init.Datatypes <> None constr
+R593:596 Coq.Init.Datatypes <> None constr
+R678:682 PLF.SubTest Check <> mod
+R710:712 PLF.Sub <> <> lib
+R722:726 PLF.SubTest Check <> mod
+def 730:738 <> Unnamed_thm
+R735:738 Coq.Init.Logic <> True ind
+R914:945 PLF.Sub <> manual_grade_for_arrow_sub_wrong def
+R1128:1157 PLF.Sub <> manual_grade_for_subtype_order def
+R1358:1396 PLF.Sub <> manual_grade_for_subtype_instances_tf_2 def
+R1591:1626 PLF.Sub <> manual_grade_for_subtype_concepts_tf def
+R1813:1844 PLF.Sub <> manual_grade_for_proper_subtypes def
+R2027:2056 PLF.Sub <> manual_grade_for_small_large_1 def
+R2239:2268 PLF.Sub <> manual_grade_for_small_large_2 def
+R2451:2480 PLF.Sub <> manual_grade_for_small_large_4 def
+R2657:2683 PLF.Sub <> manual_grade_for_smallest_1 def
+R2860:2886 PLF.Sub <> manual_grade_for_smallest_2 def
+R3075:3107 PLF.Sub <> manual_grade_for_pair_permutation def
+R3286:3312 PLF.Sub STLCSub sub_inversion_arrow prfax
+R3334:3343 PLF.Sub STLCSub ty ind
+binder 3324:3324 <> U:2
+binder 3326:3327 <> V1:3
+binder 3329:3330 <> V2:4
+R3389:3393 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3347:3361 PLF.Sub STLCSub subtype ind
+R3363:3363 PLF.SubTest <> U:2 var
+R3366:3381 PLF.Sub STLCSub Ty_Arrow constr
+R3383:3384 PLF.SubTest <> V1:3 var
+R3386:3387 PLF.SubTest <> V2:4 var
+R3394:3400 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3419:3423 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3409:3418 PLF.Sub STLCSub ty ind
+binder 3401:3402 <> U1:5
+R3409:3418 PLF.Sub STLCSub ty ind
+binder 3404:3405 <> U2:6
+R3450:3456 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3425:3427 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3424:3424 PLF.SubTest <> U:2 var
+R3428:3443 PLF.Sub STLCSub Ty_Arrow constr
+R3445:3446 PLF.SubTest <> U1:5 var
+R3448:3449 PLF.SubTest <> U2:6 var
+R3478:3481 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3457:3471 PLF.Sub STLCSub subtype ind
+R3473:3474 PLF.SubTest <> V1:3 var
+R3476:3477 PLF.SubTest <> U1:5 var
+R3482:3496 PLF.Sub STLCSub subtype ind
+R3498:3499 PLF.SubTest <> U2:6 var
+R3501:3502 PLF.SubTest <> V2:4 var
+R3286:3312 PLF.Sub STLCSub sub_inversion_arrow prfax
+R3334:3343 PLF.Sub STLCSub ty ind
+binder 3324:3324 <> U:7
+binder 3326:3327 <> V1:8
+binder 3329:3330 <> V2:9
+R3389:3393 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3347:3361 PLF.Sub STLCSub subtype ind
+R3363:3363 PLF.SubTest <> U:7 var
+R3366:3381 PLF.Sub STLCSub Ty_Arrow constr
+R3383:3384 PLF.SubTest <> V1:8 var
+R3386:3387 PLF.SubTest <> V2:9 var
+R3394:3400 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3419:3423 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3409:3418 PLF.Sub STLCSub ty ind
+binder 3401:3402 <> U1:10
+R3409:3418 PLF.Sub STLCSub ty ind
+binder 3404:3405 <> U2:11
+R3450:3456 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3425:3427 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3424:3424 PLF.SubTest <> U:7 var
+R3428:3443 PLF.Sub STLCSub Ty_Arrow constr
+R3445:3446 PLF.SubTest <> U1:10 var
+R3448:3449 PLF.SubTest <> U2:11 var
+R3478:3481 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3457:3471 PLF.Sub STLCSub subtype ind
+R3473:3474 PLF.SubTest <> V1:8 var
+R3476:3477 PLF.SubTest <> U1:10 var
+R3482:3496 PLF.Sub STLCSub subtype ind
+R3498:3499 PLF.SubTest <> U2:11 var
+R3501:3502 PLF.SubTest <> V2:9 var
+R3554:3580 PLF.Sub STLCSub sub_inversion_arrow prfax
+def 3583:3591 <> Unnamed_thm
+R3588:3591 Coq.Init.Logic <> True ind
+R3776:3810 PLF.Sub STLCSub manual_grade_for_variations def
+R4002:4045 PLF.Sub STLCSub manual_grade_for_products_value_step def
+R4170:4219 PLF.Sub STLCSub manual_grade_for_products_subtype_has_type def
+R4336:4377 PLF.Sub STLCSub manual_grade_for_products_progress def
+R4498:4543 PLF.Sub STLCSub manual_grade_for_products_preservation def
+R6188:6214 PLF.Sub STLCSub sub_inversion_arrow prfax

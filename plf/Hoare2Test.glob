@@ -1,0 +1,103 @@
+DIGEST 7b575f27ba813c2f6b758170fb6bfa19
+FPLF.Hoare2Test
+R70:75 Coq.Strings.String <> <> lib
+R102:107 PLF.Hoare2 <> <> lib
+ax 121:127 <> MISSING
+mod 144:148 <> Check
+R214:220 PLF.Hoare2Test <> MISSING defax
+R214:220 PLF.Hoare2Test <> MISSING defax
+R413:416 Coq.Init.Datatypes <> Some constr
+R413:416 Coq.Init.Datatypes <> Some constr
+R596:599 Coq.Init.Datatypes <> None constr
+R596:599 Coq.Init.Datatypes <> None constr
+R681:685 PLF.Hoare2Test Check <> mod
+R713:718 PLF.Hoare2 <> <> lib
+R728:732 PLF.Hoare2Test Check <> mod
+def 736:744 <> Unnamed_thm
+R741:744 Coq.Init.Logic <> True ind
+R908:928 PLF.Hoare2 <> if_minus_plus_correct prfax
+R932:949 PLF.Hoare2 <> outer_triple_valid def
+R951:967 PLF.Hoare2 <> if_minus_plus_dec def
+R908:928 PLF.Hoare2 <> if_minus_plus_correct prfax
+R932:949 PLF.Hoare2 <> outer_triple_valid def
+R951:967 PLF.Hoare2 <> if_minus_plus_dec def
+R1019:1039 PLF.Hoare2 <> if_minus_plus_correct prfax
+def 1042:1050 <> Unnamed_thm
+R1047:1050 Coq.Init.Logic <> True ind
+R1213:1227 PLF.Hoare2 <> slow_assignment prfax
+R1243:1245 Coq.Init.Datatypes <> nat ind
+binder 1239:1239 <> m:2
+R1248:1265 PLF.Hoare2 <> outer_triple_valid def
+R1268:1286 PLF.Hoare2 <> slow_assignment_dec ex
+R1288:1288 PLF.Hoare2Test <> m:2 var
+R1213:1227 PLF.Hoare2 <> slow_assignment prfax
+R1243:1245 Coq.Init.Datatypes <> nat ind
+binder 1239:1239 <> m:3
+R1248:1265 PLF.Hoare2 <> outer_triple_valid def
+R1268:1286 PLF.Hoare2 <> slow_assignment_dec ex
+R1288:1288 PLF.Hoare2Test <> m:3 var
+R1341:1355 PLF.Hoare2 <> slow_assignment prfax
+def 1358:1366 <> Unnamed_thm
+R1363:1366 Coq.Init.Logic <> True ind
+R1551:1567 PLF.Hoare2 <> factorial_correct prfax
+R1582:1584 Coq.Init.Datatypes <> nat ind
+binder 1578:1578 <> m:4
+R1587:1604 PLF.Hoare2 <> outer_triple_valid def
+R1607:1619 PLF.Hoare2 <> factorial_dec prfax
+R1621:1621 PLF.Hoare2Test <> m:4 var
+R1551:1567 PLF.Hoare2 <> factorial_correct prfax
+R1582:1584 Coq.Init.Datatypes <> nat ind
+binder 1578:1578 <> m:5
+R1587:1604 PLF.Hoare2 <> outer_triple_valid def
+R1607:1619 PLF.Hoare2 <> factorial_dec prfax
+R1621:1621 PLF.Hoare2Test <> m:5 var
+R1674:1690 PLF.Hoare2 <> factorial_correct prfax
+def 1693:1701 <> Unnamed_thm
+R1698:1701 Coq.Init.Logic <> True ind
+R1864:1878 PLF.Hoare2 <> minimum_correct prfax
+R1895:1897 Coq.Init.Datatypes <> nat ind
+binder 1889:1889 <> a:6
+binder 1891:1891 <> b:7
+R1900:1917 PLF.Hoare2 <> outer_triple_valid def
+R1920:1930 PLF.Hoare2 <> minimum_dec def
+R1932:1932 PLF.Hoare2Test <> a:6 var
+R1934:1934 PLF.Hoare2Test <> b:7 var
+R1864:1878 PLF.Hoare2 <> minimum_correct prfax
+R1895:1897 Coq.Init.Datatypes <> nat ind
+binder 1889:1889 <> a:8
+binder 1891:1891 <> b:9
+R1900:1917 PLF.Hoare2 <> outer_triple_valid def
+R1920:1930 PLF.Hoare2 <> minimum_dec def
+R1932:1932 PLF.Hoare2Test <> a:8 var
+R1934:1934 PLF.Hoare2Test <> b:9 var
+R1987:2001 PLF.Hoare2 <> minimum_correct prfax
+def 2004:2012 <> Unnamed_thm
+R2009:2012 Coq.Init.Logic <> True ind
+R2163:2171 PLF.Hoare2 <> two_loops prfax
+R2190:2192 Coq.Init.Datatypes <> nat ind
+binder 2182:2182 <> a:10
+binder 2184:2184 <> b:11
+binder 2186:2186 <> c:12
+R2195:2212 PLF.Hoare2 <> outer_triple_valid def
+R2215:2227 PLF.Hoare2 <> two_loops_dec def
+R2229:2229 PLF.Hoare2Test <> a:10 var
+R2231:2231 PLF.Hoare2Test <> b:11 var
+R2233:2233 PLF.Hoare2Test <> c:12 var
+R2163:2171 PLF.Hoare2 <> two_loops prfax
+R2190:2192 Coq.Init.Datatypes <> nat ind
+binder 2182:2182 <> a:13
+binder 2184:2184 <> b:14
+binder 2186:2186 <> c:15
+R2195:2212 PLF.Hoare2 <> outer_triple_valid def
+R2215:2227 PLF.Hoare2 <> two_loops_dec def
+R2229:2229 PLF.Hoare2Test <> a:13 var
+R2231:2231 PLF.Hoare2Test <> b:14 var
+R2233:2233 PLF.Hoare2Test <> c:15 var
+R2286:2294 PLF.Hoare2 <> two_loops prfax
+def 2297:2305 <> Unnamed_thm
+R2302:2305 Coq.Init.Logic <> True ind
+R3268:3288 PLF.Hoare2 <> if_minus_plus_correct prfax
+R3355:3369 PLF.Hoare2 <> slow_assignment prfax
+R3436:3450 PLF.Hoare2 <> minimum_correct prfax
+R3511:3519 PLF.Hoare2 <> two_loops prfax
+R3638:3654 PLF.Hoare2 <> factorial_correct prfax

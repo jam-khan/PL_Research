@@ -1,0 +1,17 @@
+DIGEST 61552a1caa9ce875331a6e74ddf27b4d
+FPLF.LibTacticsTest
+R70:75 Coq.Strings.String <> <> lib
+R102:111 PLF.LibTactics <> <> lib
+ax 125:131 <> MISSING
+mod 148:152 <> Check
+R218:224 PLF.LibTacticsTest <> MISSING defax
+R218:224 PLF.LibTacticsTest <> MISSING defax
+R417:420 Coq.Init.Datatypes <> Some constr
+R417:420 Coq.Init.Datatypes <> Some constr
+R600:603 Coq.Init.Datatypes <> None constr
+R600:603 Coq.Init.Datatypes <> None constr
+R685:689 PLF.LibTacticsTest Check <> mod
+R717:726 PLF.LibTactics <> <> lib
+R736:740 PLF.LibTacticsTest Check <> mod
+def 744:752 <> Unnamed_thm
+R749:752 Coq.Init.Logic <> True ind
