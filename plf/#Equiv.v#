@@ -203,7 +203,6 @@ Proof.
     assumption.
   + apply E_Seq with st'.
     - assumption.
-    - apply E_Skip.
 Qed.
 
 Theorem if_true_simple : forall c1 c2,
@@ -545,8 +544,15 @@ Theorem assign_aequiv : forall (X : string) (a : aexp),
   aequiv <{ X }> a ->
   cequiv <{ skip }> <{ X := a }>.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros X a H.
+  unfold aequiv in H.
+  unfold cequiv. split; intros; inversion H0; simpl in H; subst.
+  + assert (H1 : st'=[ X := a ]=> (X !-> st' X ; st')).
+    { constructor. rewrite H. reflexivity. }
+    rewrite t_update_same in H1. apply H1.
+  + Search t_update. rewrite <- H. rewrite t_update_same.
+    constructor.
+Qed.
 
 (** **** Exercise: 2 stars, standard (equiv_classes) *)
 
@@ -609,8 +615,9 @@ Definition prog_i : com :=
        X := Y + 1
      end }>.
 
-Definition equiv_classes : list (list com)
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Definition equiv_classes : list (list com) :=
+  [ [ prog_c; prog_e ];
+    [ ]].
 
 (* Do not modify the following line: *)
 Definition manual_grade_for_equiv_classes : option (nat*string) := None.
@@ -637,23 +644,25 @@ Proof.
 Lemma sym_aequiv : forall (a1 a2 : aexp),
   aequiv a1 a2 -> aequiv a2 a1.
 Proof.
-  intros a1 a2 H. intros st. symmetry. apply H.  Qed.
+  intros a1 a2 H. unfold aequiv. intros st. symmetry.
+  apply H. Qed.
 
 Lemma trans_aequiv : forall (a1 a2 a3 : aexp),
   aequiv a1 a2 -> aequiv a2 a3 -> aequiv a1 a3.
 Proof.
-  unfold aequiv. intros a1 a2 a3 H12 H23 st.
-  rewrite (H12 st). rewrite (H23 st). reflexivity.  Qed.
+  unfold aequiv. intros a1 a2 a3. intros H1 H2 st.
+  rewrite H1. rewrite H2. reflexivity.  Qed.
 
 Lemma refl_bequiv : forall (b : bexp),
   bequiv b b.
 Proof.
-  unfold bequiv. intros b st. reflexivity.  Qed.
+  unfold bequiv. intros b st. reflexivity. Qed.
 
 Lemma sym_bequiv : forall (b1 b2 : bexp),
   bequiv b1 b2 -> bequiv b2 b1.
 Proof.
-  unfold bequiv. intros b1 b2 H. intros st. symmetry. apply H.  Qed.
+  unfold bequiv. intros b1 b2 H st. rewrite H. reflexivity.
+Qed.
 
 Lemma trans_bequiv : forall (b1 b2 b3 : bexp),
   bequiv b1 b2 -> bequiv b2 b3 -> bequiv b1 b3.
@@ -664,7 +673,8 @@ Proof.
 Lemma refl_cequiv : forall (c : com),
   cequiv c c.
 Proof.
-  unfold cequiv. intros c st st'. reflexivity.  Qed.
+  unfold cequiv. intros c st st'. split; intros H; apply H.
+Qed.
 
 Lemma sym_cequiv : forall (c1 c2 : com),
   cequiv c1 c2 -> cequiv c2 c1.
@@ -681,7 +691,7 @@ Proof.
 Qed.
 
 (* ================================================================= *)
-(** ** Behavioral Equivalence Is a Congruence *)
+(** ** Behavioral Equivalence Is a Congruence ** **)
 
 (** Less obviously, behavioral equivalence is also a _congruence_.
     That is, the equivalence of two subprograms implies the
@@ -724,7 +734,9 @@ Proof.
     rewrite Heqv. reflexivity.
   - (* <- *)
     inversion Hceval. subst. apply E_Asgn.
-    rewrite Heqv. reflexivity.  Qed.
+    rewrite Heqv. reflexivity.
+Qed.
+
 
 (** The congruence property for loops is a little more interesting,
     since it requires induction.
@@ -764,12 +776,29 @@ Proof.
 
       - ([<-]) Similar. [] *)
 
+
 Theorem CWhile_congruence : forall b b' c c',
   bequiv b b' -> cequiv c c' ->
   cequiv <{ while b do c end }> <{ while b' do c' end }>.
 Proof.
   (* WORKED IN CLASS *)
-
+  assert (A: forall (b b' : bexp) (c c' : com) (st st' : state),
+             bequiv b b' -> cequiv c c' ->
+             st =[ while b do c end ]=> st' ->
+             st =[ while b' do c' end ]=> st').
+  { unfold bequiv, cequiv. intros b b' c c' st st' H0 H1.
+    intros H2.
+    remember <{ while b do c end }> as cwhile
+      eqn:Heqcwhile.
+    inversion H2; subst.
+    + (* E_WhileFalse *)
+      apply E_WhileFalse. rewrite <- H0. apply H6.
+    + (* E_WhileTrue *)
+      apply E_WhileTrue with (st' := st').
+      - (* show loop runs *) rewrite <- H0. apply H4.
+      - (* body execution *) apply (H1 st st').
+  
+    }
   (* We will prove one direction in an "assert"
      in order to reuse it for the converse. *)
   assert (A: forall (b b' : bexp) (c c' : com) (st st' : state),

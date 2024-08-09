@@ -115,6 +115,7 @@ Theorem aequiv_example:
     <{ X - X }>
     <{ 0 }>.
 Proof.
+  unfold aequiv.
   intros st. simpl. lia.
 Qed.
 
@@ -123,8 +124,10 @@ Theorem bequiv_example:
     <{ X - X = 0 }>
     <{ true }>.
 Proof.
-  intros st. unfold beval.
-  rewrite aequiv_example. reflexivity.
+  unfold bequiv.
+  intros st.
+  unfold beval. rewrite aequiv_example.
+  simpl. reflexivity.
 Qed.
 
 (** For commands, the situation is a little more subtle.  We
@@ -137,7 +140,12 @@ Qed.
     equivalent if, for any given starting state, they either (1) both
     diverge or (2) both terminate in the same final state.  A compact
     way to express this is "if the first one terminates in a
-    particular state then so does the second, and vice versa." *)
+    particular state then so does the second, and vice versa." 
+In short,
+commands are behaviorally equivalent if
+(1) both diverge.
+(2) both terminate in the same final state.
+*)
 
 Definition cequiv (c1 c2 : com) : Prop :=
   forall (st st' : state),
@@ -164,13 +172,14 @@ Theorem skip_left : forall c,
     c.
 Proof.
   (* WORKED IN CLASS *)
-  intros c st st'.
+  intros c.
+  unfold cequiv.
+  intros st st'.
   split; intros H.
   - (* -> *)
     inversion H. subst.
-    inversion H2. subst.
-    assumption.
-  - (* <- *)
+    inversion H2. assumption.
+  - (* <- *) 
     apply E_Seq with st.
     + apply E_Skip.
     + assumption.
@@ -186,11 +195,15 @@ Theorem skip_right : forall c,
     <{ c ; skip }>
     c.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
-
-(** Similarly, here is a simple equivalence that optimizes [if]
-    commands: *)
+  intros c.
+  intros st st'.
+  split; intros H.
+  + inversion H. subst.
+    inversion H5. subst.
+    assumption.
+  + apply E_Seq with st'.
+    - assumption.
+Qed.
 
 Theorem if_true_simple : forall c1 c2,
   cequiv
@@ -206,7 +219,8 @@ Proof.
   - (* <- *)
     apply E_IfTrue.
     + reflexivity.
-    + assumption.  Qed.
+    + assumption.
+Qed.
 
 (** Of course, no (human) programmer would write a conditional whose
     condition is literally [true].  But they might write one whose
@@ -259,9 +273,7 @@ Proof.
   intros b c1 c2 Hb.
   split; intros H.
   - (* -> *)
-    inversion H; subst.
-    + (* b evaluates to true *)
-      assumption.
+    inversion H; subst; try assumption.
     + (* b evaluates to false (contradiction) *)
       unfold bequiv in Hb. simpl in Hb.
       rewrite Hb in H5.
@@ -269,7 +281,8 @@ Proof.
   - (* <- *)
     apply E_IfTrue; try assumption.
     unfold bequiv in Hb. simpl in Hb.
-    apply Hb. Qed.
+    apply Hb.
+Qed.
 
 (** **** Exercise: 2 stars, standard, especially useful (if_false) *)
 Theorem if_false : forall b c1 c2,
@@ -278,8 +291,21 @@ Theorem if_false : forall b c1 c2,
     <{ if b then c1 else c2 end }>
     c2.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros b1 c1 c2 Hb.
+  unfold cequiv.
+  split; intros H.
+  + (* -> *)
+    inversion H; subst.
+    - unfold bequiv in Hb.
+      simpl in Hb.
+      rewrite Hb in H5. discriminate.
+    - assumption.
+  + (* <- *)
+    unfold bequiv in Hb.
+    simpl in Hb.
+    apply E_IfFalse; try assumption.
+    rewrite Hb. reflexivity.
+Qed.
 
 (** **** Exercise: 3 stars, standard (swap_if_branches)
 
@@ -291,8 +317,27 @@ Theorem swap_if_branches : forall b c1 c2,
     <{ if b then c1 else c2 end }>
     <{ if ~ b then c2 else c1 end }>.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros b c1 c2.
+  unfold cequiv.
+  intros st st'.
+  split; intros H.
+  + inversion H; subst.
+    - apply E_IfFalse.
+      ++ simpl. rewrite H5. reflexivity.
+      ++ assumption.
+    - apply E_IfTrue.
+      ++ simpl. rewrite H5. reflexivity.
+      ++ assumption.
+  + inversion H; subst.
+    - apply E_IfFalse; try assumption.
+      simpl in H5.
+      Search negb.
+      apply negb_true_iff.
+      apply H5.
+    - apply E_IfTrue; try assumption.
+      simpl in H5. apply negb_false_iff.
+      assumption.
+Qed.
 
 (** For [while] loops, we can give a similar pair of theorems.  A loop
     whose guard is equivalent to [false] is equivalent to [skip],
@@ -307,7 +352,7 @@ Theorem while_false : forall b c,
     <{ while b do c end }>
     <{ skip }>.
 Proof.
-  intros b c Hb. split; intros H.
+  intros b c Hb. unfold cequiv. split; intros H.
   - (* -> *)
     inversion H; subst.
     + (* E_WhileFalse *)
@@ -323,9 +368,10 @@ Proof.
 
     Write an informal proof of [while_false].
 
-(* FILL IN HERE *)
-*)
-(** [] *)
+(* So, we want to prove that if b is false, then
+      < While b do c end > <-> < skip >
+  *)
+**)
 
 (** To prove the second fact, we need an auxiliary lemma stating that
     [while] loops whose guards are equivalent to [true] never
@@ -360,6 +406,19 @@ Lemma while_true_nonterm : forall b c st st',
   bequiv b <{true}> ->
   ~( st =[ while b do c end ]=> st' ).
 Proof.
+(*
+
+  intros b c st st' Hb.
+  intros H.
+  remember <{ while b do c end }> as cw eqn:Heqcw.
+  induction H;
+  inversion Heqcw; subst; clear Heqcw.
+  - unfold bequiv in Hb.
+    simpl in Hb. rewrite Hb in H. discriminate.
+  - apply IHceval2.
+    reflexivity.
+  
+*)
   (* WORKED IN CLASS *)
   intros b c st st' Hb.
   intros H.
@@ -378,10 +437,14 @@ Proof.
 (** **** Exercise: 2 stars, standard, optional (while_true_nonterm_informal)
 
     Explain what the lemma [while_true_nonterm] means in English.
+    
+  (* 
+      It simply means that if a while loop as its guard true,
+      then the fact that it will terminate and produce an output state
+      is false.
+  *)
 
-(* FILL IN HERE *)
 *)
-(** [] *)
 
 (** **** Exercise: 2 stars, standard, especially useful (while_true)
 
@@ -394,8 +457,16 @@ Theorem while_true : forall b c,
     <{ while b do c end }>
     <{ while true do skip end }>.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros b c Hb.
+  unfold cequiv.  
+  split; intros H.
+  + apply while_true_nonterm in H.
+    ++ destruct H.
+    ++ apply Hb.
+  + apply while_true_nonterm in H.
+    ++ destruct H.
+    ++ unfold bequiv. reflexivity.
+Qed.
 
 (** A more interesting fact about [while] commands is that any number
     of copies of the body can be "unrolled" without changing meaning.
@@ -414,10 +485,12 @@ Proof.
   - (* -> *)
     inversion Hce; subst.
     + (* loop doesn't run *)
+      Search "E_IfFalse".
       apply E_IfFalse.
       * assumption.
       * apply E_Skip.
     + (* loop runs *)
+      Search "E_IfTrue".
       apply E_IfTrue.
       * assumption.
       * apply E_Seq with (st' := st'0).
@@ -453,6 +526,7 @@ Proof.
   intros.
   split; intro H; inversion H; subst; clear H.
   - (* -> *)
+    Search "t_update_same".
     rewrite t_update_same.
     apply E_Skip.
   - (* <- *)
@@ -461,6 +535,9 @@ Proof.
     rewrite t_update_same in Hx.
     apply Hx.
 Qed.
+
+
+(*** Finished till here: 04 August 2024 ***)
 
 (** **** Exercise: 2 stars, standard, especially useful (assign_aequiv) *)
 Theorem assign_aequiv : forall (X : string) (a : aexp),
@@ -719,6 +796,10 @@ Proof.
     + apply sym_bequiv. assumption.
     + apply sym_cequiv. assumption.
 Qed.
+
+
+
+
 
 (** **** Exercise: 3 stars, standard, optional (CSeq_congruence) *)
 Theorem CSeq_congruence : forall c1 c1' c2 c2',
