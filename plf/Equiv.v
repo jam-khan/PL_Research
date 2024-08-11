@@ -203,6 +203,7 @@ Proof.
     assumption.
   + apply E_Seq with st'.
     - assumption.
+    - apply E_Skip.
 Qed.
 
 Theorem if_true_simple : forall c1 c2,
@@ -712,6 +713,14 @@ Qed.
     program is proportional to the size of the change, not the
     program! *)
 
+(*** Finished till here: 08 August 2024 ***)
+
+(*
+  Notation "x '!->' v ';' m" := (t_update m x v)
+                                (at level 100, v at next level, right associativity).
+*)
+Search t_update.
+
 Theorem CAsgn_congruence : forall x a a',
   aequiv a a' ->
   cequiv <{x := a}> <{x := a'}>.
@@ -722,7 +731,8 @@ Proof.
     inversion Hceval. subst. apply E_Asgn.
     rewrite Heqv. reflexivity.
   - (* <- *)
-    inversion Hceval. subst. apply E_Asgn.
+    inversion Hceval. subst. Search "E_Asgn". apply E_Asgn.
+    unfold aequiv in Heqv. 
     rewrite Heqv. reflexivity.  Qed.
 
 (** The congruence property for loops is a little more interesting,
@@ -731,6 +741,17 @@ Proof.
     _Theorem_: Equivalence is a congruence for [while] -- that is, if
     [b] is equivalent to [b'] and [c] is equivalent to [c'], then
     [while b do c end] is equivalent to [while b' do c' end].
+    
+    if b is equivalent to b'
+       and c is equivalent to c'
+    so [while b do c end] == [while b' do c' end]    
+
+    _Proof_:
+    Suppose b = b' and c = c'.
+    We need to show that for every [st] and [st'],
+      aequiv st =[while b do c end]=> st' st =[while b' do c' end]=> st'
+      
+
 
     _Proof_: Suppose [b] is equivalent to [b'] and [c] is
     equivalent to [c'].  We must show, for every [st] and [st'], that
@@ -772,10 +793,37 @@ Proof.
   (* We will prove one direction in an "assert"
      in order to reuse it for the converse. *)
   assert (A: forall (b b' : bexp) (c c' : com) (st st' : state),
+          bequiv b b' -> 
+          cequiv c c' ->
+          st =[while b do c end]=> st' ->
+          st =[while b' do c' end]=> st').
+  { unfold bequiv, cequiv.
+    intros b b' c c' st st' Hbe Hc1e Hce.
+    remember <{ while b do c end }> as cwhile
+      eqn:Heqcwhile.
+    induction Hce; inversion Heqcwhile; subst.
+    + (* E_WhileFalse *)
+      apply E_WhileFalse. rewrite Hbe in H. apply H.
+    + (* E_WhileTrue *)
+      apply E_WhileTrue with (st':= st').
+      - rewrite <- Hbe. apply H.
+      - apply (Hc1e st st').
+        apply Hce1.
+      - apply IHHce2. apply Heqcwhile. }
+  + unfold bequiv, cequiv. intros.
+    intros. split.
+    - apply A; assumption.
+    - apply A.
+      ++ unfold bequiv. symmetry. apply H.
+      ++ unfold cequiv. symmetry. apply H0.
+Qed.
+
+(*
+  assert (A: forall (b b' : bexp) (c c' : com) (st st' : state),
              bequiv b b' -> cequiv c c' ->
              st =[ while b do c end ]=> st' ->
              st =[ while b' do c' end ]=> st').
-  { unfold bequiv,cequiv.
+  { unfold bequiv, cequiv.
     intros b b' c c' st st' Hbe Hc1e Hce.
     remember <{ while b do c end }> as cwhile
       eqn:Heqcwhile.
@@ -784,6 +832,7 @@ Proof.
       apply E_WhileFalse. rewrite <- Hbe. apply H.
     + (* E_WhileTrue *)
       apply E_WhileTrue with (st' := st').
+      Search "E_WhileTrue".
       * (* show loop runs *) rewrite <- Hbe. apply H.
       * (* body execution *)
         apply (Hc1e st st').  apply Hce1.
@@ -795,7 +844,7 @@ Proof.
   - apply A.
     + apply sym_bequiv. assumption.
     + apply sym_cequiv. assumption.
-Qed.
+Qed. *)
 
 
 
@@ -806,8 +855,24 @@ Theorem CSeq_congruence : forall c1 c1' c2 c2',
   cequiv c1 c1' -> cequiv c2 c2' ->
   cequiv <{ c1;c2 }> <{ c1';c2' }>.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  assert (A: forall (c1 c1' c2 c2': com) (st st': state),
+    cequiv c1 c1' ->
+    cequiv c2 c2' ->
+    st =[ c1; c2]=> st' ->
+    st =[ c1'; c2']=> st').
+  { unfold cequiv. intros.
+    inversion H1; subst.   
+    apply E_Seq with (st:= st) (st' := st'0); try apply H; try apply H0.
+    - apply H4.
+    - apply H7. }
+  unfold cequiv. intros; subst.
+  split.
+  + apply A; assumption.
+  + apply A; unfold cequiv.
+    - symmetry. apply H.
+    - symmetry. apply H0.
+Qed.
+
 
 (** **** Exercise: 3 stars, standard (CIf_congruence) *)
 Theorem CIf_congruence : forall b b' c1 c1' c2 c2',
@@ -815,8 +880,28 @@ Theorem CIf_congruence : forall b b' c1 c1' c2 c2',
   cequiv <{ if b then c1 else c2 end }>
          <{ if b' then c1' else c2' end }>.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  unfold bequiv, cequiv.
+  intros.
+  split.
+  + intros. inversion H2; subst.
+    - apply E_IfTrue.
+      ++ rewrite <- H.
+         apply H8.
+      ++ apply H0.
+         apply H9.
+    - apply E_IfFalse.
+      ++ rewrite <- H. apply H8.
+      ++ apply H1. apply H9.
+  + intros. inversion H2; subst.
+    - apply E_IfTrue.
+      ++ rewrite H.
+         apply H8.
+      ++ apply H0.
+         apply H9.
+    - apply E_IfFalse.
+      ++ rewrite H. apply H8.
+      ++ apply H1. apply H9.
+Qed.
 
 (** For example, here are two equivalent programs and a proof of their
     equivalence using these congruence theorems... *)
@@ -835,24 +920,39 @@ Proof.
   apply CSeq_congruence.
   - apply refl_cequiv.
   - apply CIf_congruence.
-    + apply refl_bequiv.
-    + apply CAsgn_congruence. unfold aequiv. simpl.
-      symmetry. apply sub_diag.
-    + apply refl_cequiv.
+    ++ apply refl_bequiv.
+    ++ apply CAsgn_congruence. unfold aequiv. simpl.
+       symmetry. apply sub_diag.
+    ++ apply refl_cequiv.
 Qed.
 
-(** **** Exercise: 3 stars, advanced (not_congr)
+(** **** : 3 stars, advanced (not_congr)
 
     We've shown that the [cequiv] relation is both an equivalence and
     a congruence on commands.  Can you think of a relation on commands
     that is an equivalence but _not_ a congruence?  Write down the
     relation (formally), together with an informal sketch of a proof
-    that it is an equivalence but not a congruence. *)
+    that it is an equivalence but not a congruence. 
+    
+    bequiv {if True then True else False } {if False then False else False}
+    It is equivalent but not congruent.
 
-(* FILL IN HERE *)
+*)
+(*
+Example not_congr:
+  bequiv 
+    (* Program 1: *)
+    <{ X := 0;
+       if X = 0 then True
+       else False end }>
+    (* Program 2: *)
+    <{ X := 0;
+       if X = 1 then False
+       else True end }>
+*)
+
 (* Do not modify the following line: *)
 Definition manual_grade_for_not_congr : option (nat*string) := None.
-(** [] *)
 
 (* ################################################################# *)
 (** * Program Transformations *)
@@ -881,41 +981,44 @@ Definition ctrans_sound (ctrans : com -> com) : Prop :=
 (** ** The Constant-Folding Transformation *)
 
 (** An expression is _constant_ if it contains no variable references.
+    
+    The Idea that I am going to verify this optimization technique is pretty cool.
 
     Constant folding is an optimization that finds constant
     expressions and replaces them by their values. *)
+Search "aexp".
 
 Fixpoint fold_constants_aexp (a : aexp) : aexp :=
   match a with
-  | ANum n       => ANum n
-  | AId x        => AId x
-  | <{ a1 + a2 }>  =>
+  | ANum n      => ANum n
+  | AId x       => AId x
+  | <{ a1 + a2 }> =>
     match (fold_constants_aexp a1,
            fold_constants_aexp a2)
     with
     | (ANum n1, ANum n2) => ANum (n1 + n2)
-    | (a1', a2') => <{ a1' + a2' }>
+    | (a1', a2')  => <{ a1' + a2' }>
     end
   | <{ a1 - a2 }> =>
     match (fold_constants_aexp a1,
            fold_constants_aexp a2)
     with
     | (ANum n1, ANum n2) => ANum (n1 - n2)
-    | (a1', a2') => <{ a1' - a2' }>
+    | (a1', a2')         => <{ a1' - a2' }>
     end
-  | <{ a1 * a2 }>  =>
+  | <{ a1 * a2 }> =>
     match (fold_constants_aexp a1,
            fold_constants_aexp a2)
     with
     | (ANum n1, ANum n2) => ANum (n1 * n2)
-    | (a1', a2') => <{ a1' * a2' }>
+    | (a1', a2')         => <{ a1' * a2' }>
     end
   end.
 
 Example fold_aexp_ex1 :
     fold_constants_aexp <{ (1 + 2) * X }>
   = <{ 3 * X }>.
-Proof. reflexivity. Qed.
+Proof. simpl. reflexivity. Qed.
 
 (** Note that this version of constant folding doesn't do other
     "obvious" things like eliminating trivial additions (e.g.,
@@ -990,7 +1093,7 @@ Fixpoint fold_constants_bexp (b : bexp) : bexp :=
 Example fold_bexp_ex1 :
   fold_constants_bexp <{ true && ~(false && true) }>
   = <{ true }>.
-Proof. reflexivity. Qed.
+Proof. simpl. reflexivity. Qed.
 
 Example fold_bexp_ex2 :
   fold_constants_bexp <{ (X = Y) && (0 = (2 - (1 + 1))) }>
@@ -1046,6 +1149,8 @@ Example fold_com_ex1 :
        end }>.
 Proof. reflexivity. Qed.
 
+(*** Finished till here: 09 August 2024 ***)
+
 (* ================================================================= *)
 (** ** Soundness of Constant Folding *)
 
@@ -1056,7 +1161,8 @@ Proof. reflexivity. Qed.
 Theorem fold_constants_aexp_sound :
   atrans_sound fold_constants_aexp.
 Proof.
-  unfold atrans_sound. intros a. unfold aequiv. intros st.
+  unfold atrans_sound. intros a.
+  unfold aequiv. intros st.
   induction a; simpl;
     (* ANum and AId follow immediately *)
     try reflexivity;
@@ -1069,6 +1175,7 @@ Proof.
     try (destruct (fold_constants_aexp a1);
          destruct (fold_constants_aexp a2);
          rewrite IHa1; rewrite IHa2; reflexivity). Qed.
+
 
 (** **** Exercise: 3 stars, standard, optional (fold_bexp_Eq_informal)
 
@@ -1196,9 +1303,25 @@ Proof.
        become constants after folding *)
       simpl. destruct (n =? n0); reflexivity.
   - (* BLe *)
-    (* FILL IN HERE *) admit.
+    simpl.
+    remember (fold_constants_aexp a1) as a1' eqn:Heqa1'.
+    remember (fold_constants_aexp a2) as a2' eqn:Heqa2'.
+    replace (aeval st a1) with (aeval st a1') by
+      (subst a1'; rewrite <- fold_constants_aexp_sound; reflexivity).
+    replace (aeval st a2) with (aeval st a2') by
+      (subst a2'; rewrite <- fold_constants_aexp_sound; reflexivity).
+    destruct a1'; destruct a2'; try reflexivity.
+    simpl. destruct (n <=? n0); reflexivity.
   - (* BGt *)
-    (* FILL IN HERE *) admit.
+    simpl.
+    remember (fold_constants_aexp a1) as a1' eqn:Heqa1'.
+    remember (fold_constants_aexp a2) as a2' eqn:Heqa2'.
+    replace (aeval st a1) with (aeval st a1') by
+      (subst a1'; rewrite <- fold_constants_aexp_sound; reflexivity).
+    replace (aeval st a2) with (aeval st a2') by
+      (subst a2'; rewrite <- fold_constants_aexp_sound; reflexivity).
+    destruct a1'; destruct a2'; try reflexivity.
+    simpl. destruct (n <=? n0); try reflexivity.
   - (* BNot *)
     simpl. remember (fold_constants_bexp b) as b' eqn:Heqb'.
     rewrite IHb.
@@ -1209,8 +1332,8 @@ Proof.
     remember (fold_constants_bexp b2) as b2' eqn:Heqb2'.
     rewrite IHb1. rewrite IHb2.
     destruct b1'; destruct b2'; reflexivity.
-(* FILL IN HERE *) Admitted.
-(** [] *)
+Qed.
+
 
 (** **** Exercise: 3 stars, standard (fold_constants_com_sound)
 
@@ -1221,7 +1344,7 @@ Theorem fold_constants_com_sound :
 Proof.
   unfold ctrans_sound. intros c.
   induction c; simpl.
-  - (* skip *) apply refl_cequiv.
+  - (* skip *) Search "refl_cequiv". apply refl_cequiv.
   - (* := *) apply CAsgn_congruence.
               apply fold_constants_aexp_sound.
   - (* ; *) apply CSeq_congruence; assumption.
@@ -1240,8 +1363,13 @@ Proof.
       apply trans_cequiv with c2; try assumption.
       apply if_false; assumption.
   - (* while *)
-    (* FILL IN HERE *) Admitted.
-(** [] *)
+    assert (bequiv b (fold_constants_bexp b)). {
+      apply fold_constants_bexp_sound. }
+    destruct (fold_constants_bexp b) eqn:Heqb;
+      try (apply CWhile_congruence; assumption).
+    + apply while_true. apply H.
+    + apply while_false. apply H.
+Qed.
 
 (* ================================================================= *)
 (** ** Soundness of (0 + n) Elimination, Redux *)
@@ -1378,6 +1506,7 @@ Example subst_aexp_ex :
   = <{ Y + (42 + 53)}>.
 Proof. simpl. reflexivity. Qed.
 
+
 (** And here is the property we are interested in, expressing the
     claim that commands [c1] and [c2] as described above are
     always equivalent.  *)
@@ -1398,24 +1527,19 @@ Definition subst_equiv_property : Prop := forall x1 x2 a1 a2,
 
     which clearly isn't equivalent. *)
 
+(* I don't understand this one at all. *)
+
 Theorem subst_inequiv :
   ~ subst_equiv_property.
 Proof.
   unfold subst_equiv_property.
   intros Contra.
 
-  (* Here is the counterexample: assuming that [subst_equiv_property]
-     holds allows us to prove that these two programs are
-     equivalent... *)
-  remember <{ X := X + 1;
-              Y := X }>
-      as c1.
-  remember <{ X := X + 1;
-              Y := X + 1 }>
-      as c2.
-  assert (cequiv c1 c2) by (subst; apply Contra).
+  remember <{ X := X + 1; Y := X }> as c1.
+  remember <{ X := X + 1; Y := X + 1 }> as c2.
+  assert (cequiv c1 c2). { subst. apply Contra. }
   clear Contra.
-
+  
   (* ... allows us to show that the command [c2] can terminate
      in two different final states:
         st1 = (Y !-> 1 ; X !-> 1)
@@ -1602,6 +1726,8 @@ Inductive ceval : com -> state -> state -> Prop :=
       st  =[ c ]=> st' ->
       st' =[ while b do c end ]=> st'' ->
       st  =[ while b do c end ]=> st''
+  | E_Havoc : forall st x n,
+      st =[ havoc x ]=> (x !-> n ; st)
 (* FILL IN HERE *)
 
   where "st =[ c ]=> st'" := (ceval c st st').
@@ -1611,12 +1737,16 @@ Inductive ceval : com -> state -> state -> Prop :=
 
 Example havoc_example1 : empty_st =[ havoc X ]=> (X !-> 0).
 Proof.
-(* FILL IN HERE *) Admitted.
+  apply E_Havoc with (n := 0).
+Qed.
 
 Example havoc_example2 :
   empty_st =[ skip; havoc Z ]=> (Z !-> 42).
 Proof.
-(* FILL IN HERE *) Admitted.
+  apply E_Seq with (st' := empty_st).
+  + apply E_Skip.
+  + apply E_Havoc with (n := 42).
+Qed.
 
 (* Do not modify the following line: *)
 Definition manual_grade_for_Check_rule_for_HAVOC : option (nat*string) := None.
