@@ -281,12 +281,25 @@ End ExamplePrettyAssertions.
     Paraphrase the following in English.
 
      1) {{True}} c {{X = 5}}
+    [{{True}} c {{X = 5}}] is a valid Hoare triple,
+    stating that command [c] will transform any state into
+    a final state in which that has [X = 5]
 
      2) forall m, {{X = m}} c {{X = m + 5)}}
+    It is a proposition stating that hoare triple
+    [{{X = m}} c {{X = m + 5)}}] is valid for any choice of m, which
+    states that command [c] will transform a state in which [X = m]
+    to a state in which [X = m + 5].
 
      3) {{X <= Y}} c {{Y <= X}}
+    It is a Hoare triple that states that
+    command [c] transforms a state which has [X <= Y]
+    to a state which has [Y <= X]
 
      4) {{True}} c {{False}}
+    It is a Hoare triple that states that
+    command [c] transforms a state that has an assertion
+    which holds for all states to a state that h
 
      5) forall m,
           {{X = m}}
