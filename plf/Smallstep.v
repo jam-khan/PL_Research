@@ -939,6 +939,8 @@ Theorem multi_R : forall (X : Type) (R : relation X) (x y : X),
     R x y -> (multi R) x y.
 Proof.
   intros X R x y H.
+  (* apply multi_step with (y := y) (z := y). *)
+  (* same thing as below: *)
   apply multi_step with y.
   - apply H.
   - apply multi_refl.
@@ -952,13 +954,14 @@ Theorem multi_trans :
       multi R y z ->
       multi R x z.
 Proof.
-  intros X R x y z G H.
-  induction G.
-    - (* multi_refl *) assumption.
-    - (* multi_step *)
-      apply multi_step with y.
-      + assumption.
-      + apply IHG. assumption.
+  intros X R x y z Hxy Hyz.
+  induction Hxy.
+  + (* multi_refl *) assumption.
+  + (* multi_step *)
+    apply multi_step with y.
+    ++ assumption.
+    ++ apply IHHxy in Hyz.
+       assumption.
 Qed.
 
 (** In particular, for the [multi step] relation on terms, if
@@ -977,17 +980,16 @@ Lemma test_multistep_1:
       C ((0 + 3) + (2 + 4)).
 Proof.
   apply multi_step with
-            (P (C (0 + 3))
-               (P (C 2) (C 4))).
-  { apply ST_Plus1. apply ST_PlusConstConst. }
-  apply multi_step with
-            (P (C (0 + 3))
-               (C (2 + 4))).
-  { apply ST_Plus2.
-    - apply v_const.
-    - apply ST_PlusConstConst. }
-  apply multi_R.
-  apply ST_PlusConstConst.
+    (P (C (0 + 3)) (P (C 2) (C 4))).
+  + apply ST_Plus1.
+    apply ST_PlusConstConst.
+  + apply multi_step with 
+      (P (C (0 + 3)) (C (2 + 4))).
+    -- apply ST_Plus2.
+      ++ simpl. apply v_const.
+      ++ apply ST_PlusConstConst.
+    -- apply multi_R.
+       apply ST_PlusConstConst.
 Qed.
 
 (** Here's an alternate proof of the same fact that uses [eapply] to
@@ -1004,7 +1006,7 @@ Proof.
   eapply multi_step. { apply ST_Plus2.
                        - apply v_const.
                        - apply ST_PlusConstConst. }
-  eapply multi_step. { apply ST_PlusConstConst. }
+  eapply multi_step. { simpl. apply ST_PlusConstConst. }
   apply multi_refl.
 Qed.
 
@@ -1036,8 +1038,17 @@ Lemma test_multistep_4:
         (C 0)
         (C (2 + (0 + 3))).
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  eapply multi_step.
+  + apply ST_Plus2.
+    ++ apply v_const.
+    ++ apply ST_Plus2.
+      -- apply v_const.
+      -- apply ST_PlusConstConst.
+  + apply multi_R.
+    apply ST_Plus2.
+    -- apply v_const.
+    -- apply ST_PlusConstConst.
+Qed.
 
 (* ================================================================= *)
 (** ** Normal Forms Again *)
@@ -1067,7 +1078,10 @@ Proof.
   intros x y1 y2 P1 P2.
   destruct P1 as [P11 P12].
   destruct P2 as [P21 P22].
+  
+  
   (* FILL IN HERE *) Admitted.
+
 (** [] *)
 
 (** Indeed, something stronger is true for this language (though
@@ -1105,8 +1119,16 @@ Lemma multistep_congr_2 : forall v1 t2 t2',
      t2 -->* t2' ->
      P v1 t2 -->* P v1 t2'.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros v1 t2 t2' H1 H2.
+  induction H2.
+  + apply multi_refl.
+  + apply multi_step with (P v1 y).
+    ++ apply ST_Plus2.
+      -- apply H1.
+      -- apply H.
+    ++ apply IHmulti.
+Qed.
+
 
 (** With these lemmas in hand, the main proof is a straightforward
     induction.
@@ -1134,6 +1156,7 @@ Proof.
 
       Finally, [C (n1 + n2)] is a value, which is in turn a normal
       form by [nf_same_as_value]. [] *)
+
 Theorem step_normalizing :
   normalizing step.
 Proof.

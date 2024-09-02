@@ -204,8 +204,8 @@ Example test_step_2 :
           (C 2)
           (C 4)).
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  apply ST_Plus2. apply ST_Plus2. apply ST_PlusConstConst.
+Qed.
 
 End SimpleArith1.
 
@@ -465,8 +465,16 @@ Inductive step : tm -> tm -> Prop :=
 Theorem step_deterministic :
   deterministic step.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  unfold deterministic. intros x y1 y2 Hy1 Hy2.
+  generalize dependent y2.
+  induction Hy1; intros y2 Hy2;
+    inversion Hy2; subst; try solve_by_invert.
+  + reflexivity.
+  + apply IHHy1 in H2. rewrite H2. reflexivity.
+  + inversion H1; subst. inversion Hy1.
+  + inversion H; subst. inversion H3.
+  + apply IHHy1 in H4. rewrite H4. reflexivity.
+Qed.
 
 (* ================================================================= *)
 (** ** Strong Progress and Normal Forms *)
@@ -618,7 +626,13 @@ Inductive step : tm -> tm -> Prop :=
 Lemma value_not_same_as_normal_form :
   exists v, value v /\ ~ normal_form step v.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  exists (P (C 1) (C 1)).
+  split.
+  + apply v_funny.
+  + intros contra. unfold normal_form in contra. destruct contra.
+    exists (C 2). apply ST_PlusConstConst.
+Qed.
+
 End Temp1.
 
 (** [] *)
@@ -770,14 +784,53 @@ Definition manual_grade_for_smallstep_bools : option (nat*string) := None.
 Theorem strong_progress_bool : forall t,
   value t \/ (exists t', t --> t').
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros t.
+  induction t.
+  + left. apply v_tru.
+  + left. apply v_fls.
+  + right. destruct IHt1 as [IHt1 | [t1' Ht1] ].
+    - destruct IHt2 as [IHt2 | [t2' Ht2]].
+      -- destruct IHt3 as [IHt3 | [t3' Ht3]].
+        * inversion IHt1. 
+          ** exists t2. apply ST_IfTrue.
+          ** exists t3. apply ST_IfFalse.
+        * inversion IHt1.
+          ** exists t2. apply ST_IfTrue.
+          ** exists t3. apply ST_IfFalse.
+     -- destruct IHt3 as [IHt3 | [t3' Ht3]].
+        * inversion IHt1. 
+          ** exists t2. apply ST_IfTrue.
+          ** exists t3. apply ST_IfFalse.
+        * inversion IHt1.
+          ** exists t2. apply ST_IfTrue.
+          ** exists t3. apply ST_IfFalse.
+   - destruct IHt2 as [IHt2 | [t2' Ht2]].
+      -- destruct IHt3 as [IHt3 | [t3' Ht3]].
+        * exists (test t1' t2 t3).
+          apply ST_If. apply Ht1.
+        * exists (test t1' t2 t3).
+          apply ST_If. apply Ht1.
+      -- destruct IHt3 as [IHt3 | [t3' Ht3]].
+        * exists (test t1' t2 t3).
+          apply ST_If. apply Ht1.
+        * exists (test t1' t2 t3).
+          apply ST_If. apply Ht1.
+Qed.
 
 (** **** Exercise: 2 stars, standard, optional (step_deterministic) *)
 Theorem step_deterministic : deterministic step.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  unfold deterministic. intros x y1 y2 Hy1 Hy2.
+  generalize dependent y2.
+  induction Hy1; subst;
+  intros y2 Hy2; inversion Hy2;
+  try solve_by_invert; try reflexivity; subst.
+  + inversion Hy1.
+  + inversion Hy1.
+  + apply IHHy1 in H3.
+    rewrite H3.
+    reflexivity.
+Qed.
 
 Module Temp5.
 
@@ -1014,8 +1067,8 @@ Qed.
 Lemma test_multistep_2:
   C 3 -->* C 3.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  apply multi_refl.
+Qed.
 
 (** **** Exercise: 1 star, standard, optional (test_multistep_3) *)
 Lemma test_multistep_3:
@@ -1023,8 +1076,8 @@ Lemma test_multistep_3:
    -->*
       P (C 0) (C 3).
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  apply multi_refl.
+Qed.
 
 (** **** Exercise: 2 stars, standard (test_multistep_4) *)
 Lemma test_multistep_4:
@@ -1069,18 +1122,20 @@ Definition normal_form_of (t t' : tm) :=
     In other words, we can actually pronounce [normal_form t t'] as
     "[t'] is _the_ normal form of [t]." *)
 
+Search "normal_form".
+
 (** **** Exercise: 3 stars, standard, optional (normal_forms_unique) *)
 Theorem normal_forms_unique:
   deterministic normal_form_of.
 Proof.
   (* We recommend using this initial setup as-is! *)
   unfold deterministic. unfold normal_form_of.
-  intros x y1 y2 P1 P2.
+  intros x y1 y2 P1 P2.  
   destruct P1 as [P11 P12].
   destruct P2 as [P21 P22].
-  
-  
-  (* FILL IN HERE *) Admitted.
+
+Admitted.
+
 
 (** [] *)
 
@@ -1191,6 +1246,7 @@ Proof.
       apply nf_same_as_value. apply v_const.
 Qed.
 
+
 (* ================================================================= *)
 (** ** Equivalence of Big-Step and Small-Step *)
 
@@ -1239,8 +1295,19 @@ Theorem eval__multistep : forall t n,
     includes [-->]. *)
 
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros t n B_Step.
+  induction B_Step.
+  + apply multi_refl.
+  + apply multi_trans with (P (C n1) t2).
+    - apply multistep_congr_1. apply IHB_Step1.
+    - apply multi_trans with (P (C n1) (C n2)).
+      ++ apply multistep_congr_2.
+        -- apply v_const.
+        -- apply IHB_Step2.
+      ++ eapply multi_step.
+        -- apply ST_PlusConstConst.
+        -- apply multi_refl.
+Qed.
 
 (** **** Exercise: 3 stars, advanced (eval__multistep_inf)
 
@@ -1262,9 +1329,17 @@ Lemma step__eval : forall t t' n,
      t' ==> n ->
      t  ==> n.
 Proof.
-  intros t t' n Hs. generalize dependent n.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros t t' n B_Step. generalize dependent n.
+  induction B_Step; intros n S_Step; inversion S_Step; subst.
+  + apply E_Plus. 
+    - apply E_Const.
+    - apply E_Const.
+  + apply E_Plus; try assumption.
+    - apply IHB_Step in H1. apply H1.
+  + apply E_Plus.
+    - apply H2.
+    - apply IHB_Step in H4. assumption.
+Qed.
 
 (** The fact that small-step reduction implies big-step evaluation is now
     straightforward to prove.
@@ -1279,8 +1354,8 @@ Proof.
 Theorem multistep__eval : forall t t',
   normal_form_of t t' -> exists n, t' = C n /\ t ==> n.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+    intros t t' H.
+Admitted.
 
 (* ================================================================= *)
 (** ** Additional Exercises *)
