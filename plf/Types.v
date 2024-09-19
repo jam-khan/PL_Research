@@ -145,7 +145,7 @@ Inductive step : tm -> tm -> Prop :=
       c --> c' ->
       <{ if c then t2 else t3 }> --> <{ if c' then t2 else t3 }>
   | ST_Succ : forall t1 t1',
-      t1 --> t1' ->
+      t1 --> t1'    ->
       <{ succ t1 }> --> <{ succ t1' }>
   | ST_Pred0 :
       <{ pred 0 }> --> <{ 0 }>
@@ -200,8 +200,20 @@ Hint Unfold stuck : core.
 Example some_term_is_stuck :
   exists t, stuck t.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  exists <{ iszero false }>. split; intro.
+  + inversion H; subst.
+    inversion H0; subst.
+    inversion H2; subst.
+  + inversion H; subst; try inversion H0.
+Qed.
+
+(* Alternatively, it can be done using solve_by_inverts tactic*)
+
+Example some_term_is_stuck1 :
+  exists t, stuck t.
+Proof. exists <{ iszero true }>. split;
+       intro; try solve_by_inverts 3.
+Qed.
 
 (** However, although values and normal forms are _not_ the same in this
     language, the set of values is a subset of the set of normal forms.
@@ -213,7 +225,11 @@ Proof.
 Lemma value_is_nf : forall t,
   value t -> step_normal_form t.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros t H.
+  induction t.
+  - (* true *)
+    induction H.
+Admitted.
 
 (** (Hint: You will reach a point in this proof where you need to
     use an induction to reason about a term that is known to be a
@@ -340,8 +356,10 @@ Example succ_hastype_nat__hastype_nat : forall t,
   |-- <{succ t}> \in Nat ->
   |-- t \in Nat.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros t H.
+  inversion H; subst.
+  assumption.
+Qed.
 
 (* ----------------------------------------------------------------- *)
 (** *** Canonical forms *)
@@ -396,12 +414,18 @@ Proof.
     + (* t1 is a value *)
     apply (bool_canonical t1 HT1) in H.
     destruct H.
-      * exists t2. auto.
-      * exists t3. auto.
+      * exists t2. apply ST_IfTrue.
+      * exists t3. apply ST_IfFalse.
     + (* t1 can take a step *)
       destruct H as [t1' H1].
-      exists (<{ if t1' then t2 else t3 }>). auto.
-  (* FILL IN HERE *) Admitted.
+      exists (<{ if t1' then t2 else t3 }>). apply ST_If.
+      apply H1.
+  - (* T_Succ *)
+    try inversion HT; subst; auto.
+    + 
+
+  
+Admitted.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced (finish_progress_informal)
@@ -470,8 +494,12 @@ Proof.
       + (* ST_IfFalse *) assumption.
       + (* ST_If *) apply T_If; try assumption.
         apply IHHT1; assumption.
-    (* FILL IN HERE *) Admitted.
-(** [] *)
+    - (* T_Succ *) 
+      inversion HE; subst; clear HE. auto.
+    - (* T_Pred *)
+      inversion HE; subst; inversion HT; subst; try assumption; try auto.
+    - inversion HE; auto.
+Qed.
 
 (** **** Exercise: 3 stars, advanced (finish_preservation_informal)
 
@@ -570,7 +598,10 @@ Theorem subject_expansion:
   \/
   ~ (forall t t' T, t --> t' /\ |-- t' \in T -> |-- t \in T).
 Proof.
-  (* FILL IN HERE *) Admitted.
+    left.
+    intros t t' T [H1 H2].
+    induction T.
+(* FILL IN HERE *) Admitted.
 (** [] *)
 
 (** **** Exercise: 2 stars, standard (variation1)

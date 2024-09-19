@@ -21,7 +21,13 @@ Import STLC.
     reduction and types is to identify the possible _canonical
     forms_ (i.e., well-typed values) belonging to each type.  For
     [Bool], these are again the boolean values [true] and [false]; for
-    arrow types, they are lambda-abstractions. *)
+    arrow types, they are lambda-abstractions. 
+    
+    What does it means to have canonical form?
+    Every type can be boiled down to its canonical form and then,
+    it will have unique representation.
+
+*)
 
 (** Formally, we will need these lemmas only for terms that are not
     only well typed but _closed_ -- i.e., well typed in the empty
@@ -43,7 +49,7 @@ Lemma canonical_forms_fun : forall t T1 T2,
   exists x u, t = <{\x:T1, u}>.
 Proof.
   intros t T1 T2 HT HVal.
-  destruct HVal as [x ? t1| |] ; inversion HT; subst.
+  destruct HVal as [x ? t1 | |]; inversion HT; subst.
   exists x, t1. reflexivity.
 Qed.
 
@@ -107,32 +113,36 @@ Proof with eauto.
   - (* T_Var *)
     (* contradictory: variables cannot be typed in an
        empty context *)
-    discriminate H.
-
+    inversion H.
   - (* T_App *)
     (* [t] = [t1 t2].  Proceed by cases on whether [t1] is a
        value or steps... *)
-    right. destruct IHHt1...
+    right. destruct IHHt1.
+    + reflexivity.
     + (* t1 is a value *)
       destruct IHHt2...
       * (* t2 is also a value *)
-        eapply canonical_forms_fun in Ht1; [|assumption].
-        destruct Ht1 as [x [t0 H1]]. subst.
-        exists (<{ [x:=t2]t0 }>)...
+        apply canonical_forms_fun in Ht1; try assumption.
+        destruct Ht1 as [x [t0 H1]]; subst.
+        exists (<{ [x:=t2]t0 }>).
+        apply ST_AppAbs.
+        apply H0.
       * (* t2 steps *)
-        destruct H0 as [t2' Hstp]. exists (<{t1 t2'}>)...
-
+        destruct H0 as [t2' Hstp].
+        exists (<{ t1 t2' }>).
+        apply ST_App2; try assumption.
     + (* t1 steps *)
-      destruct H as [t1' Hstp]. exists (<{t1' t2}>)...
-
+      destruct H as [t1' Hstp]. exists (<{t1' t2}>).
+      apply ST_App1. assumption.
   - (* T_If *)
     right. destruct IHHt1...
-
     + (* t1 is a value *)
-      destruct (canonical_forms_bool t1); subst; eauto.
-
+     destruct (canonical_forms_bool t1); try assumption.
+      -- exists t2. rewrite H0. apply ST_IfTrue.
+      -- exists t3. rewrite H0. apply ST_IfFalse.
     + (* t1 also steps *)
-      destruct H as [t1' Hstp]. exists <{if t1' then t2 else t3}>...
+      destruct H as [t1' Hstp]. exists <{if t1' then t2 else t3}>.
+      apply ST_If; assumption.
 Qed.
 
 (** **** Exercise: 3 stars, advanced (progress_from_term_ind)
@@ -146,8 +156,10 @@ Theorem progress' : forall t T,
 Proof.
   intros t.
   induction t; intros T Ht; auto.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  + (* value *)
+    left.
+Admitted.
+
 
 (* ################################################################# *)
 (** * Preservation *)
@@ -194,9 +206,35 @@ Lemma weakening : forall Gamma Gamma' t T,
      Gamma  |-- t \in T  ->
      Gamma' |-- t \in T.
 Proof.
+(*
   intros Gamma Gamma' t T H Ht.
   generalize dependent Gamma'.
   induction Ht; eauto using includedin_update.
+*)
+  intros Gamma Gamma' t T H Ht.
+  generalize dependent Gamma'.
+  induction Ht.
+  + intros Gamma' H1.
+    apply T_Var.
+    apply H1. apply H.
+  + intros Gamma' H1.
+    apply T_Abs.
+    apply IHHt.
+    apply includedin_update.
+    apply H1.
+  + intros Gamma' H1.
+    apply T_App with (T1 := T1) (T2 := T2).
+    - apply IHHt1; assumption.
+    - apply IHHt2; assumption.
+  + intros Gamma' H1.
+    apply T_True.
+  + intros Gamma' H1.
+    apply T_False.
+  + intros Gamma' H1.
+    apply T_If.
+    - apply IHHt1; assumption.
+    - apply IHHt2; assumption.
+    - apply IHHt3; assumption.
 Qed.
 
 (** The following simple corollary is what we actually need below. *)
@@ -208,6 +246,7 @@ Proof.
   intros Gamma t T.
   eapply weakening.
   discriminate.
+(*  apply weakening with (Gamma := empty) (Gamma' := Gamma). *)
 Qed.
 
 (* ================================================================= *)
@@ -291,8 +330,29 @@ Lemma substitution_preserves_typing : forall Gamma x U t v T,
 Proof.
   intros Gamma x U t v T Ht Hv.
   generalize dependent Gamma. generalize dependent T.
+  (*  
   induction t; intros T Gamma H;
-  (* in each case, we'll want to get at the derivation of H *)
+    (* in each case, we'll want to get at the derivation of H *)
+    inversion H; clear H; subst; simpl; eauto.
+  + (* var *)
+    rename s into y; destruct (eqb_spec x y); subst.
+    - (* x = y *)
+      rewrite update_eq in H2. (* update_eq will take out the key *)
+      injection H2 as H2; subst.
+      apply weakening_empty; assumption.
+    - (* x <> y*)
+      apply T_Var.
+      rewrite update_neq in H2; try assumption.
+  + (* abs *)
+    rename s into y, t into S.  
+    destruct (eqb_spec x y); subst; apply T_Abs.
+    - (* x = y *) 
+      rewrite update_shadow in H5. assumption.
+    - (* x <> y *)
+      apply IHt. rewrite update_permute in H5; assumption.
+  *)
+  induction t; intros T Gamma H;
+  
     inversion H; clear H; subst; simpl; eauto.
   - (* var *)
     rename s into y. destruct (eqb_spec x y); subst.
@@ -334,8 +394,22 @@ Proof.
   remember (x |-> U; Gamma) as Gamma'.
   generalize dependent Gamma.
   induction Ht; intros Gamma' G; simpl; eauto.
- (* FILL IN HERE *) Admitted.
-(** [] *)
+  + rename x0 into y. destruct (eqb_spec x y); subst.
+    - apply weakening_empty. 
+      rewrite update_eq in H; injection H as H; subst; assumption.
+    - rewrite update_neq in H.
+      ++ apply T_Var; assumption.
+      ++ assumption.
+  + rename x0 into y. destruct (eqb_spec x y); subst.
+    - apply T_Abs.
+      rewrite update_shadow in Ht. assumption.
+    - apply T_Abs.
+      apply IHHt.
+      rewrite update_permute.
+      ++ reflexivity.
+      ++ assumption.
+Qed.
+
 
 (* ================================================================= *)
 (** ** Main Theorem *)
@@ -422,9 +496,20 @@ Qed.
 Theorem not_subject_expansion:
   exists t t' T, t --> t' /\ (empty |-- t' \in T) /\ ~ (empty |-- t \in T).
 Proof.
-  (* Write "exists <{ ... }>" to use STLC notation. *)
-  (* FILL IN HERE *) Admitted.
+  Search "Bool".  
+  remember empty as Gamma; subst.
+  exists <{(\x:Bool, x) true}>.  
+  exists <{ true }>.  
+  exists Ty_Bool.
+  split.
+  + eauto.
+  + split.
+    - eauto.
+    - intros
+Admitted.
 
+  (* Write "exists <{ ... }>" to use STLC notation. *)
+ 
 (* Do not modify the following line: *)
 Definition manual_grade_for_subject_expansion_stlc : option (nat*string) := None.
 (** [] *)
@@ -439,6 +524,10 @@ Definition manual_grade_for_subject_expansion_stlc : option (nat*string) := None
 
 Definition stuck (t:tm) : Prop :=
   (normal_form step) t /\ ~ value t.
+Proof.
+  
+Admitted.
+
 
 Corollary type_soundness : forall t t' T,
   empty |-- t \in T ->

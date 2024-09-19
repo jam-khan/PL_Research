@@ -487,19 +487,94 @@ Check <{[x:=true] x}>.
     constructors and prove that the relation you've defined coincides
     with the function given above. *)
 
+(**
+
+Inductive ty : Type :=
+  | Ty_Bool  : ty
+  | Ty_Arrow : ty -> ty -> ty.
+
+(* ================================================================= *)
+(** ** Terms *)
+
+Inductive tm : Type :=
+  | tm_var   : string -> tm
+  | tm_app   : tm -> tm -> tm
+  | tm_abs   : string -> ty -> tm -> tm
+  | tm_true  : tm
+  | tm_false : tm
+  | tm_if    : tm -> tm -> tm -> tm.
+
+**)
+
+(*
+Inductive step : tm -> tm -> Prop :=
+  | ST_AppAbs : forall x T2 t1 v2,
+         value v2 ->
+         <{(\x:T2, t1) v2}> --> <{[x:=v2]t1}>
+  | ST_App1 : forall t1 t1' t2,
+         t1 --> t1' ->
+         <{t1 t2}> --> <{t1' t2}>
+  | ST_App2 : forall v1 t2 t2',
+         value v1 ->
+         t2 --> t2' ->
+         <{v1 t2}> --> <{v1  t2'}>
+  | ST_IfTrue : forall t1 t2,
+      <{if true then t1 else t2}> --> t1
+  | ST_IfFalse : forall t1 t2,
+      <{if false then t1 else t2}> --> t2
+  | ST_If : forall t1 t1' t2 t3,
+      t1 --> t1' ->
+      <{if t1 then t2 else t3}> --> <{if t1' then t2 else t3}>
+
+where "t '-->' t'" := (step t t').
+*)
 Inductive substi (s : tm) (x : string) : tm -> tm -> Prop :=
   | s_var1 :
       substi s x (tm_var x) s
-  (* FILL IN HERE *)
-.
+  | s_var2 : forall y,
+      x <> y ->
+      substi s x (tm_var y) (tm_var y)
+  | s_abs1 : forall y T t1 t1',
+      y = x ->
+      substi s x (tm_abs y T t1) (tm_abs y T t1')
+  | s_abs2 : forall y T t1 t1',
+      y <> x ->
+      substi s x t1 t1' ->
+      substi s x (tm_abs y T t1) (tm_abs y T t1')
+  | s_app : forall t1 t2 t1' t2',
+      substi s x t1 t1' ->
+      substi s x t2 t2' ->
+      substi s x (tm_app t1 t2) (tm_app t1' t2')
+  | s_true :
+      substi s x tm_true tm_true
+  | s_false :
+      substi s x tm_false tm_false
+  | s_if : forall  t1 t2 t3 t1' t2' t3',
+      substi s x t1 t1' ->
+      substi s x t2 t2' ->
+      substi s x t3 t3' ->
+      substi s x (tm_if t1 t2 t3) (tm_if t1' t2' t3'). 
 
 Hint Constructors substi : core.
 
+(*
 Theorem substi_correct : forall s x t t',
   <{ [x:=s]t }> = t' <-> substi s x t t'.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros s x t.
+  split.
+  + generalize dependent t'.
+    induction t.
+    - 
+    inversion *)
+Theorem substi_correct : forall s x t t',
+  <{ [x:=s]t }> = t' <-> substi s x t t'.
+Proof.
+  intros.
+  split.
+  + intros H.
+  
+Admitted.
 
 (* ================================================================= *)
 (** ** Reduction *)
@@ -692,14 +767,16 @@ Lemma step_example5 :
        <{idBBBB idBB idB}>
   -->* idB.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  normalize.
+Qed.
 
 Lemma step_example5_with_normalize :
        <{idBBBB idBB idB}>
   -->* idB.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+Admitted.
+
+
 
 (* ################################################################# *)
 (** * Typing *)
@@ -844,8 +921,14 @@ Example typing_example_2_full :
           (y (y x)) \in
     (Bool -> (Bool -> Bool) -> Bool).
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  apply T_Abs.
+  apply T_Abs.
+  apply T_App with (T1 := <{ Bool }>) (T2 := <{ Bool }>).
+  - apply T_Var. reflexivity.
+  - apply T_App with (T1 := <{ Bool }>) (T2 := <{ Bool }>).
+    + apply T_Var. reflexivity.
+    + apply T_Var. reflexivity.
+Qed.
 
 (** **** Exercise: 2 stars, standard (typing_example_3)
 
@@ -866,6 +949,8 @@ Example typing_example_3 :
                (y (x z)) \in
       T.
 Proof.
+  exists <{ Bool }>.
+  eauto 20.
   (* FILL IN HERE *) Admitted.
 (** [] *)
 

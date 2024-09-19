@@ -49,9 +49,11 @@ Fixpoint eqb_ty (T1 T2:ty) : bool :=
 Lemma eqb_ty_refl : forall T,
   eqb_ty T T = true.
 Proof.
-  intros T. induction T; simpl.
-    reflexivity.
-    rewrite IHT1. rewrite IHT2. reflexivity.  Qed.
+  intros T.
+  induction T; simpl.
+  + reflexivity.
+  + rewrite IHT1. rewrite IHT2. reflexivity.
+Qed.
 
 Lemma eqb_ty__eq : forall T1 T2,
   eqb_ty T1 T2 = true -> T1 = T2.
