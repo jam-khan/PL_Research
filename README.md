@@ -1,4 +1,4 @@
-# Programming Languages Research - Practice and Reading
+# Programming Languages Research
 
 This is the repository for code related to Programming Languages Research.
 
