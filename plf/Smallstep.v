@@ -467,8 +467,7 @@ Theorem step_deterministic :
 Proof.
   unfold deterministic. intros x y1 y2 Hy1 Hy2.
   generalize dependent y2.
-  induction Hy1; intros y2 Hy2;
-    inversion Hy2; subst; try solve_by_invert.
+  induction Hy1; intros y2 Hy2; inversion Hy2; subst; try solve_by_invert.
   + reflexivity.
   + apply IHHy1 in H2. rewrite H2. reflexivity.
   + inversion H1; subst. inversion Hy1.
@@ -635,7 +634,6 @@ Qed.
 
 End Temp1.
 
-(** [] *)
 
 (** **** Exercise: 2 stars, standard, optional (value_not_same_as_normal_form2)
 
@@ -667,7 +665,14 @@ Inductive step : tm -> tm -> Prop :=
 Lemma value_not_same_as_normal_form :
   exists v, value v /\ ~ normal_form step v.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  exists (C 1).
+  split.
+  + (* value (C 1) *)
+    apply v_const.
+  + intros contra. unfold normal_form in contra. destruct contra.
+    exists (P (C 1) (C 0)). apply ST_Funny.
+Qed.
+
 
 End Temp2.
 (** [] *)
@@ -702,7 +707,15 @@ Inductive step : tm -> tm -> Prop :=
 Lemma value_not_same_as_normal_form :
   exists t, ~ value t /\ normal_form step t.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  exists (P (C 1) (P (C 1) (C 2))).
+  split.
+  + (* ~ value *)
+    intros contra. inversion contra.
+  + (* notmal_form *)
+    unfold normal_form.
+    intros contra. destruct contra. inversion H; subst.
+    inversion H3.
+Qed.
 
 End Temp3.
 (** [] *)
@@ -747,7 +760,7 @@ Inductive step : tm -> tm -> Prop :=
 Definition bool_step_prop1 :=
   fls --> fls.
 
-(* FILL IN HERE *)
+(* Not Provable *)
 
 Definition bool_step_prop2 :=
      test
@@ -757,7 +770,11 @@ Definition bool_step_prop2 :=
   -->
      tru.
 
-(* FILL IN HERE *)
+(* Not Provable; Requires multi-step *)
+Lemma bool_step_prop2_lemma :
+  bool_step_prop2.
+Proof.
+Admitted.
 
 Definition bool_step_prop3 :=
      test
@@ -770,11 +787,17 @@ Definition bool_step_prop3 :=
        (test tru tru tru)
        fls.
 
-(* FILL IN HERE *)
+(* Probable *)
+Lemma bool_step_prop3_true :
+  bool_step_prop3.
+Proof.
+  unfold bool_step_prop3.
+  apply ST_If.
+  apply ST_IfTrue.
+Qed.
 
 (* Do not modify the following line: *)
 Definition manual_grade_for_smallstep_bools : option (nat*string) := None.
-(** [] *)
 
 (** **** Exercise: 3 stars, standard, optional (strong_progress_bool)
 
@@ -865,8 +888,8 @@ Inductive step : tm -> tm -> Prop :=
   | ST_If : forall t1 t1' t2 t3,
       t1 --> t1' ->
       test t1 t2 t3 --> test t1' t2 t3
-  (* FILL IN HERE *)
-
+  | ST_ShortCircuit : forall t t1,
+      test t t1 t1 --> t1
   where " t '-->' t' " := (step t t').
 
 Definition bool_step_prop4 :=
@@ -880,8 +903,9 @@ Definition bool_step_prop4 :=
 Example bool_step_prop4_holds :
   bool_step_prop4.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  unfold bool_step_prop4.
+  apply ST_ShortCircuit.
+Qed.
 
 (** **** Exercise: 3 stars, standard, optional (properties_of_altered_step)
 
@@ -894,11 +918,31 @@ Proof.
     - Is the [step] relation still deterministic?  Write yes or no and
       briefly (1 sentence) explain your answer.
 
+      No, step relation is not deterministic.
+
+      Why is it not determinisitc??????
+
+    
+
       Optional: prove your answer correct in Coq. *)
+Theorem step_deterministic : ~ (deterministic step).
+Proof.
+  unfold deterministic.
+  intros contra.
+Admitted.
 
 (* FILL IN HERE
    - Does a strong progress theorem hold? Write yes or no and
      briefly (1 sentence) explain your answer.
+
+     No, it doesn't holds.
+     Why?
+
+     If t1 t2 t2 --> t2 
+     but if t1 could have taken step but didn't.
+    
+      Actually, I think it holds but I am not sure.
+
 
      Optional: prove your answer correct in Coq.
 *)
@@ -1133,6 +1177,16 @@ Proof.
   intros x y1 y2 P1 P2.  
   destruct P1 as [P11 P12].
   destruct P2 as [P21 P22].
+  apply nf_is_value in P12.
+  apply nf_is_value in P22.
+  generalize dependent y2.
+  inversion P11; subst.
+  + inversion P12.
+    - intros y2 H1 H2. inversion H2; subst. inversion H1; subst.
+      ++ reflexivity.
+      ++ inversion H1; subst.
+        -- reflexivity.
+        -- 
 
 Admitted.
 

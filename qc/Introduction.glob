@@ -1,0 +1,5 @@
+DIGEST 86451d618f8eb3c30479cffd409d067e
+FQC.Introduction
+R141:144 Coq.Lists.List <> <> lib
+R146:151 Coq.ZArith.ZArith <> <> lib
+R161:173 Coq.Lists.List ListNotations <> mod
