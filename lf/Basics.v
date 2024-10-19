@@ -299,10 +299,12 @@ Definition orb' (b1:bool) (b2:bool) : bool :=
 
     Since the [bool] type is not built in, Coq actually supports
     conditional expressions over _any_ inductively defined type with
-    exactly two clauses in its definition.  The guard is considered
-    true if it evaluates to the "constructor" of the first clause of
-    the [Inductive] definition (which just happens to be called [true]
-    in this case) and false if it evaluates to the second. *)
+    exactly two clauses in its definition.
+
+    The guard is considered true if it evaluates to the "constructor" 
+    of the first clause of the [Inductive] definition (which just
+    happens to be called [true] in this case) and false if it evaluates
+    to the second. *)
 
 (** **** Exercise: 1 star, standard (nandb)
 
@@ -337,8 +339,6 @@ Proof. simpl. reflexivity. Qed.
 Example test_nandb4:               (nandb true true) = false.
 Proof. simpl. reflexivity. Qed.
 
-(** [] *)
-
 (** **** Exercise: 1 star, standard (andb3)
 
     Do the same for the [andb3] function below. This function should
@@ -357,7 +357,6 @@ Example test_andb33:                 (andb3 true false true) = false.
 Proof. simpl. reflexivity. Qed.
 Example test_andb34:                 (andb3 true true false) = false.
 Proof. simpl. reflexivity. Qed.
-(** [] *)
 
 (* ================================================================= *)
 (** ** Types *)
@@ -1527,10 +1526,15 @@ Fixpoint plus' (n : nat) (m : nat) : nat :=
     (If you choose to turn in this optional exercise as part of a
     homework assignment, make sure you comment out your solution so
     that it doesn't cause Coq to reject the whole file!) *)
-
-(* FILL IN HERE
-
-    [] *)
+(*[
+  Fixpoint plus'' (n: nat) : nat :=
+    match n with
+    | O         => O
+    | S O       => plus'' (S (S O))
+    | S (S O)   => O
+    | S (S (S n')) => plus'' (S (S n'))
+    end.]
+*)
 
 (* ################################################################# *)
 (** * More Exercises *)
@@ -1718,12 +1722,13 @@ Compute letter_comparison B F.
 Theorem letter_comparison_Eq :
   forall l, letter_comparison l l = Eq.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros l. induction l; try reflexivity.
+Qed.
 
 (** We can follow the same strategy to define the comparison operation
     for two grade modifiers.  We consider them to be ordered as
     [Plus > Natural > Minus]. *)
+
 Definition modifier_comparison (m1 m2 : modifier) : comparison :=
   match m1, m2 with
   | Plus, Plus => Eq
@@ -1749,29 +1754,41 @@ Definition modifier_comparison (m1 m2 : modifier) : comparison :=
     of a suitable call to [letter_comparison] to end up with just [3]
     possibilities. *)
 
-Definition grade_comparison (g1 g2 : grade) : comparison
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Definition grade_comparison (g1 g2 : grade) : comparison :=
+  match g1, g2 with
+  | Grade l1 m1,  Grade l2 m2 => 
+    match letter_comparison l1 l2 with
+    | Eq  => modifier_comparison m1 m2
+    | res => res
+    end
+  end.
 
 (** The following "unit tests" of your [grade_comparison] function
     should pass once you have defined it correctly. *)
 
 Example test_grade_comparison1 :
   (grade_comparison (Grade A Minus) (Grade B Plus)) = Gt.
-(* FILL IN HERE *) Admitted.
+Proof.
+  reflexivity.
+Qed.
 
 Example test_grade_comparison2 :
   (grade_comparison (Grade A Minus) (Grade A Plus)) = Lt.
-(* FILL IN HERE *) Admitted.
+Proof.
+  reflexivity.
+Qed.
 
 Example test_grade_comparison3 :
   (grade_comparison (Grade F Plus) (Grade F Plus)) = Eq.
-(* FILL IN HERE *) Admitted.
+Proof.
+  reflexivity.
+Qed.
 
 Example test_grade_comparison4 :
   (grade_comparison (Grade B Minus) (Grade C Plus)) = Gt.
-(* FILL IN HERE *) Admitted.
-
-(** [] *)
+Proof.
+  reflexivity.
+Qed.
 
 (** Now that we have a definition of grades and how they compare to
     one another, let us implement a late-penalty fuction. *)
@@ -1827,9 +1844,10 @@ Theorem lower_letter_lowers:
     letter_comparison F l = Lt ->
     letter_comparison (lower_letter l) l = Lt.
 Proof.
-(* FILL IN HERE *) Admitted.
-
-(** [] *)
+  intros l H.
+  induction l; try reflexivity.
+  + (* l = F *) rewrite lower_letter_F_is_F. assumption.
+Qed.
 
 (** **** Exercise: 2 stars, standard (lower_grade)
 
@@ -1848,50 +1866,62 @@ Proof.
     cases.
 
     Our solution is under 10 lines of code total. *)
-Definition lower_grade (g : grade) : grade
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Definition lower_grade (g : grade) : grade := 
+  match g with
+    | Grade F Minus   => Grade F Minus
+    | Grade l Plus    => Grade l Natural
+    | Grade l Natural => Grade l Minus
+    | Grade l Minus   => Grade (lower_letter l) Plus
+  end.
 
 Example lower_grade_A_Plus :
   lower_grade (Grade A Plus) = (Grade A Natural).
 Proof.
-(* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 Example lower_grade_A_Natural :
   lower_grade (Grade A Natural) = (Grade A Minus).
 Proof.
-(* FILL IN HERE *) Admitted.
-
+  reflexivity.
+Qed.
 Example lower_grade_A_Minus :
   lower_grade (Grade A Minus) = (Grade B Plus).
 Proof.
-(* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 Example lower_grade_B_Plus :
   lower_grade (Grade B Plus) = (Grade B Natural).
 Proof.
-(* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 Example lower_grade_F_Natural :
   lower_grade (Grade F Natural) = (Grade F Minus).
 Proof.
-(* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 Example lower_grade_twice :
   lower_grade (lower_grade (Grade B Minus)) = (Grade C Natural).
 Proof.
-(* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 Example lower_grade_thrice :
   lower_grade (lower_grade (lower_grade (Grade B Minus))) = (Grade C Minus).
 Proof.
-(* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 (** Coq makes no distinction between an [Example] and a [Theorem]. We
     state the following as a [Theorem] only as a hint that we will use
     it in proofs below. *)
 Theorem lower_grade_F_Minus : lower_grade (Grade F Minus) = (Grade F Minus).
 Proof.
-(* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 (* GRADE_THEOREM 0.25: lower_grade_A_Plus *)
 (* GRADE_THEOREM 0.25: lower_grade_A_Natural *)
@@ -1900,9 +1930,7 @@ Proof.
 (* GRADE_THEOREM 0.25: lower_grade_F_Natural *)
 (* GRADE_THEOREM 0.25: lower_grade_twice *)
 (* GRADE_THEOREM 0.25: lower_grade_thrice *)
-(* GRADE_THEOREM 0.25: lower_grade_F_Minus
-
-    [] *)
+(* GRADE_THEOREM 0.25: lower_grade_F_Minus *)
 
 (** **** Exercise: 3 stars, standard (lower_grade_lowers)
 
@@ -1917,14 +1945,19 @@ Proof.
     in two cases.  The remaining case is the only one in which you
     need to destruct a [letter].  The case for [F] will probably
     benefit from [lower_grade_F_Minus].  *)
+
 Theorem lower_grade_lowers :
   forall (g : grade),
     grade_comparison (Grade F Minus) g = Lt ->
     grade_comparison (lower_grade g) g = Lt.
 Proof.
-  (* FILL IN HERE *) Admitted.
-
-(** [] *)
+  intros g H.
+  induction g.
+  + induction m.
+    - (* m is Plus *) induction l; reflexivity.
+    - (* m is Natural *) induction l; reflexivity.
+    - induction l; try assumption.
+Qed.
 
 (** Now that we have implemented and tested a function that lowers a
     grade by one step, we can implement a specific late-days policy.
@@ -1978,9 +2011,10 @@ Theorem no_penalty_for_mostly_on_time :
     (late_days <? 9 = true) ->
     apply_late_policy late_days g = g.
 Proof.
-  (* FILL IN HERE *) Admitted.
-
-(** [] *)
+  intros late_days g H.
+  rewrite apply_late_policy_unfold.
+  rewrite H. reflexivity.
+Qed.
 
 (** The following theorem states that, if a student has between 9 and
     16 late days, their final grade is lowered by one step. *)
@@ -1993,9 +2027,12 @@ Theorem grade_lowered_once :
     (grade_comparison (Grade F Minus) g = Lt) ->
     (apply_late_policy late_days g) = (lower_grade g).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros late_days g H1 H2 H3.
+  rewrite apply_late_policy_unfold.
+  rewrite H1. rewrite H2. reflexivity.
+Qed.
 
-(** [] *)
+
 End LateDays.
 
 (* ================================================================= *)
@@ -2027,7 +2064,7 @@ End LateDays.
     is on the right -- the opposite of the way binary numbers are
     usually written.  This choice makes them easier to manipulate.
 
-    (Comprehension check: What unary numeral does [B0 Z] represent?) *)
+    (Comprehension check: What unary numeral does [B0 Z] represent?) 0*)
 
 Inductive bin : Type :=
   | Z
@@ -2036,41 +2073,53 @@ Inductive bin : Type :=
 
 (** Complete the definitions below of an increment function [incr]
     for binary numbers, and a function [bin_to_nat] to convert
-    binary numbers to unary numbers. *)
+    binary numbers to unary numbers. **)
 
-Fixpoint incr (m:bin) : bin
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Fixpoint incr (m:bin) : bin :=
+  match m with
+  | Z     => B1 Z
+  | B0 n  => B1 n
+  | B1 n  => B0 (incr n)
+  end.
 
-Fixpoint bin_to_nat (m:bin) : nat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
-
-(** The following "unit tests" of your increment and binary-to-unary
-    functions should pass after you have defined those functions correctly.
-    Of course, unit tests don't fully demonstrate the correctness of
-    your functions!  We'll return to that thought at the end of the
-    next chapter. *)
+Fixpoint bin_to_nat (m:bin) : nat :=
+  match m with
+  | Z     => O
+  | B0 n  => plus' (bin_to_nat n) (bin_to_nat n)
+  | B1 n  => S (plus' (bin_to_nat n) (bin_to_nat n))
+  end.
 
 Example test_bin_incr1 : (incr (B1 Z)) = B0 (B1 Z).
-(* FILL IN HERE *) Admitted.
+Proof.
+  reflexivity.
+Qed.
 
 Example test_bin_incr2 : (incr (B0 (B1 Z))) = B1 (B1 Z).
-(* FILL IN HERE *) Admitted.
+Proof.
+  reflexivity.
+Qed.
 
 Example test_bin_incr3 : (incr (B1 (B1 Z))) = B0 (B0 (B1 Z)).
-(* FILL IN HERE *) Admitted.
+Proof.
+  reflexivity.
+Qed.
 
 Example test_bin_incr4 : bin_to_nat (B0 (B1 Z)) = 2.
-(* FILL IN HERE *) Admitted.
+Proof.
+  reflexivity.
+Qed.
 
 Example test_bin_incr5 :
         bin_to_nat (incr (B1 Z)) = 1 + bin_to_nat (B1 Z).
-(* FILL IN HERE *) Admitted.
+Proof.
+  reflexivity.
+Qed.
 
 Example test_bin_incr6 :
         bin_to_nat (incr (incr (B1 Z))) = 2 + bin_to_nat (B1 Z).
-(* FILL IN HERE *) Admitted.
-
-(** [] *)
+Proof.
+  reflexivity.
+Qed.
 
 (* ################################################################# *)
 (** * Testing Your Solutions *)
